@@ -18,6 +18,8 @@
         <module>minsx-starter</module>
         <module>minsx-service</module>
         <module>minsx-log</module>
+        <module>minsx-plugins</module>
+        <module>minsx-message</module>
     </modules>
 
     <name>${project.groupId}:${project.artifactId}</name>
