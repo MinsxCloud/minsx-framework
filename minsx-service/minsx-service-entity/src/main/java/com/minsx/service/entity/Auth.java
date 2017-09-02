@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * Created by Joker on 2017/8/30.
  */
 @Entity
-@Table(name = "sys_auth")
+@Table(name = "minsx_auth")
 public class Auth extends SimpleMinsxEntity implements Serializable {
 
     private static final long serialVersionUID = -1086790711293440255L;
@@ -26,20 +27,24 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
     private String type;
 
     //该权限能访问的URL
-    @Column(nullable = false,unique = true, name = "auth_value")
+    @Column(nullable = false, unique = true, name = "auth_value")
     private String authValue;
 
     //权限类目(属于哪个类目eg:用户/文章....)
-    @Column(nullable = false,unique = true, name = "auth_category")
+    @Column(nullable = false, unique = true, name = "auth_category")
     private String category;
 
     //描述
     @Column(nullable = true, name = "auth_description")
     private String description;
 
-    //拥有该权限的角色
-    @ManyToMany(cascade = CascadeType.REFRESH, mappedBy = "auths")
-    private List<Role> roles;
+    //创建时间
+    @Column(nullable = false, name = "auth_create_time")
+    private LocalDateTime createTime;
+
+    //编辑时间
+    @Column(nullable = false, name = "auth_edit_time")
+    private LocalDateTime editTime;
 
     public Integer getId() {
         return id;
@@ -65,7 +70,7 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
         this.authValue = authValue;
     }
 
-     public String getCategory() {
+    public String getCategory() {
         return category;
     }
 
@@ -79,14 +84,6 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-   public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
     }
 
     @Override

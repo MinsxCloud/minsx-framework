@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Joker on 2017/8/30.
  */
 @Entity
-@Table(name = "sys_users")
+@Table(name = "minsx_user")
 public class User  extends SimpleMinsxEntity implements Serializable {
 
     private static final long serialVersionUID = 7680851689006674668L;
@@ -28,33 +28,29 @@ public class User  extends SimpleMinsxEntity implements Serializable {
         this.setUserNick(user.getUserNick());
         this.setEmail(user.getEmail());
         this.setPhoneNum(user.getPhoneNum());
-        this.setSignature(user.getSignature());
         this.setLastLoginTime(user.getLastLoginTime());
         this.setLocked(user.isLocked());
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, name = "user_id")
+    @Column(nullable = false, name = "uid")
     private Integer id;
 
-    @Column(nullable = false, name = "user_name", unique = true)
+    @Column(nullable = false, name = "username", unique = true)
     private String userName;
 
-    @Column(nullable = false, name = "pass_word")
+    @Column(nullable = false, name = "password")
     private String passWord;
 
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(name = "sys_user_role",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            joinColumns = @JoinColumn(name = "uid", referencedColumnName = "uid"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
     private List<Role> roles;
 
     @Column(name = "user_nick")
     private String userNick;
-
-    @Column(name = "signature")
-    private String signature;
 
     @Column(nullable = false, name = "last_login_time")
     private Date lastLoginTime;
@@ -107,14 +103,6 @@ public class User  extends SimpleMinsxEntity implements Serializable {
 
     public void setUserNick(String userNick) {
         this.userNick = userNick;
-    }
-
-    public String getSignature() {
-        return signature;
-    }
-
-    public void setSignature(String signature) {
-        this.signature = signature;
     }
 
     public Date getLastLoginTime() {

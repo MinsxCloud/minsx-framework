@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Joker on 2017/8/30.
  */
 @Entity
-@Table(name = "sys_role")
+@Table(name = "minsx_role")
 public class Role  extends SimpleMinsxEntity implements Serializable {
 
     private static final long serialVersionUID = -2704877628383940871L;
@@ -26,9 +26,6 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
 
     @Column(nullable = false, name = "remark")
     private String remark;
-
-    @ManyToMany(cascade = CascadeType.REFRESH, mappedBy = "roles")
-    private List<User> users;
 
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(name = "sys_role_auth",
@@ -59,14 +56,6 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
 
     public void setRemark(String remark) {
         this.remark = remark;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
     }
 
     public List<Auth> getAuths() {
