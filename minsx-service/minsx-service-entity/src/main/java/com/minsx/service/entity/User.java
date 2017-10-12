@@ -1,15 +1,14 @@
 package com.minsx.service.entity;
 
 import com.alibaba.fastjson.JSON;
-import org.hibernate.validator.constraints.Email;
+import com.minsx.service.base.SimpleMinsxEntity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 
 /**
- * User
+ * 用户
  * Created by Joker on 2017/8/30.
  */
 @Entity
@@ -18,24 +17,10 @@ public class User  extends SimpleMinsxEntity implements Serializable {
 
     private static final long serialVersionUID = 7680851689006674668L;
 
-    public User() {
-    }
-
-    public User(User user) {
-        this.setId(user.getId());
-        this.setUserName(user.getUserName());
-        this.setPassWord(user.getPassWord());
-        this.setUserNick(user.getUserNick());
-        this.setEmail(user.getEmail());
-        this.setPhoneNum(user.getPhoneNum());
-        this.setLastLoginTime(user.getLastLoginTime());
-        this.setLocked(user.isLocked());
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, name = "uid")
-    private Integer id;
+    @Column(nullable = false, name = "user_id")
+    private Integer userId;
 
     @Column(nullable = false, name = "username", unique = true)
     private String userName;
@@ -43,34 +28,64 @@ public class User  extends SimpleMinsxEntity implements Serializable {
     @Column(nullable = false, name = "password")
     private String passWord;
 
-    @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    @JoinTable(name = "sys_user_role",
-            joinColumns = @JoinColumn(name = "uid", referencedColumnName = "uid"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
-    private List<Role> roles;
-
-    @Column(name = "user_nick")
+    @Column(name = "user_nick",unique = true)
     private String userNick;
 
-    @Column(nullable = false, name = "last_login_time")
-    private Date lastLoginTime;
+    @Column(nullable = false, name = "status")
+    private Integer status;
 
-    @Column(name = "phone_num", unique = true)
-    private String phoneNum;
+    @Column(name = "user_info_id",unique = true)
+    private String userInfoId;
 
-    @Email
+    @Column(name = "user_group_id",unique = true)
+    private String userGroupId;
+
     @Column(nullable = false, name = "email", unique = true)
     private String email;
 
-    @Column(nullable = false, name = "locked")
-    private boolean locked;
+    @Column(nullable = false,name = "phone", unique = true)
+    private String phone;
 
-    public Integer getId() {
-        return id;
+    @Column(name = "face")
+    private String face;
+
+    @Column(name = "signature")
+    private String signature;
+
+    @Column(nullable = false, name = "register_time")
+    private LocalDateTime registerTime;
+
+    @Column(nullable = false, name = "last_login_time")
+    private LocalDateTime lastLoginTime;
+
+    @Column(nullable = false, name = "register_ip")
+    private String registerIp;
+
+    @Column(nullable = false, name = "last_login_ip")
+    private String registerLoginIp;
+
+    @Column(nullable = false, name = "create_time")
+    private LocalDateTime createTime;
+
+    @Column(nullable = false, name = "edit_time")
+    private LocalDateTime editTime;
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {
@@ -89,14 +104,6 @@ public class User  extends SimpleMinsxEntity implements Serializable {
         this.passWord = passWord;
     }
 
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
-
     public String getUserNick() {
         return userNick;
     }
@@ -105,20 +112,28 @@ public class User  extends SimpleMinsxEntity implements Serializable {
         this.userNick = userNick;
     }
 
-    public Date getLastLoginTime() {
-        return lastLoginTime;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setLastLoginTime(Date lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
-    public String getPhoneNum() {
-        return phoneNum;
+    public String getUserInfoId() {
+        return userInfoId;
     }
 
-    public void setPhoneNum(String phoneNum) {
-        this.phoneNum = phoneNum;
+    public void setUserInfoId(String userInfoId) {
+        this.userInfoId = userInfoId;
+    }
+
+    public String getUserGroupId() {
+        return userGroupId;
+    }
+
+    public void setUserGroupId(String userGroupId) {
+        this.userGroupId = userGroupId;
     }
 
     public String getEmail() {
@@ -129,18 +144,75 @@ public class User  extends SimpleMinsxEntity implements Serializable {
         this.email = email;
     }
 
-    public boolean isLocked() {
-        return locked;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setLocked(boolean locked) {
-        this.locked = locked;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    @Override
-    public String toString() {
-        return JSON.toJSONString(this);
+    public String getFace() {
+        return face;
     }
 
+    public void setFace(String face) {
+        this.face = face;
+    }
 
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public LocalDateTime getRegisterTime() {
+        return registerTime;
+    }
+
+    public void setRegisterTime(LocalDateTime registerTime) {
+        this.registerTime = registerTime;
+    }
+
+    public LocalDateTime getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(LocalDateTime lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
+
+    public String getRegisterIp() {
+        return registerIp;
+    }
+
+    public void setRegisterIp(String registerIp) {
+        this.registerIp = registerIp;
+    }
+
+    public String getRegisterLoginIp() {
+        return registerLoginIp;
+    }
+
+    public void setRegisterLoginIp(String registerLoginIp) {
+        this.registerLoginIp = registerLoginIp;
+    }
+
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
+    }
+
+    public LocalDateTime getEditTime() {
+        return editTime;
+    }
+
+    public void setEditTime(LocalDateTime editTime) {
+        this.editTime = editTime;
+    }
 }

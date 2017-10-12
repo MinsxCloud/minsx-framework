@@ -1,12 +1,12 @@
-package com.minsx.service.entity;
+package com.minsx.service.type;
 
 /**
- * AuthType
+ * 权限类型
  * Created by Joker on 2017/8/31.
  */
 public enum AuthType {
 
-    URL("URL"),MENU("MENU"),DATA("DATA");
+    URL("URL"),MENU("MENU"),DATA("DATA"),BUTTON("BUTTON");
 
     String value;
 

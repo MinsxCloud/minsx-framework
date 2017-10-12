@@ -1,4 +1,4 @@
-package com.minsx.service.entity;
+package com.minsx.service.base;
 
 /**
  * SimpleMinsxEntity
