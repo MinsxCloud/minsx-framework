@@ -1,28 +1,57 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>minsx</artifactId>
-        <groupId>com.minsx</groupId>
-        <version>1.0.0</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
 
-    <artifactId>minsx-authorization</artifactId>
+	<parent>
+		<groupId>com.minsx</groupId>
+		<artifactId>minsx-framework</artifactId>
+		<version>1.0.0</version>
+	</parent>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+	<artifactId>minsx-authorization</artifactId>
+	<name>minsx-authorization</name>
+
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<!-- core-entity-->
+		<dependency>
+			<groupId>com.minsx</groupId>
+			<artifactId>minsx-core-entity</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<!-- core-respository -->
+		<dependency>
+			<groupId>com.minsx</groupId>
+			<artifactId>minsx-core-respository</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<!-- service-api -->
+		<dependency>
+			<groupId>com.minsx</groupId>
+			<artifactId>minsx-core-service-api</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

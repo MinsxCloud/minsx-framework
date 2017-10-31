@@ -1,119 +1,162 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.minsx</groupId>
-    <artifactId>minsx</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0.0</version>
+	<groupId>com.minsx</groupId>
+	<artifactId>minsx-framework</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0</version>
 
-    <modules>
-        <module>minsx-datasource</module>
-        <module>minsx-authorization</module>
-        <module>minsx-core</module>
-        <module>minsx-commons</module>
-        <module>minsx-i18n</module>
-        <module>minsx-starter</module>
-        <module>minsx-service</module>
-        <module>minsx-log</module>
-        <module>minsx-plugins</module>
-        <module>minsx-message</module>
-    </modules>
+	<modules>
+		<module>minsx-datasource</module>
+		<module>minsx-authorization</module>
+		<module>minsx-core</module>
+		<module>minsx-commons</module>
+		<module>minsx-i18n</module>
+		<module>minsx-starter</module>
+		<module>minsx-service</module>
+		<module>minsx-log</module>
+		<module>minsx-plugins</module>
+		<module>minsx-message</module>
+	</modules>
 
-    <name>${project.groupId}:${project.artifactId}</name>
-    <url>https://www.minsx.com</url>
-    <description>minsx is the min web framework on the basis of spring, let you develop enterprise applications as fast
-        as possible
-    </description>
+	<name>${project.groupId}:${project.artifactId}</name>
+	<url>https://www.minsx.com</url>
+	<description>minsx is the min web framework on the basis of spring, let you develop enterprise applications as fast as possible</description>
 
-    <licenses>
-        <license>
-            <name>The Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
 
-    <developers>
-        <developer>
-            <name>joker</name>
-            <email>web@wsssw.com</email>
-            <roles>
-                <role>Owner</role>
-            </roles>
-            <timezone>+8</timezone>
-            <url>https://github.com/goodsave</url>
-        </developer>
-    </developers>
+	<developers>
+		<developer>
+			<name>joker</name>
+			<email>web@wsssw.com</email>
+			<roles>
+				<role>Owner</role>
+			</roles>
+			<timezone>+8</timezone>
+			<url>https://github.com/goodsave</url>
+		</developer>
+	</developers>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.build.locales>zh_CN</project.build.locales>
-        <java.version>1.8</java.version>
-        <project.build.jdk>${java.version}</project.build.jdk>
-        <spring.boot.version>1.5.6.RELEASE</spring.boot.version>
-        <fastjson.version>1.2.32</fastjson.version>
-        <mysql.version>5.1.39</mysql.version>
-        <cglib.version>3.2.2</cglib.version>
-        <swagger.version>2.6.1</swagger.version>
-    </properties>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.locales>zh_CN</project.build.locales>
+		<java.version>1.8</java.version>
+		<project.build.jdk>${java.version}</project.build.jdk>
+		<spring.boot.version>1.5.8.RELEASE</spring.boot.version>
+		<fastjson.version>1.2.32</fastjson.version>
+		<mysql.version>5.1.43</mysql.version>
+		<cglib.version>3.2.2</cglib.version>
+		<swagger.version>2.6.1</swagger.version>
+		<shiro.version>1.2.4</shiro.version>
+	</properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
-        </dependency>
-    </dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+		</dependency>
+		<!--commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<!-- commons-codec -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+		<!-- commons-junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!--spring redis -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<!-- spring security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!-- spring oauth2 -->
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+		</dependency>
+	</dependencies>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-annotations</artifactId>
+				<version>1.5.10</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring.boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-annotations</artifactId>
-                <version>1.5.10</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring.boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

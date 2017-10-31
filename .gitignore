@@ -22,3 +22,6 @@
 hs_err_pid*
 *.iml
 minsx-starter/target/
+*.prefs
+*.project
+*.classpath
