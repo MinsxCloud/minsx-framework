@@ -10,7 +10,6 @@
 
 	<modules>
 		<module>minsx-datasource</module>
-		<module>minsx-authorization</module>
 		<module>minsx-core</module>
 		<module>minsx-commons</module>
 		<module>minsx-i18n</module>
@@ -19,6 +18,7 @@
 		<module>minsx-log</module>
 		<module>minsx-plugins</module>
 		<module>minsx-message</module>
+		<module>minsx-resource</module>
 	</modules>
 
 	<name>${project.groupId}:${project.artifactId}</name>

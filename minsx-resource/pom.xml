@@ -20,7 +20,7 @@
 	</properties>
 
 	<dependencies>
-		<!-- core-entity-->
+		<!-- core-entity -->
 		<dependency>
 			<groupId>com.minsx</groupId>
 			<artifactId>minsx-core-entity</artifactId>
