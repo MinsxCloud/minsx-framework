@@ -35,7 +35,12 @@ public class SystemController {
 	@ResponseBody
 	@RequestMapping(value = "/userInfo", method = RequestMethod.GET)
 	public String userInfo() {
+		
+		
 		return "userInfo page";
 	}
+	
+	
+	
 
 }

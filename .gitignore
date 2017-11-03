@@ -25,3 +25,16 @@ minsx-starter/target/
 *.prefs
 *.project
 *.classpath
+minsx-resource/.settings/
+minsx-datasource/.settings/
+minsx-i18n/.settings/
+minsx-log/.settings/
+minsx-message/.settings/
+minsx-plugins/.settings/
+minsx-core/minsx-core-service/minsx-core-service-api/.settings/
+minsx-core/minsx-core-service/minsx-core-service-implement/.settings/
+minsx-core/minsx-core-entity/.settings/
+minsx-core/minsx-core-controller/.settings/
+minsx-commons/.settings/
+minsx-core/minsx-core-respository/.settings/
+minsx-starter/.settings/

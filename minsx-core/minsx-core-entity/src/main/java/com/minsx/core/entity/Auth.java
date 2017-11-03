@@ -2,6 +2,8 @@ package com.minsx.core.entity;
 
 import com.alibaba.fastjson.JSON;
 import com.minsx.core.entity.base.SimpleMinsxEntity;
+import com.minsx.core.entity.type.AuthState;
+import com.minsx.core.entity.type.AuthType;
 
 import javax.persistence.*;
 
@@ -32,8 +34,8 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
     private String authValue;
 
     //状态
-    @Column(nullable = false, name = "status")
-    private Integer status;
+    @Column(nullable = false, name = "state")
+    private Integer state;
 
     //权限类目(属于哪个类目eg:用户/文章....)
     @Column(nullable = false, unique = true, name = "category")
@@ -73,12 +75,12 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
         this.id = id;
     }
 
-    public String getAuthType() {
-        return authType;
+    public AuthType getAuthType() {
+        return AuthType.getAuthType(this.authType);
     }
 
-    public void setAuthType(String authType) {
-        this.authType = authType;
+    public void setAuthType(AuthType authType) {
+        this.authType = authType.getValue();
     }
 
     public String getAuthValue() {
@@ -89,12 +91,12 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
         this.authValue = authValue;
     }
 
-    public Integer getStatus() {
-        return status;
+    public AuthState getState() {
+        return AuthState.getAuthState(this.state);
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setState(AuthState authState) {
+        this.state = authState.getValue();
     }
 
     public String getCategory() {

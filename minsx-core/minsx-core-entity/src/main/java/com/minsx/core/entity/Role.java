@@ -2,6 +2,7 @@ package com.minsx.core.entity;
 
 import com.alibaba.fastjson.JSON;
 import com.minsx.core.entity.base.SimpleMinsxEntity;
+import com.minsx.core.entity.type.RoleState;
 
 import javax.persistence.*;
 
@@ -27,8 +28,8 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
     @Column(nullable = false, unique = true, name = "name")
     private String name;
 
-    @Column(nullable = false, name = "remark")
-    private String remark;
+    @Column(nullable = false, name = "alias")
+    private String alias;
 
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(name = "minsx_role_auth",
@@ -36,14 +37,11 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "auth_id", referencedColumnName = "auth_id"))
     private List<Auth> auths;
 
-    @Column(nullable = false, name = "for_type")
-    private String forType;
-
-    @Column(nullable = false, name = "for_value")
-    private String forValue;
-
-    @Column(nullable = false, name = "status")
-    private Integer status;
+    @Column(nullable = false, name = "state")
+    private Integer state;
+    
+    @Column(nullable = false, name = "discription")
+    private String discription;
 
     @Column(nullable = false, name = "create_user_id")
     private Integer createUserId;
@@ -80,15 +78,26 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
         this.name = name;
     }
 
-    public String getRemark() {
-        return remark;
-    }
+    public String getAlias() {
+		return alias;
+	}
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
 
-    public List<Auth> getAuths() {
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+
+	public String getDiscription() {
+		return discription;
+	}
+
+
+	public void setDiscription(String discription) {
+		this.discription = discription;
+	}
+
+
+	public List<Auth> getAuths() {
         return auths;
     }
 
@@ -96,31 +105,15 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
         this.auths = auths;
     }
 
-    public String getForType() {
-        return forType;
-    }
+    public RoleState getState() {
+		return RoleState.getRoleState(this.state);
+	}
 
-    public void setForType(String forType) {
-        this.forType = forType;
-    }
+	public void setState(RoleState roleState) {
+		this.state = roleState.getValue();
+	}
 
-    public String getForValue() {
-        return forValue;
-    }
-
-    public void setForValue(String forValue) {
-        this.forValue = forValue;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Integer getCreateUserId() {
+	public Integer getCreateUserId() {
         return createUserId;
     }
 

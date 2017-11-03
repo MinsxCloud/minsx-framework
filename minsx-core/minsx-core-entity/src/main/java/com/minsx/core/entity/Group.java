@@ -1,36 +1,57 @@
 package com.minsx.core.entity;
 
-import com.alibaba.fastjson.JSON;
-import com.minsx.core.entity.base.SimpleMinsxEntity;
-
-import javax.persistence.*;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import com.alibaba.fastjson.JSON;
+import com.minsx.core.entity.base.SimpleMinsxEntity;
+import com.minsx.core.entity.type.UserGroupState;
 
 /**
  * 用户分组
  * Created by Joker on 2017/9/17.
  */
 @Entity
-@Table(name = "minsx_user_group")
-public class UserGroup extends SimpleMinsxEntity implements Serializable {
+@Table(name = "minsx_group")
+public class Group extends SimpleMinsxEntity implements Serializable {
 	
 	private static final long serialVersionUID = 7456879800037805192L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, name = "user_group_id")
-    private Integer userGroupId;
+    @Column(nullable = false, name = "group_id")
+    private Integer groupId;
 
-    @Column(nullable = false, name = "parent_user_group_id", unique = true)
-    private Integer parentUserGroupId;
-
+    @Column(nullable = false, name = "parent_group_id", unique = true)
+    private Integer parentGroupId;
+    
     @Column(nullable = false, name = "name", unique = true)
     private String name;
+    
+    @Column(nullable = false, name = "alias", unique = true)
+    private String alias;
+    
+    @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    @JoinTable(name = "minsx_group_role",
+            joinColumns = @JoinColumn(name = "group_id", referencedColumnName = "group_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
+    private List<Role> roles;
 
-    @Column(nullable = false, name = "status", unique = true)
-    private Integer status;
+    @Column(nullable = false, name = "state", unique = true)
+    private Integer state;
 
     @Column(nullable = false, name = "description", unique = true)
     private String description;
@@ -49,24 +70,23 @@ public class UserGroup extends SimpleMinsxEntity implements Serializable {
         return JSON.toJSONString(this);
     }
 
+    public Integer getGroupId() {
+		return groupId;
+	}
 
-    public Integer getUserGroupId() {
-        return userGroupId;
-    }
+	public void setGroupId(Integer groupId) {
+		this.groupId = groupId;
+	}
 
-    public void setUserGroupId(Integer userGroupId) {
-        this.userGroupId = userGroupId;
-    }
+	public Integer getParentGroupId() {
+		return parentGroupId;
+	}
 
-    public Integer getParentUserGroupId() {
-        return parentUserGroupId;
-    }
+	public void setParentGroupId(Integer parentGroupId) {
+		this.parentGroupId = parentGroupId;
+	}
 
-    public void setParentUserGroupId(Integer parentUserGroupId) {
-        this.parentUserGroupId = parentUserGroupId;
-    }
-
-    public String getName() {
+	public String getName() {
         return name;
     }
 
@@ -74,15 +94,35 @@ public class UserGroup extends SimpleMinsxEntity implements Serializable {
         this.name = name;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
+    public String getAlias() {
+		return alias;
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
 
-    public String getDescription() {
+	public UserGroupState getState() {
+		return UserGroupState.getUserGroupState(this.state);
+	}
+
+	public void setState(UserGroupState userGroupState) {
+		this.state = userGroupState.getValue();
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public String getDescription() {
         return description;
     }
 

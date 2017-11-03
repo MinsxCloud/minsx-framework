@@ -1,12 +1,18 @@
 package com.minsx.core.entity.auth;
 
-import com.alibaba.fastjson.JSON;
-import com.minsx.core.entity.base.SimpleMinsxEntity;
-
-import javax.persistence.*;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.alibaba.fastjson.JSON;
+import com.minsx.core.entity.base.SimpleMinsxEntity;
+import com.minsx.core.entity.type.UrlState;
 
 /**
  * 页面链接
@@ -26,8 +32,8 @@ public class Url extends SimpleMinsxEntity implements Serializable{
     @Column(nullable = false, unique = true, name = "url_value")
     private String urlValue;
 
-    @Column(nullable = false, unique = true, name = "status")
-    private String status;
+    @Column(nullable = false, unique = true, name = "state")
+    private Integer state;
 
     @Column(nullable = false, unique = true, name = "description")
     private String description;
@@ -64,16 +70,16 @@ public class Url extends SimpleMinsxEntity implements Serializable{
     public void setUrlValue(String urlValue) {
         this.urlValue = urlValue;
     }
+    
+    public UrlState getState() {
+		return UrlState.getUrlState(this.state);
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public void setState(UrlState urlState) {
+		this.state = urlState.getValue();
+	}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getDescription() {
+	public String getDescription() {
         return description;
     }
 

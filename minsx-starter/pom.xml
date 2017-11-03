@@ -47,7 +47,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.minsx</groupId>
-			<artifactId>minsx-authorization</artifactId>
+			<artifactId>minsx-resource</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 	</dependencies>

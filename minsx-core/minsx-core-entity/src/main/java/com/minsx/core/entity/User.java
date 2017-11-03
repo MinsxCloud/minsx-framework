@@ -3,13 +3,19 @@ package com.minsx.core.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -19,6 +25,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minsx.core.entity.base.SimpleMinsxEntity;
+import com.minsx.core.entity.type.UserState;
 
 /**
  * 用户
@@ -44,14 +51,17 @@ public class User  extends SimpleMinsxEntity implements Serializable,UserDetails
     @Column(name = "user_nick",unique = true)
     private String userNick;
 
-    @Column(nullable = false, name = "status")
-    private Integer status;
+    @Column(nullable = false, name = "state")
+    private Integer state;
 
     @Column(name = "user_info_id",unique = true)
     private String userInfoId;
 
-    @Column(name = "user_group_id",unique = true)
-    private String userGroupId;
+    @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    @JoinTable(name = "minsx_user_group",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "group_id"))
+    private List<Group> groups;
 
     @Column(nullable = false, name = "email", unique = true)
     private String email;
@@ -122,7 +132,7 @@ public class User  extends SimpleMinsxEntity implements Serializable,UserDetails
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return this.status!=-1;
+		return this.state!=-1;
 	}
 
 	@Override
@@ -174,16 +184,13 @@ public class User  extends SimpleMinsxEntity implements Serializable,UserDetails
 		this.userNick = userNick;
 	}
 
-
-	public Integer getStatus() {
-		return status;
+	public UserState getState() {
+		return UserState.getUserState(this.state);
 	}
 
-
-	public void setStatus(Integer status) {
-		this.status = status;
+	public void setState(UserState userState) {
+		this.state = userState.getValue();
 	}
-
 
 	public String getUserInfoId() {
 		return userInfoId;
@@ -194,16 +201,13 @@ public class User  extends SimpleMinsxEntity implements Serializable,UserDetails
 		this.userInfoId = userInfoId;
 	}
 
-
-	public String getUserGroupId() {
-		return userGroupId;
+	public List<Group> getGroups() {
+		return groups;
 	}
 
-
-	public void setUserGroupId(String userGroupId) {
-		this.userGroupId = userGroupId;
+	public void setGroups(List<Group> groups) {
+		this.groups = groups;
 	}
-
 
 	public String getEmail() {
 		return email;

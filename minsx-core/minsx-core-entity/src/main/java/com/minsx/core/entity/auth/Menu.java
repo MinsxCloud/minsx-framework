@@ -2,6 +2,7 @@ package com.minsx.core.entity.auth;
 
 import com.alibaba.fastjson.JSON;
 import com.minsx.core.entity.base.SimpleMinsxEntity;
+import com.minsx.core.entity.type.MenuState;
 
 import javax.persistence.*;
 
@@ -28,15 +29,21 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
 
     @Column(nullable = false, unique = true, name = "name")
     private String name;
+    
+    @Column(nullable = false, unique = true, name = "alias")
+    private String alias;
 
-    @Column(nullable = false, unique = true, name = "status")
-    private String status;
+    @Column(nullable = false, unique = true, name = "state")
+    private Integer state;
 
     @Column(nullable = false, unique = true, name = "url")
     private String url;
 
     @Column(nullable = false, unique = true, name = "type")
     private String type;
+    
+    @Column(nullable = false, unique = true, name = "discription")
+    private String discription;
 
     //创建该权限的用户ID
     @Column(nullable = false, name = "create_user_id")
@@ -79,16 +86,35 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
+    
+    public String getAlias() {
+		return alias;
+	}
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
 
-    public String getUrl() {
+	public String getDiscription() {
+		return discription;
+	}
+
+
+	public void setDiscription(String discription) {
+		this.discription = discription;
+	}
+
+
+	public MenuState getState() {
+		return MenuState.getMenuState(this.state);
+	}
+
+	public void setState(MenuState menuState) {
+		this.state = menuState.getValue();
+	}
+
+	public String getUrl() {
         return url;
     }
 

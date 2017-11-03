@@ -6,7 +6,7 @@ package com.minsx.core.entity.type;
  */
 public enum AuthType {
 
-    URL("URL"),MENU("MENU"),DATA("DATA"),BUTTON("BUTTON");
+    URL("URL"),MENU("MENU"),DATA("DATA"),BUTTON("BUTTON"),UNKNOWN("");
 
     String value;
 
@@ -21,7 +21,13 @@ public enum AuthType {
     public void setValue(String value) {
         this.value = value;
     }
-
-
+    
+    public static AuthType getAuthType(String value) {  
+        try {  
+            return valueOf(value);
+        }catch (Exception e) {  
+            return UNKNOWN;  
+        }  
+    }  
 
 }
