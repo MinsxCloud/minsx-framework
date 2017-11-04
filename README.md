@@ -29,6 +29,7 @@
 + Spring Cloud 云应用框架
 + Druid 数据源框架
 + Dubbo 分布式框架
++ Radis 缓存框架
 + Minsx CCS 自家云存储框架
 
 ### 部署方面
