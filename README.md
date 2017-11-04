@@ -1,18 +1,39 @@
 # Minsx-Framework
-Minsx（咪斯艾克斯 ）是一款基于Spring的轻量级WEB框架，她可以让你以最短的时间开发出企业级应用
+Minsx (咪斯艾克斯) 是一款基于轻量级云平台框架，她可以让你以较短的时间开发出企业级云平台应用
 
-### 主要特点
-+ 高灵活
-+ 高可配置
-+ 微服务
-+ 模块化
+### 项目说明
+- 软件名称：Minsx-Framework
+- 版本号：1.0.0
+- 开发者：www.minsx.com
+- 语言：Java
+- 功能：提供一整套企业云平台解决方案,包括四个基础端：
+        1.用户登录认证服务端  
+        2.用户中心及核心业务服务端
+        3.管理WEB前端
+        4.用户WEB前端
+- 优点：高灵活/高可配置/微服务/模块化/快速二次开发
+- 缺点：仅适用于通用行业(不适用于商城,医疗等特殊行业)
+- 开源协议：Apache License Version 2.0 
+				http://www.apache.org/licenses/
+### 技术选型
++ Spring Boot 基础框架
++ Spring Security 权限认证框架
++ Spring Data JPA ORM框架
++ Spring Security Oauth2.0 单点登录及认证框架
++ Spring Aop 切面编程框架
++ Spring Cloud 云应用框架
++ Druid 数据源框架
++ Dubbo 分布式框架
++ Minsx CCS 自家云存储框架
+### 部署方面
++ 采用Nginx 主要用于解决代理问题及部分简单负载均衡问题
 
-### 项目简介
-+ 主要用于小型云平台后端应用
-+ 小巧便捷,开箱即用
-+ 项目采用前后端分离
-+ 我们提供默认通用用户前端实现(请参照：minsx-user-ui)
-+ 我们提供默认通用管理前端实现(请参照：minsx-management-ui)
+### 架构及开发简介
++ 项目采用前后端分离/模块化设计
++ 提供单点登录服务端(请参照：minsx-authorization-server)
++ 提供用户中心及核心业务服务端(请参照：minsx-framework)
++ 提供默认通用用户前端(请参照：minsx-user-ui)
++ 提供默认通用管理前端(请参照：minsx-management-ui)
 + 采用Restful-URL进行开发
 + 代码规范方面遵循最新阿里巴巴JAVA代码规范
 
@@ -22,3 +43,6 @@ Minsx（咪斯艾克斯 ）是一款基于Spring的轻量级WEB框架，她可�
 ![权限管理](https://raw.githubusercontent.com/goodsave/Minsx-Framework/master/docs/image/auth.png "权限管理")
 ![菜单管理](https://raw.githubusercontent.com/goodsave/Minsx-Framework/master/docs/image/menu.png "菜单管理")
 ![请求监控](https://raw.githubusercontent.com/goodsave/Minsx-Framework/master/docs/image/request.png "请求监控")
+
+### 项目截图 (V2.0.0版本 )
+正在加紧CODEING...(预计在12月底开放,敬请期待)
