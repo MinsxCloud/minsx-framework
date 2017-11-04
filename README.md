@@ -1,5 +1,5 @@
 # Minsx-Framework
-#### Minsx 【(米斯艾克斯】
+#### Minsx (米斯艾克斯)
 + Min : 轻量 
 + S : Spring框架 
 + X : 未知、无限、完美、千言万语 (参考自百度百科)
