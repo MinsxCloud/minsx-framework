@@ -1,4 +1,5 @@
 # Minsx-Framework
+
 #### Minsx (米斯艾克斯)
 + Min : 轻量 
 + S : Spring框架 
@@ -17,8 +18,8 @@
 	+ 4.用户WEB前端
 + 优点：高灵活/高可配置/微服务/模块化/快速二次开发
 + 缺点：仅适用于通用行业(不适用于商城,医疗等特殊行业)
-+ 开源协议：Apache License Version 2.0 
-				http://www.apache.org/licenses/
++ 开源协议：Apache License Version 2.0 http://www.apache.org/licenses/
+				
 ### 技术选型
 + Spring Boot 基础框架
 + Spring Security 权限认证框架
@@ -29,6 +30,7 @@
 + Druid 数据源框架
 + Dubbo 分布式框架
 + Minsx CCS 自家云存储框架
+
 ### 部署方面
 + 采用Nginx 主要用于解决代理问题及部分简单负载均衡问题
 
@@ -41,12 +43,11 @@
 + 采用Restful-URL进行开发
 + 代码规范方面遵循最新阿里巴巴JAVA代码规范
 
-
-### 项目截图 (V1.0.0版本 )
+### 项目截图 (V1.0.0版本)
 ![登录](https://raw.githubusercontent.com/goodsave/Minsx-Framework/master/docs/image/login.png "登录")
 ![权限管理](https://raw.githubusercontent.com/goodsave/Minsx-Framework/master/docs/image/auth.png "权限管理")
 ![菜单管理](https://raw.githubusercontent.com/goodsave/Minsx-Framework/master/docs/image/menu.png "菜单管理")
 ![请求监控](https://raw.githubusercontent.com/goodsave/Minsx-Framework/master/docs/image/request.png "请求监控")
 
-### 项目截图 (V2.0.0版本 )
+### 项目截图 (V2.0.0版本)
 正在加紧CODEING...(预计在12月底开放,敬请期待)
