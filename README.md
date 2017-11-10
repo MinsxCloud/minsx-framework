@@ -37,7 +37,7 @@
 
 ### 架构及开发方面
 + 项目采用前后端分离/模块化设计
-+ 提供单点登录服务端(请参照：minsx-authorization-server)
++ 提供单点登录服务端(请参照：minsx-authorization-server [点此查看](https://github.com/goodsave/minsx-authorization-server))
 + 提供用户中心及核心业务服务端(请参照：minsx-framework)
 + 提供默认通用用户前端(请参照：minsx-user-ui)
 + 提供默认通用管理前端(请参照：minsx-management-ui)
