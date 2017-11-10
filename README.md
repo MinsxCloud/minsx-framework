@@ -30,7 +30,7 @@
 + Druid 数据源框架
 + Dubbo 分布式框架
 + Radis 缓存框架
-+ Minsx CCS 自家云存储框架
++ Minsx CCS 自家云存储框架 [点此查看](https://github.com/goodsave/minsx-ccs)
 
 ### 部署方面
 + 采用Nginx 主要用于解决代理问题及部分简单负载均衡问题
