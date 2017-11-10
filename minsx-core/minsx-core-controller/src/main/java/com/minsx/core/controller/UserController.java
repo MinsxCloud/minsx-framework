@@ -31,8 +31,15 @@ public class UserController {
     
     @ResponseBody
     @RequestMapping(value = "/getUserInfo",method = RequestMethod.POST)
-    public String getUserId(){
+    public String PostUserInfo(){
         return "userInfo = "+JSON.toJSONString(SecurityContextHolder.getContext().getAuthentication());
+    }
+    
+    @ResponseBody
+    @PreAuthorize("hasAuthority('URL:/user')")
+    @RequestMapping(value = "/getUserInfo",method = RequestMethod.GET)
+    public String getUserInfo(){
+    	return "userInfo = "+JSON.toJSONString(SecurityContextHolder.getContext().getAuthentication());
     }
     
     @ResponseBody
