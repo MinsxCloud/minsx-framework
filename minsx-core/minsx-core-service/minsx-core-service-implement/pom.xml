@@ -11,7 +11,6 @@
 
 	<artifactId>minsx-core-service-implement</artifactId>
 	<name>minsx-core-service-implement</name>
-
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -20,9 +19,15 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
+			<groupId>com.minsx</groupId>
+			<artifactId>minsx-core-service-api</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<!-- unirest -->
+		<dependency>
+			<groupId>com.mashape.unirest</groupId>
+			<artifactId>unirest-java</artifactId>
+			<version>1.4.9</version>
 		</dependency>
 	</dependencies>
 

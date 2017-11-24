@@ -12,13 +12,11 @@
 		<module>minsx-datasource</module>
 		<module>minsx-core</module>
 		<module>minsx-commons</module>
-		<module>minsx-i18n</module>
 		<module>minsx-starter</module>
-		<module>minsx-service</module>
 		<module>minsx-log</module>
 		<module>minsx-plugins</module>
 		<module>minsx-message</module>
-		<module>minsx-resource</module>
+		<module>minsx-config</module>
 	</modules>
 
 	<name>${project.groupId}:${project.artifactId}</name>

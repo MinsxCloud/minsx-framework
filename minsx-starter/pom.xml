@@ -47,7 +47,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.minsx</groupId>
-			<artifactId>minsx-resource</artifactId>
+			<artifactId>minsx-config</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 	</dependencies>

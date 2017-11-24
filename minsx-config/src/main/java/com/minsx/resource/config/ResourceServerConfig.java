@@ -10,18 +10,18 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
-	
-	@Override
+
+    @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-                .antMatchers("/index").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/**").access("#oauth2.hasScope('read')")
-                .antMatchers(HttpMethod.POST, "/api/**").access("#oauth2.hasScope('write')")
-                .anyRequest().authenticated();
-        		
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .authorizeRequests()
+            .antMatchers("/index", "/getToken").permitAll()
+            .antMatchers(HttpMethod.GET, "/api/**").access("#oauth2.hasScope('read')")
+            .antMatchers(HttpMethod.POST, "/api/**").access("#oauth2.hasScope('write')")
+            .anyRequest().authenticated();
+
     }
 
 }

@@ -20,13 +20,18 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
+			<groupId>com.minsx</groupId>
+			<artifactId>minsx-config</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.minsx</groupId>
 			<artifactId>minsx-core-respository</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.minsx</groupId>
+			<artifactId>minsx-core-service-api</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
