@@ -1,15 +1,15 @@
 package com.minsx.core.respository;
 
+import com.minsx.core.entity.UserInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.minsx.core.entity.Role;
 import org.springframework.stereotype.Repository;
 
 /**
- * RoleRepository
+ * UserRepository
  * Created by Joker on 2017/8/30.
  */
 @Repository
-public interface RoleRepository extends JpaRepository<Role,Integer>{
+public interface UserInfoRepository extends JpaRepository<UserInfo,Integer>{
+	
 
 }

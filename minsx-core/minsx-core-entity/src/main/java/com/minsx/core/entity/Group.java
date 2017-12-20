@@ -1,24 +1,13 @@
 package com.minsx.core.entity;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minsx.core.entity.base.SimpleMinsxEntity;
 import com.minsx.core.entity.type.UserGroupState;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * 用户分组
@@ -33,15 +22,15 @@ public class Group extends SimpleMinsxEntity implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "group_id")
-    private Integer groupId;
+    private Integer id;
 
-    @Column(nullable = false, name = "parent_group_id", unique = true)
-    private Integer parentGroupId;
+    @Column(nullable = false, name = "parent_group_id")
+    private Integer parentId;
     
-    @Column(nullable = false, name = "name", unique = true)
+    @Column(nullable = false, name = "name")
     private String name;
     
-    @Column(nullable = false, name = "alias", unique = true)
+    @Column(nullable = false, name = "alias")
     private String alias;
     
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
@@ -50,40 +39,35 @@ public class Group extends SimpleMinsxEntity implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
     private List<Role> roles;
 
-    @Column(nullable = false, name = "state", unique = true)
+    @Column(nullable = false, name = "state")
     private Integer state;
 
-    @Column(nullable = false, name = "description", unique = true)
+    @Column(name = "description")
     private String description;
 
-    @Column(nullable = false, name = "create_user_id")
+    //创建者ID
+	@Column(nullable = false, name = "create_user_id")
     private Integer createUserId;
-
-    @Column(nullable = false, name = "create_time")
-    private LocalDateTime createTime;
-
-    @Column(nullable = false, name = "edit_time")
-    private LocalDateTime editTime;
 
     @Override
     public String toString() {
         return JSON.toJSONString(this);
     }
 
-    public Integer getGroupId() {
-		return groupId;
+    public Integer geId() {
+		return id;
 	}
 
-	public void setGroupId(Integer groupId) {
-		this.groupId = groupId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public Integer getParentGroupId() {
-		return parentGroupId;
+	public Integer getParentId() {
+		return parentId;
 	}
 
-	public void setParentGroupId(Integer parentGroupId) {
-		this.parentGroupId = parentGroupId;
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
 	}
 
 	public String getName() {
@@ -108,6 +92,10 @@ public class Group extends SimpleMinsxEntity implements Serializable {
 
 	public void setState(UserGroupState userGroupState) {
 		this.state = userGroupState.getValue();
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
 	}
 
 	public List<Role> getRoles() {
@@ -136,21 +124,5 @@ public class Group extends SimpleMinsxEntity implements Serializable {
 
     public void setCreateUserId(Integer createUserId) {
         this.createUserId = createUserId;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public LocalDateTime getEditTime() {
-        return editTime;
-    }
-
-    public void setEditTime(LocalDateTime editTime) {
-        this.editTime = editTime;
     }
 }

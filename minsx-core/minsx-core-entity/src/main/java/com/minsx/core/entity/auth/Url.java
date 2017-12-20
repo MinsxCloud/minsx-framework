@@ -1,18 +1,11 @@
 package com.minsx.core.entity.auth;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import com.alibaba.fastjson.JSON;
 import com.minsx.core.entity.base.SimpleMinsxEntity;
 import com.minsx.core.entity.type.UrlState;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * 页面链接
@@ -27,48 +20,40 @@ public class Url extends SimpleMinsxEntity implements Serializable{
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "url_id")
-    private Integer urlId;
+    private Integer id;
 
-    @Column(nullable = false, unique = true, name = "url_value")
-    private String urlValue;
+    @Column(nullable = false, name = "value")
+    private String value;
 
-    @Column(nullable = false, unique = true, name = "state")
+    @Column(nullable = false, name = "state")
     private Integer state;
 
-    @Column(nullable = false, unique = true, name = "description")
+    @Column(name = "description")
     private String description;
 
-    //创建该权限的用户ID
-    @Column(nullable = false, name = "create_user_id")
+    //创建者ID
+	@Column(nullable = false, name = "create_user_id")
     private Integer createUserId;
-
-    //创建时间
-    @Column(nullable = false, name = "create_time")
-    private LocalDateTime createTime;
-
-    //编辑时间
-    @Column(nullable = false, name = "edit_time")
-    private LocalDateTime editTime;
 
     @Override
     public String toString() {
         return JSON.toJSONString(this);
     }
 
-    public Integer getUrlId() {
-        return urlId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUrlId(Integer urlId) {
-        this.urlId = urlId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getUrlValue() {
-        return urlValue;
+    public String getValue() {
+        return value;
     }
 
-    public void setUrlValue(String urlValue) {
-        this.urlValue = urlValue;
+    public void setValue(String value) {
+        this.value = value;
     }
     
     public UrlState getState() {
@@ -77,6 +62,10 @@ public class Url extends SimpleMinsxEntity implements Serializable{
 
 	public void setState(UrlState urlState) {
 		this.state = urlState.getValue();
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
 	}
 
 	public String getDescription() {
@@ -93,21 +82,5 @@ public class Url extends SimpleMinsxEntity implements Serializable{
 
     public void setCreateUserId(Integer createUserId) {
         this.createUserId = createUserId;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public LocalDateTime getEditTime() {
-        return editTime;
-    }
-
-    public void setEditTime(LocalDateTime editTime) {
-        this.editTime = editTime;
     }
 }

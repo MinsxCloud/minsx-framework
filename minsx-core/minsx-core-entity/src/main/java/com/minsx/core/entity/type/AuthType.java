@@ -6,7 +6,7 @@ package com.minsx.core.entity.type;
  */
 public enum AuthType {
 
-    URL("URL"),MENU("MENU"),DATA("DATA"),BUTTON("BUTTON"),UNKNOWN("");
+    URL("URL"),MENU("MENU"),DATA("DATA"),BUTTON("BUTTON"),METHOD("METHOD"),UNKNOWN("UNKNOWN");
 
     String value;
 

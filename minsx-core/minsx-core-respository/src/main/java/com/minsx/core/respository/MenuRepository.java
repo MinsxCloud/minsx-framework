@@ -1,11 +1,8 @@
 package com.minsx.core.respository;
 
+import com.minsx.core.entity.auth.Menu;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.minsx.core.entity.auth.Auth;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 
 /**
@@ -13,8 +10,8 @@ import java.util.List;
  * Created by Joker on 2017/8/30.
  */
 @Repository
-public interface AuthRepository extends JpaRepository<Auth,Integer>{
+public interface MenuRepository extends JpaRepository<Menu,Integer>{
 
-    List<Auth> findAllByTypeOrderByIdAsc(String type);
+    Menu findByName(String name);
 
 }

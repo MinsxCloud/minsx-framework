@@ -2,6 +2,10 @@ package com.minsx.starter.test;
 
 import java.time.LocalDateTime;
 
+import com.minsx.core.entity.UserInfo;
+import com.minsx.core.entity.auth.Menu;
+import com.minsx.core.entity.type.*;
+import com.minsx.core.respository.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,19 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.minsx.core.entity.Auth;
+import com.minsx.core.entity.auth.Auth;
 import com.minsx.core.entity.Role;
 import com.minsx.core.entity.User;
 import com.minsx.core.entity.Group;
-import com.minsx.core.entity.type.AuthState;
-import com.minsx.core.entity.type.AuthType;
-import com.minsx.core.entity.type.RoleState;
-import com.minsx.core.entity.type.UserGroupState;
-import com.minsx.core.entity.type.UserState;
-import com.minsx.core.respository.AuthRepository;
-import com.minsx.core.respository.RoleRepository;
-import com.minsx.core.respository.GroupRepository;
-import com.minsx.core.respository.UserRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -38,7 +33,13 @@ public class AddTest {
 	
 	@Autowired
 	GroupRepository groupRepository;
-	
+
+	@Autowired
+	MenuRepository menuRepository;
+
+	@Autowired
+	UserInfoRepository userInfoRepository;
+
 	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	@Test
@@ -46,19 +47,18 @@ public class AddTest {
 		addAuth();
 		addRole();
 		addGroup();
+		addUserInfo();
 		addUser();
 	}
 	
 	@Test
     public void addAuth() {
 		Auth auth = new Auth();
-		auth.setAuthType(AuthType.URL);
-		auth.setAuthValue("/user");
+		auth.setType(AuthType.URL);
+		auth.setValue("/user");
 		auth.setCategory("用户页面权限");
 		auth.setDescription("允许用户访问用户页面");
-		auth.setCreateTime(LocalDateTime.now());
 		auth.setCreateUserId(1);
-		auth.setEditTime(LocalDateTime.now());
 		auth.setState(AuthState.ENABLE);
 		authRepository.saveAndFlush(auth);
     }
@@ -67,9 +67,7 @@ public class AddTest {
     public void addRole() {
 		Role role = new Role();
 		role.setAuths(authRepository.findAll());
-		role.setCreateTime(LocalDateTime.now());
 		role.setCreateUserId(1);
-		role.setEditTime(LocalDateTime.now());
 		role.setName("admin");
 		role.setAlias("管理员");
 		role.setDiscription("拥有管理员相关权限的角色");
@@ -80,25 +78,28 @@ public class AddTest {
 	@Test
     public void addGroup() {
 		Group userGroup = new Group();
-		userGroup.setCreateTime(LocalDateTime.now());
 		userGroup.setCreateUserId(1);
-		userGroup.setEditTime(LocalDateTime.now());
 		userGroup.setName("manage");
 		userGroup.setAlias("管理部门");
 		userGroup.setDescription("用于管理某某项目的部门");
-		userGroup.setParentGroupId(0);
+		userGroup.setParentId(0);
 		userGroup.setRoles(roleRepository.findAll());
 		userGroup.setState(UserGroupState.ENABLE);
 		groupRepository.saveAndFlush(userGroup);
     }
-	
+
+    @Test
+    public void addUserInfo() {
+		UserInfo userInfo = new UserInfo();
+		userInfo.setCompany("开弦科技");
+		userInfoRepository.save(userInfo);
+    }
+
 	@Test
     public void addUser() {
 		User user = new User();
 		user.setUserName("goodsave");
 		user.setPassWord(passwordEncoder.encode("goodsave"));
-		user.setCreateTime(LocalDateTime.now());
-		user.setEditTime(LocalDateTime.now());
 		user.setEmail("goodsave@qq.com");
 		user.setFace(null);
 		user.setLastLoginTime(LocalDateTime.now());
@@ -110,8 +111,39 @@ public class AddTest {
 		user.setState(UserState.NORMAL);
 		user.setUserNick("xiaochun");
 		user.setGroups(groupRepository.findAll());
+		user.setUserInfo(userInfoRepository.findOne(1));
 		userRepository.saveAndFlush(user);
     }
-	
+
+    @Test
+	public void addMenu(){
+		Menu menu = new Menu();
+		menu.setName("systemManage");
+		menu.setAlias("系统管理");
+		menu.setCreateUserId(1);
+		menu.setDiscription("用于系统管理的菜单");
+		menu.setParentMenuId(0);
+		menu.setState(MenuState.ENABLE);
+		menu.setType(MenuType.NONE);
+		menu.setValue(null);
+		menuRepository.save(menu);
+	}
+
+    @Test
+	public void addMenuB(){
+		Menu menu = new Menu();
+		menu.setName("menuManage");
+		menu.setAlias("菜单管理");
+		menu.setCreateUserId(1);
+		menu.setDiscription("用于菜单管理");
+		menu.setParentMenuId(menuRepository.findByName("systemManage").getId());
+		menu.setState(MenuState.ENABLE);
+		menu.setType(MenuType.LINK);
+		menu.setValue("/system/menuManage");
+		menuRepository.save(menu);
+	}
+
+
+
 
 }

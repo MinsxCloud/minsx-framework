@@ -1,4 +1,4 @@
-package com.minsx.core.entity;
+package com.minsx.core.entity.auth;
 
 import com.alibaba.fastjson.JSON;
 import com.minsx.core.entity.base.SimpleMinsxEntity;
@@ -6,9 +6,7 @@ import com.minsx.core.entity.type.AuthState;
 import com.minsx.core.entity.type.AuthType;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * 权限
@@ -26,12 +24,12 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
     private Integer id;
 
     //权限类型(URL权限还是DATA权限)
-    @Column(nullable = false, unique = true, name = "auth_type")
-    private String authType;
+    @Column(nullable = false, unique = true, name = "type")
+    private String type;
 
     //该权限能访问的URL
-    @Column(nullable = false, unique = true, name = "auth_value")
-    private String authValue;
+    @Column(nullable = false, unique = true, name = "value")
+    private String value;
 
     //状态
     @Column(nullable = false, name = "state")
@@ -42,26 +40,17 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
     private String category;
 
     //描述
-    @Column(nullable = true, name = "description")
+    @Column(name = "description")
     private String description;
 
-    //创建该权限的用户ID
-    @Column(nullable = false, name = "create_user_id")
+    //创建者ID
+	@Column(nullable = false, name = "create_user_id")
     private Integer createUserId;
-
-    //创建时间
-    @Column(nullable = false, name = "create_time")
-    private LocalDateTime createTime;
-
-    //编辑时间
-    @Column(nullable = false, name = "edit_time")
-    private LocalDateTime editTime;
 
     @Override
     public String toString() {
         return JSON.toJSONString(this);
     }
-
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -75,20 +64,24 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
         this.id = id;
     }
 
-    public AuthType getAuthType() {
-        return AuthType.getAuthType(this.authType);
+    public AuthType getType() {
+        return AuthType.getAuthType(this.type);
     }
 
-    public void setAuthType(AuthType authType) {
-        this.authType = authType.getValue();
+    public void setType(AuthType type) {
+        this.type = type.getValue();
     }
 
-    public String getAuthValue() {
-        return authValue;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public void setAuthValue(String authValue) {
-        this.authValue = authValue;
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public AuthState getState() {
@@ -97,6 +90,10 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
 
     public void setState(AuthState authState) {
         this.state = authState.getValue();
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 
     public String getCategory() {
@@ -121,21 +118,5 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
 
     public void setCreateUserId(Integer createUserId) {
         this.createUserId = createUserId;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public LocalDateTime getEditTime() {
-        return editTime;
-    }
-
-    public void setEditTime(LocalDateTime editTime) {
-        this.editTime = editTime;
     }
 }

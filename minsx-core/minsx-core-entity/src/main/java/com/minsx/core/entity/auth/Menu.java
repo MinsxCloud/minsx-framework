@@ -1,13 +1,14 @@
 package com.minsx.core.entity.auth;
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.minsx.core.entity.User;
 import com.minsx.core.entity.base.SimpleMinsxEntity;
 import com.minsx.core.entity.type.MenuState;
+import com.minsx.core.entity.type.MenuType;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * 菜单
@@ -22,53 +23,44 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "menu_id")
-    private Integer menuId;
+    private Integer id;
 
     @Column(nullable = false, name = "parent_menu_id")
     private Integer parentMenuId;
 
-    @Column(nullable = false, unique = true, name = "name")
+    @Column(nullable = false, name = "name")
     private String name;
     
-    @Column(nullable = false, unique = true, name = "alias")
+    @Column(nullable = false,name = "alias")
     private String alias;
 
-    @Column(nullable = false, unique = true, name = "state")
+    @Column(nullable = false,name = "state")
     private Integer state;
 
-    @Column(nullable = false, unique = true, name = "url")
-    private String url;
+    @Column(name = "value")
+    private String value;
 
-    @Column(nullable = false, unique = true, name = "type")
+    @Column(nullable = false, name = "type")
     private String type;
     
-    @Column(nullable = false, unique = true, name = "discription")
+    @Column(name = "discription")
     private String discription;
 
-    //创建该权限的用户ID
-    @Column(nullable = false, name = "create_user_id")
+    //创建者ID
+	@Column(nullable = false, name = "create_user_id")
     private Integer createUserId;
-
-    //创建时间
-    @Column(nullable = false, name = "create_time")
-    private LocalDateTime createTime;
-
-    //编辑时间
-    @Column(nullable = false, name = "edit_time")
-    private LocalDateTime editTime;
 
     @Override
     public String toString() {
         return JSON.toJSONString(this);
     }
 
-
-    public Integer getMenuId() {
-        return menuId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setMenuId(Integer menuId) {
-        this.menuId = menuId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getParentMenuId() {
@@ -91,7 +83,6 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
 		return alias;
 	}
 
-
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
@@ -100,11 +91,9 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
 		return discription;
 	}
 
-
 	public void setDiscription(String discription) {
 		this.discription = discription;
 	}
-
 
 	public MenuState getState() {
 		return MenuState.getMenuState(this.state);
@@ -114,16 +103,24 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
 		this.state = menuState.getValue();
 	}
 
-	public String getUrl() {
-        return url;
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
+    public String getValue() {
+        return value;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setValue(String value) {
+        this.value = value;
     }
 
-    public String getType() {
-        return type;
+    public MenuType getType() {
+        return MenuType.valueOf(type);
+    }
+
+    public void setType(MenuType menuType) {
+        this.type = menuType.getValue();
     }
 
     public void setType(String type) {
@@ -136,21 +133,5 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
 
     public void setCreateUserId(Integer createUserId) {
         this.createUserId = createUserId;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public LocalDateTime getEditTime() {
-        return editTime;
-    }
-
-    public void setEditTime(LocalDateTime editTime) {
-        this.editTime = editTime;
     }
 }

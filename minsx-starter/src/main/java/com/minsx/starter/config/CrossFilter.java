@@ -1,3 +1,4 @@
+/*
 package com.minsx.starter.config;
 
 import java.io.IOException;
@@ -12,10 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
+*/
 /**
  * CrossFilter
  * Created by Joker on 2017/8/29.
- */
+ *//*
+
 @Component
 public class CrossFilter implements Filter {
 	
@@ -30,7 +33,7 @@ public class CrossFilter implements Filter {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with,content-type");
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
@@ -38,3 +41,4 @@ public class CrossFilter implements Filter {
     public void destroy() {
     }
 }
+*/

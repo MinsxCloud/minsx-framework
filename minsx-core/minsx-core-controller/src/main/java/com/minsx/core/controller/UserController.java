@@ -23,8 +23,8 @@ public class UserController {
 	UserRepository userRepository;
 
     @ResponseBody
-    @PreAuthorize("hasRole('user')")
-    @RequestMapping(value = "/getUserName",method = RequestMethod.POST)
+    //@PreAuthorize("hasRole('user')")
+    @RequestMapping(value = "/getUserName",method = RequestMethod.GET)
     public String getUserName(){
         return "userName = "+userRepository.findOne(1).getUserName();
     }
@@ -36,17 +36,19 @@ public class UserController {
     }
     
     @ResponseBody
-    @PreAuthorize("hasAuthority('URL:/user')")
+    @PreAuthorize("hasAuthority('URL:/user/getUserInfo')")
     @RequestMapping(value = "/getUserInfo",method = RequestMethod.GET)
     public String getUserInfo(){
     	return "userInfo = "+JSON.toJSONString(SecurityContextHolder.getContext().getAuthentication());
     }
     
     @ResponseBody
-    @PreAuthorize("hasAuthority('admin')")
     @RequestMapping(value = "/getUserAge",method = RequestMethod.POST)
     public String getUserAge(){
         return "userAge = 12";
     }
+
+
+
 
 }
