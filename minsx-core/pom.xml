@@ -39,9 +39,8 @@
 
 	<modules>
 		<module>minsx-core-entity</module>
-		<module>minsx-core-respository</module>
+		<module>minsx-core-repository</module>
 		<module>minsx-core-service</module>
-		<module>com-minsx-core-controller</module>
 		<module>minsx-core-controller</module>
 	</modules>
 	

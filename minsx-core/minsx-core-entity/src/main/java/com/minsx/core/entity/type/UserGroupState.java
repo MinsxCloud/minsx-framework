@@ -2,14 +2,14 @@ package com.minsx.core.entity.type;
 
 public enum UserGroupState {
 
-	ENABLE(1),DISABLE(-1),UNKNOWN(0);
+    ENABLE(1), DISABLE(-1), UNKNOWN(0);
 
     Integer value;
 
-    UserGroupState(Integer value){
-        this.value=value;
+    UserGroupState(Integer value) {
+        this.value = value;
     }
-    
+
     public Integer getValue() {
         return value;
     }
@@ -17,12 +17,15 @@ public enum UserGroupState {
     public void setValue(Integer value) {
         this.value = value;
     }
-    
-    public static UserGroupState getUserGroupState(Integer value) {  
-        try {  
-            return valueOf(String.valueOf(value));
-        }catch (Exception e) {  
-            return UNKNOWN;  
-        }  
-    }  
+
+    public static UserGroupState getUserGroupState(Integer value) {
+        switch (value) {
+            case 1:
+                return ENABLE;
+            case -1:
+                return DISABLE;
+            default:
+                return UNKNOWN;
+        }
+    }
 }

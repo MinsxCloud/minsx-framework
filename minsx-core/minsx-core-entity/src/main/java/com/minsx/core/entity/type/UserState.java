@@ -1,15 +1,15 @@
 package com.minsx.core.entity.type;
 
 public enum UserState {
-	
-	NORMAL(1),UNKNOWN(0),LOCKED(-1),FORBIDDEN(-2);
+
+    NORMAL(1), UNKNOWN(0), LOCKED(-1), FORBIDDEN(-2);
 
     Integer value;
 
-    UserState(Integer value){
-        this.value=value;
+    UserState(Integer value) {
+        this.value = value;
     }
-    
+
     public Integer getValue() {
         return value;
     }
@@ -17,13 +17,18 @@ public enum UserState {
     public void setValue(Integer value) {
         this.value = value;
     }
-    
-    public static UserState getUserState(Integer value) {  
-        try {  
-            return valueOf(String.valueOf(value));
-        }catch (Exception e) {  
-            return UNKNOWN;  
-        }  
-    }  
+
+    public static UserState getUserState(Integer value) {
+        switch (value) {
+            case 1:
+                return NORMAL;
+            case -1:
+                return LOCKED;
+            case -2:
+                return FORBIDDEN;
+            default:
+                return UNKNOWN;
+        }
+    }
 
 }

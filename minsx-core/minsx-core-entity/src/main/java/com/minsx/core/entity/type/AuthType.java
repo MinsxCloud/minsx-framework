@@ -22,8 +22,8 @@ public enum AuthType {
         this.value = value;
     }
     
-    public static AuthType getAuthType(String value) {  
-        try {  
+    public static AuthType getAuthType(String value) {
+        try {
             return valueOf(value);
         }catch (Exception e) {  
             return UNKNOWN;  

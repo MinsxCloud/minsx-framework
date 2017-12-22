@@ -9,8 +9,8 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>minsx-core-respository</artifactId>
-	<name>minsx-core-respository</name>
+	<artifactId>minsx-core-repository</artifactId>
+	<name>minsx-core-repository</name>
 
 	<url>http://maven.apache.org</url>
 

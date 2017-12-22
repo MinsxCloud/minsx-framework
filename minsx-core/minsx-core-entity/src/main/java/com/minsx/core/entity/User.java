@@ -1,23 +1,25 @@
 package com.minsx.core.entity;
 
-import java.io.IOException;
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.minsx.core.entity.base.SimpleMinsxEntity;
+import com.minsx.core.entity.type.UserState;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.minsx.core.entity.base.SimpleMinsxEntity;
-import com.minsx.core.entity.type.UserState;
 
 /**
  * 用户
@@ -34,9 +36,12 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
     @Column(nullable = false, name = "user_id")
     private Integer id;
 
+    @Length(min = 4, max = 32)
     @Column(nullable = false, name = "username", unique = true)
     private String userName;
 
+    @NotBlank
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(nullable = false, name = "password")
     private String passWord;
 
@@ -68,9 +73,11 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
     @Column(name = "signature")
     private String signature;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(nullable = false, name = "register_time")
     private LocalDateTime registerTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(nullable = false, name = "last_login_time")
     private LocalDateTime lastLoginTime;
 
@@ -79,19 +86,6 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
 
     @Column(nullable = false, name = "last_login_ip")
     private String lastLoginIp;
-
-    public static User me() {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String json;
-		User user = null;
-		try {
-		    json = JSON.toJSONString(principal);
-            user = JSON.parseObject(json,User.class);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return user;
-	}
 
     @Override
     public String toString() {
@@ -116,6 +110,7 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
     }
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         return this.passWord;
     }
@@ -153,16 +148,8 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getPassWord() {
-        return passWord;
     }
 
     public void setPassWord(String passWord) {

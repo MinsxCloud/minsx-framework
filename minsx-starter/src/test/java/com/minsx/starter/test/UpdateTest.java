@@ -8,10 +8,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.minsx.core.entity.User;
-import com.minsx.core.respository.AuthRepository;
-import com.minsx.core.respository.GroupRepository;
-import com.minsx.core.respository.RoleRepository;
-import com.minsx.core.respository.UserRepository;
+import com.minsx.core.repository.AuthRepository;
+import com.minsx.core.repository.GroupRepository;
+import com.minsx.core.repository.RoleRepository;
+import com.minsx.core.repository.UserRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

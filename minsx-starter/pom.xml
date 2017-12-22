@@ -50,6 +50,11 @@
 			<artifactId>minsx-config</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.minsx</groupId>
+			<artifactId>minsx-commons</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

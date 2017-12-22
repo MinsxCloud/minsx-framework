@@ -19,10 +19,13 @@ public enum MenuState {
     }
     
     public static MenuState getMenuState(Integer value) {  
-        try {  
-            return valueOf(String.valueOf(value));
-        }catch (Exception e) {  
-            return UNKNOWN;  
-        }  
+         switch (value) {
+            case 1:
+                return ENABLE;
+            case -1:
+                return DISABLE;
+            default:
+                return UNKNOWN;
+        }
     }  
 }

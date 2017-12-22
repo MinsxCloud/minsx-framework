@@ -1,4 +1,4 @@
-package com.minsx.core.respository;
+package com.minsx.core.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

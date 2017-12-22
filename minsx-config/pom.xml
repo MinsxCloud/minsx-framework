@@ -26,7 +26,7 @@
 			<artifactId>minsx-core-entity</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-		<!-- core-respository -->
+		<!-- core-repository -->
 		<dependency>
 			<groupId>com.minsx</groupId>
 			<artifactId>minsx-core-respository</artifactId>

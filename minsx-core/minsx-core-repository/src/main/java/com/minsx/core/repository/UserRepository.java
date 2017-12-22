@@ -1,7 +1,8 @@
-package com.minsx.core.respository;
+package com.minsx.core.repository;
 
-import com.minsx.core.entity.UserInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.minsx.core.entity.User;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,7 +10,8 @@ import org.springframework.stereotype.Repository;
  * Created by Joker on 2017/8/30.
  */
 @Repository
-public interface UserInfoRepository extends JpaRepository<UserInfo,Integer>{
+public interface UserRepository extends JpaRepository<User,Integer>{
 	
+	User findByUserName(String userName);
 
 }

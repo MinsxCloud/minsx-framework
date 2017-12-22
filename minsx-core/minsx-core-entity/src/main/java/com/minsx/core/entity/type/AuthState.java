@@ -21,12 +21,15 @@ public enum AuthState {
         this.value = value;
     }
     
-    public static AuthState getAuthState(Integer value) {  
-        try {  
-            return valueOf(String.valueOf(value));
-        }catch (Exception e) {  
-            return UNKNOWN;  
-        }  
-    }  
+    public static AuthState getAuthState(Integer value) {
+         switch (value) {
+            case 1:
+                return ENABLE;
+            case -1:
+                return DISABLE;
+            default:
+                return UNKNOWN;
+        }
+    }
 
 }

@@ -37,6 +37,9 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
     @Column(nullable = false,name = "state")
     private Integer state;
 
+    @Column(nullable = false,name = "sort")
+    private Integer sort;
+
     @Column(name = "value")
     private String value;
 
@@ -106,6 +109,14 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
 	public void setState(Integer state) {
 		this.state = state;
 	}
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
 
     public String getValue() {
         return value;

@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import com.minsx.core.entity.UserInfo;
 import com.minsx.core.entity.auth.Menu;
 import com.minsx.core.entity.type.*;
-import com.minsx.core.respository.*;
+import com.minsx.core.repository.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,13 +116,14 @@ public class AddTest {
     }
 
     @Test
-	public void addMenu(){
+	public void addMainMenu(){
 		Menu menu = new Menu();
-		menu.setName("systemManage");
-		menu.setAlias("系统管理");
-		menu.setCreateUserId(1);
-		menu.setDiscription("用于系统管理的菜单");
+		menu.setName("contentManage");
+		menu.setAlias("内容管理");
+		menu.setCreateUserId(userRepository.findByUserName("goodsave").getId());
+		menu.setDiscription("用于内容管理的菜单");
 		menu.setParentMenuId(0);
+		menu.setSort(2);
 		menu.setState(MenuState.ENABLE);
 		menu.setType(MenuType.NONE);
 		menu.setValue(null);
@@ -130,16 +131,17 @@ public class AddTest {
 	}
 
     @Test
-	public void addMenuB(){
+	public void addSubMenu(){
 		Menu menu = new Menu();
-		menu.setName("menuManage");
-		menu.setAlias("菜单管理");
-		menu.setCreateUserId(1);
-		menu.setDiscription("用于菜单管理");
-		menu.setParentMenuId(menuRepository.findByName("systemManage").getId());
+		menu.setName("emailManage");
+		menu.setAlias("邮箱管理");
+		menu.setCreateUserId(userRepository.findByUserName("goodsave").getId());
+		menu.setDiscription("用于邮箱管理的菜单");
+		menu.setParentMenuId(menuRepository.findByName("accountManage").getId());
+		menu.setSort(1);
 		menu.setState(MenuState.ENABLE);
 		menu.setType(MenuType.LINK);
-		menu.setValue("/system/menuManage");
+		menu.setValue("/content/email");
 		menuRepository.save(menu);
 	}
 

@@ -32,6 +32,7 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
     @Column(nullable = false, name = "alias")
     private String alias;
 
+    @JsonIgnore
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(name = "minsx_role_auth",
             joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"),
