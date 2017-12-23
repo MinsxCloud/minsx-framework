@@ -1,6 +1,5 @@
 package com.minsx.core.service.implement;
 
-import com.alibaba.fastjson.JSON;
 import com.minsx.common.util.Node;
 import com.minsx.core.entity.auth.Menu;
 import com.minsx.core.repository.MenuRepository;
@@ -29,7 +28,6 @@ public class MenuServiceImpl implements MenuService{
         completeChilds(rootNode, menuGroups);
         return new ResponseEntity<>(rootNode, HttpStatus.OK);
     }
-
 
     //------------------------------------------------------------------------------------------------
     private void completeChilds(Node<Menu> parentNode, Map<Integer, List<Menu>> menuGroups) {

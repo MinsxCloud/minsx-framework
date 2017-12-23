@@ -133,15 +133,15 @@ public class AddTest {
     @Test
 	public void addSubMenu(){
 		Menu menu = new Menu();
-		menu.setName("emailManage");
-		menu.setAlias("邮箱管理");
+		menu.setName("roleContentManage");
+		menu.setAlias("角内管理");
 		menu.setCreateUserId(userRepository.findByUserName("goodsave").getId());
-		menu.setDiscription("用于邮箱管理的菜单");
-		menu.setParentMenuId(menuRepository.findByName("accountManage").getId());
+		menu.setDiscription("用于角内管理的菜单");
+		menu.setParentMenuId(menuRepository.findByName("roleManage").getId());
 		menu.setSort(1);
 		menu.setState(MenuState.ENABLE);
 		menu.setType(MenuType.LINK);
-		menu.setValue("/content/email");
+		menu.setValue("/role/roleContent");
 		menuRepository.save(menu);
 	}
 

@@ -28,9 +28,12 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
     @Column(nullable = false, name = "parent_menu_id")
     private Integer parentMenuId;
 
-    @Column(nullable = false, name = "name")
+    @Column(nullable = false, unique = true, name = "name")
     private String name;
-    
+
+    @Column(nullable = false,name = "icon")
+    private String icon;
+
     @Column(nullable = false,name = "alias")
     private String alias;
 
@@ -81,7 +84,15 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
-    
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     public String getAlias() {
 		return alias;
 	}
