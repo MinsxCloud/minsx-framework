@@ -1,6 +1,6 @@
-package com.minsx.core.entity;
+package com.minsx.core.entity.ordinary;
 
-import com.minsx.core.entity.base.SimpleMinsxEntity;
+import com.minsx.core.entity.ordinary.base.SimpleMinsxEntity;
 
 import javax.persistence.*;
 import java.io.Serializable;

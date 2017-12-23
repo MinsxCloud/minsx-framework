@@ -1,7 +1,7 @@
 package com.minsx.core.service.implement;
 
 import com.minsx.common.util.UserUtil;
-import com.minsx.core.entity.User;
+import com.minsx.core.entity.ordinary.User;
 import com.minsx.core.repository.UserRepository;
 import com.minsx.core.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

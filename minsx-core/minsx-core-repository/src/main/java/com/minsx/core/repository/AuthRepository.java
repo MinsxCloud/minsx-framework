@@ -2,7 +2,7 @@ package com.minsx.core.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.minsx.core.entity.auth.Auth;
+import com.minsx.core.entity.ordinary.auth.Auth;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

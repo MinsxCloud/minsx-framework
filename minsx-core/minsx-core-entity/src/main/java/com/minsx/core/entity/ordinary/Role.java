@@ -1,10 +1,10 @@
-package com.minsx.core.entity;
+package com.minsx.core.entity.ordinary;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.minsx.core.entity.auth.Auth;
-import com.minsx.core.entity.base.SimpleMinsxEntity;
-import com.minsx.core.entity.type.RoleState;
+import com.minsx.core.entity.ordinary.auth.Auth;
+import com.minsx.core.entity.ordinary.base.SimpleMinsxEntity;
+import com.minsx.core.entity.ordinary.type.RoleState;
 
 import javax.persistence.*;
 

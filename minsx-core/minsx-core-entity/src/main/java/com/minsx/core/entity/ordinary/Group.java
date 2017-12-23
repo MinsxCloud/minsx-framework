@@ -1,9 +1,8 @@
-package com.minsx.core.entity;
+package com.minsx.core.entity.ordinary;
 
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.minsx.core.entity.base.SimpleMinsxEntity;
-import com.minsx.core.entity.type.UserGroupState;
+import com.minsx.core.entity.ordinary.base.SimpleMinsxEntity;
+import com.minsx.core.entity.ordinary.type.UserGroupState;
 
 import javax.persistence.*;
 import java.io.Serializable;

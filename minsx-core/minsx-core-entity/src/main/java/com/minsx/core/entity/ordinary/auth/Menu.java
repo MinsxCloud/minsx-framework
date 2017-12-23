@@ -1,11 +1,9 @@
-package com.minsx.core.entity.auth;
+package com.minsx.core.entity.ordinary.auth;
 
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.minsx.core.entity.User;
-import com.minsx.core.entity.base.SimpleMinsxEntity;
-import com.minsx.core.entity.type.MenuState;
-import com.minsx.core.entity.type.MenuType;
+import com.minsx.core.entity.ordinary.base.SimpleMinsxEntity;
+import com.minsx.core.entity.ordinary.type.MenuState;
+import com.minsx.core.entity.ordinary.type.MenuType;
 
 import javax.persistence.*;
 import java.io.Serializable;

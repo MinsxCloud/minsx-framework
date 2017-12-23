@@ -1,4 +1,4 @@
-package com.minsx.core.entity.base;
+package com.minsx.core.entity.ordinary.base;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

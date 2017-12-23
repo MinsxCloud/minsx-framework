@@ -1,4 +1,4 @@
-package com.minsx.core.entity.type;
+package com.minsx.core.entity.ordinary.type;
 /**
  * AuthStatus
  * created by Joker on 2017年11月1日

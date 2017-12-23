@@ -1,4 +1,4 @@
-package com.minsx.core.entity.type;
+package com.minsx.core.entity.ordinary.type;
 
 /**
  * 权限类型

@@ -1,12 +1,12 @@
-package com.minsx.core.entity.type;
+package com.minsx.core.entity.ordinary.type;
 
-public enum RoleState {
+public enum UserState {
 
-    ENABLE(1), DISABLE(-1), UNKNOWN(0);
+    NORMAL(1), UNKNOWN(0), LOCKED(-1), FORBIDDEN(-2);
 
     Integer value;
 
-    RoleState(Integer value) {
+    UserState(Integer value) {
         this.value = value;
     }
 
@@ -18,14 +18,17 @@ public enum RoleState {
         this.value = value;
     }
 
-    public static RoleState getRoleState(Integer value) {
+    public static UserState getUserState(Integer value) {
         switch (value) {
             case 1:
-                return ENABLE;
+                return NORMAL;
             case -1:
-                return DISABLE;
+                return LOCKED;
+            case -2:
+                return FORBIDDEN;
             default:
                 return UNKNOWN;
         }
     }
+
 }

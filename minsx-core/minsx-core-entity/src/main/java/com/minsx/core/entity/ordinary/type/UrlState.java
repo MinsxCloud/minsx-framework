@@ -1,4 +1,4 @@
-package com.minsx.core.entity.type;
+package com.minsx.core.entity.ordinary.type;
 
 public enum UrlState {
 

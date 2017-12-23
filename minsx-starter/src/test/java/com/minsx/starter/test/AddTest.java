@@ -2,9 +2,9 @@ package com.minsx.starter.test;
 
 import java.time.LocalDateTime;
 
-import com.minsx.core.entity.UserInfo;
-import com.minsx.core.entity.auth.Menu;
-import com.minsx.core.entity.type.*;
+import com.minsx.core.entity.ordinary.UserInfo;
+import com.minsx.core.entity.ordinary.auth.Menu;
+import com.minsx.core.entity.ordinary.type.*;
 import com.minsx.core.repository.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,10 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.minsx.core.entity.auth.Auth;
-import com.minsx.core.entity.Role;
-import com.minsx.core.entity.User;
-import com.minsx.core.entity.Group;
+import com.minsx.core.entity.ordinary.auth.Auth;
+import com.minsx.core.entity.ordinary.Role;
+import com.minsx.core.entity.ordinary.User;
+import com.minsx.core.entity.ordinary.Group;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

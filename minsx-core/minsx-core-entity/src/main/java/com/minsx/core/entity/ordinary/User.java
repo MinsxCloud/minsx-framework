@@ -1,16 +1,15 @@
-package com.minsx.core.entity;
+package com.minsx.core.entity.ordinary;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import com.minsx.core.entity.base.SimpleMinsxEntity;
-import com.minsx.core.entity.type.UserState;
+import com.minsx.core.entity.ordinary.Group;
+import com.minsx.core.entity.ordinary.UserInfo;
+import com.minsx.core.entity.ordinary.base.SimpleMinsxEntity;
+import com.minsx.core.entity.ordinary.type.UserState;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -51,7 +50,7 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
     @Column(nullable = false, name = "state")
     private Integer state;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "user_info_id")
     private UserInfo userInfo;
 

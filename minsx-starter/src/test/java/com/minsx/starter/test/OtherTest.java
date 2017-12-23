@@ -1,7 +1,7 @@
 package com.minsx.starter.test;
 
 import com.alibaba.fastjson.JSON;
-import com.minsx.core.entity.type.AuthType;
+import com.minsx.core.entity.ordinary.type.AuthType;
 import org.junit.Test;
 
 public class OtherTest {

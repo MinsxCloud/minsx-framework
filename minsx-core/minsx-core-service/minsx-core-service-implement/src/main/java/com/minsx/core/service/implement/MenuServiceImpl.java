@@ -1,7 +1,7 @@
 package com.minsx.core.service.implement;
 
 import com.minsx.common.util.Node;
-import com.minsx.core.entity.auth.Menu;
+import com.minsx.core.entity.ordinary.auth.Menu;
 import com.minsx.core.repository.MenuRepository;
 import com.minsx.core.service.api.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;

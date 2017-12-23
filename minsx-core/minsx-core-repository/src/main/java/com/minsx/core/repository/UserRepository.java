@@ -2,7 +2,7 @@ package com.minsx.core.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.minsx.core.entity.User;
+import com.minsx.core.entity.ordinary.User;
 import org.springframework.stereotype.Repository;
 
 /**

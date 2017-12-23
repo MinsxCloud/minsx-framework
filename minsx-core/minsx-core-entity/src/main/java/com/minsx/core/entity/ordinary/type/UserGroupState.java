@@ -1,15 +1,15 @@
-package com.minsx.core.entity.type;
+package com.minsx.core.entity.ordinary.type;
 
-public enum MenuState {
+public enum UserGroupState {
 
-	ENABLE(1),DISABLE(-1),UNKNOWN(0);
+    ENABLE(1), DISABLE(-1), UNKNOWN(0);
 
     Integer value;
 
-    MenuState(Integer value){
-        this.value=value;
+    UserGroupState(Integer value) {
+        this.value = value;
     }
-    
+
     public Integer getValue() {
         return value;
     }
@@ -17,9 +17,9 @@ public enum MenuState {
     public void setValue(Integer value) {
         this.value = value;
     }
-    
-    public static MenuState getMenuState(Integer value) {  
-         switch (value) {
+
+    public static UserGroupState getUserGroupState(Integer value) {
+        switch (value) {
             case 1:
                 return ENABLE;
             case -1:
@@ -27,5 +27,5 @@ public enum MenuState {
             default:
                 return UNKNOWN;
         }
-    }  
+    }
 }

@@ -1,6 +1,6 @@
 package com.minsx.core.repository;
 
-import com.minsx.core.entity.auth.Menu;
+import com.minsx.core.entity.ordinary.auth.Menu;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

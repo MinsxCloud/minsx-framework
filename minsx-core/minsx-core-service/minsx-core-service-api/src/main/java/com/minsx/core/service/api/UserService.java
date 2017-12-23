@@ -1,6 +1,5 @@
 package com.minsx.core.service.api;
 
-import com.minsx.core.entity.User;
 import org.springframework.http.ResponseEntity;
 
 /**
