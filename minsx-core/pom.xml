@@ -30,18 +30,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.hibernate.validator</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>6.0.2.Final</version>
-		</dependency> -->
 	</dependencies>
 
 	<modules>
-		<module>minsx-core-entity</module>
-		<module>minsx-core-repository</module>
-		<module>minsx-core-service</module>
-		<module>minsx-core-controller</module>
+        <module>minsx-core-developer</module>
+        <module>minsx-core-system</module>
+		<module>minsx-core-common</module>
 	</modules>
 	
 	<build>

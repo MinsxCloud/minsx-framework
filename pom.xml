@@ -13,9 +13,6 @@
 		<module>minsx-core</module>
 		<module>minsx-commons</module>
 		<module>minsx-starter</module>
-		<module>minsx-log</module>
-		<module>minsx-plugins</module>
-		<module>minsx-message</module>
 		<module>minsx-config</module>
 	</modules>
 

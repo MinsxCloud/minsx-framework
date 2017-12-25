@@ -2,8 +2,8 @@ package com.minsx.starter.test;
 
 import com.alibaba.fastjson.JSON;
 import com.minsx.common.util.Node;
-import com.minsx.core.entity.ordinary.auth.Menu;
-import com.minsx.core.repository.MenuRepository;
+import com.minsx.core.common.entity.base.auth.Menu;
+import com.minsx.core.common.repository.base.MenuRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
