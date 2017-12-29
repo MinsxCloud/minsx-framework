@@ -1,10 +1,9 @@
 package com.minsx.core.user.service.api;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
+import org.springframework.http.ResponseEntity;
 
 public interface SystemService {
 
-    public Map<String,Object> getToken(HttpServletRequest request);
+    ResponseEntity<?> getSystemInfo();
 
 }

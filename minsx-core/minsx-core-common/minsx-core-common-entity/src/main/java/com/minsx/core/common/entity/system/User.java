@@ -49,10 +49,6 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
     @Column(nullable = false, name = "state")
     private Integer state;
 
-	@OneToOne
-	@JoinColumn(name = "user_info_id")
-    private UserInfo userInfo;
-
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(name = "minsx_sys_user_group",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
@@ -172,14 +168,6 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
 
     public void setState(Integer state) {
         this.state = state;
-    }
-
-    public UserInfo getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
     }
 
     public List<Group> getGroups() {

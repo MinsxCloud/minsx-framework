@@ -1,8 +1,11 @@
 package com.minsx.core.common.entity.developer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.minsx.core.common.entity.base.auth.Group;
 import com.minsx.core.common.entity.base.simple.SimpleMinsxEntity;
+import com.minsx.core.common.entity.base.type.DevUserState;
+import com.minsx.core.common.entity.system.User;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,6 +15,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "minsx_dev_user")
@@ -37,8 +41,10 @@ public class DevUser extends SimpleMinsxEntity implements Serializable, UserDeta
     @Column(nullable = false, name = "state")
     private Integer state;
 
-    @Column(nullable = false, name = "user_id")
-    private Integer userId;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User user;
 
     @Column(name = "description")
     private String description;
@@ -49,9 +55,13 @@ public class DevUser extends SimpleMinsxEntity implements Serializable, UserDeta
             inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "group_id"))
     private List<Group> groups;
 
+    @Transient
+    @JsonIgnore
+    private Set<GrantedAuthority> authorities;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.authorities;
     }
 
     @Override
@@ -83,6 +93,9 @@ public class DevUser extends SimpleMinsxEntity implements Serializable, UserDeta
         return true;
     }
 
+    public void setAuthorities(Set<GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
 
     public Integer getId() {
         return id;
@@ -116,20 +129,24 @@ public class DevUser extends SimpleMinsxEntity implements Serializable, UserDeta
         this.name = name;
     }
 
-    public Integer getState() {
-        return state;
+    public DevUserState getState() {
+        return DevUserState.getUserState(this.state);
+    }
+
+    public void setState(DevUserState devUserState) {
+        this.state = devUserState.getValue();
     }
 
     public void setState(Integer state) {
         this.state = state;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getDescription() {

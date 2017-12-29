@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minsx.core.common.entity.base.simple.SimpleMinsxEntity;
 import com.minsx.core.common.entity.base.type.RoleState;
+import com.minsx.core.common.entity.system.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -44,8 +45,10 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
     private String description;
 
     //创建者ID
-	@Column(nullable = false, name = "create_user_id")
-    private Integer createUserId;
+	@JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User createUser;
 
     @Override
     public String toString() {
@@ -115,11 +118,11 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
         }
     }
 
-    public Integer getCreateUserId() {
-        return createUserId;
+    public User getCreateUser() {
+        return createUser;
     }
 
-    public void setCreateUserId(Integer createUserId) {
-        this.createUserId = createUserId;
+    public void setCreateUser(User createUser) {
+        this.createUser = createUser;
     }
 }

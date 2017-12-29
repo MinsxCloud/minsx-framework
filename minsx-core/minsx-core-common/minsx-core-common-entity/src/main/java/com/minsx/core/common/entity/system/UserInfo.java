@@ -14,6 +14,10 @@ public class UserInfo extends SimpleMinsxEntity implements Serializable {
     @Column( name = "userinfo_id")
     private Integer id;
 
+    @OneToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
     @Column(name = "sex")
     private String sex;
 
@@ -63,6 +67,14 @@ public class UserInfo extends SimpleMinsxEntity implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getSex() {

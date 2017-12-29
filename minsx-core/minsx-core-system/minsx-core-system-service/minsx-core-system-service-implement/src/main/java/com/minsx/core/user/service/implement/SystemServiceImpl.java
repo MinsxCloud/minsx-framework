@@ -5,6 +5,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.minsx.core.user.service.api.SystemService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,10 @@ import java.util.Map;
 @Service
 public class SystemServiceImpl implements SystemService{
 
-    @Override
+
+	/**
+	 * 该方法用于后台取Token
+	 */
     public Map<String,Object> getToken(HttpServletRequest request) {
     	Map<String,Object> result = new HashMap<String,Object>();
     	result.put("isSuccess",false);
@@ -54,4 +58,11 @@ public class SystemServiceImpl implements SystemService{
 		}
         return result;
     }
+
+	@Override
+	public ResponseEntity<?> getSystemInfo() {
+		return null;
+	}
+
+
 }

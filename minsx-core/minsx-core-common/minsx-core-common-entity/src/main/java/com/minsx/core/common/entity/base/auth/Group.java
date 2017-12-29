@@ -1,8 +1,11 @@
 package com.minsx.core.common.entity.base.auth;
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minsx.core.common.entity.base.simple.SimpleMinsxEntity;
+import com.minsx.core.common.entity.base.type.GroupType;
 import com.minsx.core.common.entity.base.type.UserGroupState;
+import com.minsx.core.common.entity.system.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,7 +18,7 @@ import java.util.List;
 @Entity
 @Table(name = "minsx_group")
 public class Group extends SimpleMinsxEntity implements Serializable {
-	
+
 	private static final long serialVersionUID = 7456879800037805192L;
 
 	@Id
@@ -25,16 +28,16 @@ public class Group extends SimpleMinsxEntity implements Serializable {
 
     @Column(nullable = false, name = "parent_group_id")
     private Integer parentId;
-    
+
     @Column(nullable = false, name = "name")
     private String name;
-    
+
     @Column(nullable = false, name = "alias")
     private String alias;
 
     @Column(nullable = false, name = "type")
     private String type;
-    
+
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(name = "minsx_group_role",
             joinColumns = @JoinColumn(name = "group_id", referencedColumnName = "group_id"),
@@ -48,8 +51,10 @@ public class Group extends SimpleMinsxEntity implements Serializable {
     private String description;
 
     //创建者ID
-	@Column(nullable = false, name = "create_user_id")
-    private Integer createUserId;
+	@JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User createUser;
 
     @Override
     public String toString() {
@@ -88,8 +93,12 @@ public class Group extends SimpleMinsxEntity implements Serializable {
 		this.alias = alias;
 	}
 
-    public String getType() {
-        return type;
+    public GroupType getType() {
+        return GroupType.valueOf(type);
+    }
+
+    public void setType(GroupType groupType) {
+        this.type = groupType.getValue();
     }
 
     public void setType(String type) {
@@ -128,12 +137,12 @@ public class Group extends SimpleMinsxEntity implements Serializable {
         this.description = description;
     }
 
-    public Integer getCreateUserId() {
-        return createUserId;
+    public User getCreateUser() {
+        return createUser;
     }
 
-    public void setCreateUserId(Integer createUserId) {
-        this.createUserId = createUserId;
+    public void setCreateUser(User createUser) {
+        this.createUser = createUser;
     }
 
     public static long getSerialVersionUID() {
