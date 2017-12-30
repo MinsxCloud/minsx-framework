@@ -30,7 +30,7 @@
 + Druid 数据源框架
 + Dubbo 分布式框架
 + Radis 缓存框架
-+ Minsx CCS 自家通用云存储框架 [点此查看](https://github.com/MinsxFramework/minsx-ccs)
++ Minsx CCS 自家通用云存储框架 [点此查看](https://github.com/MinsxCloud/minsx-ccs)
 
 ### 部署方面
 + 采用Nginx 主要用于解决代理问题及部分简单负载均衡问题
@@ -39,7 +39,7 @@
 
 ### 架构及开发方面
 + 项目采用前后端分离/模块化设计
-+ 提供单点登录服务端(请参照：minsx-authorization-server [点此查看](https://github.com/MinsxFramework/minsx-authorization-server))
++ 提供单点登录服务端(请参照：minsx-authorization-server [点此查看](https://github.com/MinsxCloud/minsx-authorization-server))
 + 提供用户中心及核心业务服务端(请参照：minsx-framework)
 + 提供默认通用用户前端(请参照：minsx-user-ui)
 + 提供默认通用管理前端(请参照：minsx-management-ui)
@@ -47,10 +47,10 @@
 + 代码规范方面遵循最新阿里巴巴JAVA代码规范
 
 ### 项目截图 (V1.0.0版本)
-![登录](https://raw.githubusercontent.com/MinsxFramework/minsx-framework/master/docs/image/login.png "登录")
-![权限管理](https://raw.githubusercontent.com/MinsxFramework/minsx-framework/master/docs/image/auth.png "权限管理")
-![菜单管理](https://raw.githubusercontent.com/MinsxFramework/minsx-framework/master/docs/image/menu.png "菜单管理")
-![请求监控](https://raw.githubusercontent.com/MinsxFramework/minsx-framework/master/docs/image/request.png "请求监控")
+![登录](https://raw.githubusercontent.com/MinsxCloud/minsx-framework/master/docs/image/login.png "登录")
+![权限管理](https://raw.githubusercontent.com/MinsxCloud/minsx-framework/master/docs/image/auth.png "权限管理")
+![菜单管理](https://raw.githubusercontent.com/MinsxCloud/minsx-framework/master/docs/image/menu.png "菜单管理")
+![请求监控](https://raw.githubusercontent.com/MinsxCloud/minsx-framework/master/docs/image/request.png "请求监控")
 
 ### 项目截图 (V2.0.0版本)
 正在加紧Coding...(预计在2月底开放,敬请期待)
