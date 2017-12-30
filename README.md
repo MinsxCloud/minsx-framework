@@ -53,4 +53,4 @@
 ![请求监控](https://raw.githubusercontent.com/MinsxFramework/minsx-framework/master/docs/image/request.png "请求监控")
 
 ### 项目截图 (V2.0.0版本)
-正在加紧Coding...(预计在12月底开放,敬请期待)
+正在加紧Coding...(预计在2月底开放,敬请期待)
