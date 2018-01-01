@@ -1,14 +1,13 @@
-package com.minsx.starter.test;
+package com.minsx.core.system.service.implement;
 
-import com.alibaba.fastjson.JSON;
 import com.minsx.common.util.Node;
 import com.minsx.core.common.entity.auth.Menu;
 import com.minsx.core.common.repository.auth.MenuRepository;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.minsx.core.system.service.api.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
@@ -16,23 +15,21 @@ import java.util.Map;
 
 import static java.util.stream.Collectors.groupingBy;
 
-@RunWith(SpringRunner.class)
-
-@SpringBootTest
-public class SelectTest {
-
+@Service
+public class MenuServiceImpl implements MenuService{
 
     @Autowired
     MenuRepository menuRepository;
 
-    @Test
-    public void selectMenu() {
+    @Override
+    public ResponseEntity<?> getMenus() {
         Map<Integer, List<Menu>> menuGroups = menuRepository.findAll().stream().sorted(Comparator.comparing(Menu::getSort)).collect(groupingBy(Menu::getParentMenuId));
         Node<Menu> rootNode = new Node<Menu>();
         completeChilds(rootNode, menuGroups);
-        System.out.println(JSON.toJSONString(rootNode));
+        return new ResponseEntity<>(rootNode, HttpStatus.OK);
     }
 
+    //------------------------------------------------------------------------------------------------
     private void completeChilds(Node<Menu> parentNode, Map<Integer, List<Menu>> menuGroups) {
         List<Menu> menus = menuGroups.get(parentNode.getEntity() == null ? 0 : parentNode.getEntity().getId());
         if (menus != null) {
@@ -43,6 +40,4 @@ public class SelectTest {
             });
         }
     }
-
-
 }

@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.minsx.core.common.entity.base.auth.Group;
+import com.minsx.core.common.entity.auth.Group;
 import com.minsx.core.common.entity.base.simple.SimpleMinsxEntity;
 import com.minsx.core.common.entity.base.type.UserState;
 import org.hibernate.validator.constraints.Length;
@@ -24,7 +24,7 @@ import java.util.Set;
  * Created by Joker on 2017/8/30.
  */
 @Entity
-@Table(name = "minsx_sys_user")
+@Table(name = "minsx_user")
 public class User extends SimpleMinsxEntity implements Serializable, UserDetails {
 
     private static final long serialVersionUID = 7680851689006674668L;
@@ -50,7 +50,7 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
     private Integer state;
 
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    @JoinTable(name = "minsx_sys_user_group",
+    @JoinTable(name = "minsx_user_group",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "group_id"))
     private List<Group> groups;

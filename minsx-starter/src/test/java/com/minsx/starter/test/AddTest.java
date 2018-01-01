@@ -1,19 +1,19 @@
 package com.minsx.starter.test;
 
-import com.minsx.core.common.entity.base.auth.Group;
-import com.minsx.core.common.entity.base.auth.Role;
-import com.minsx.core.common.entity.base.auth.Auth;
-import com.minsx.core.common.entity.base.auth.Menu;
+import com.minsx.core.common.entity.auth.Auth;
+import com.minsx.core.common.entity.auth.Group;
+import com.minsx.core.common.entity.auth.Menu;
+import com.minsx.core.common.entity.auth.Role;
 import com.minsx.core.common.entity.base.type.*;
-import com.minsx.core.common.entity.developer.DevUser;
+import com.minsx.core.common.entity.system.DevUser;
+import com.minsx.core.common.entity.system.SystemSetting;
 import com.minsx.core.common.entity.system.User;
 import com.minsx.core.common.entity.system.UserInfo;
-import com.minsx.core.common.repository.base.AuthRepository;
-import com.minsx.core.common.repository.base.GroupRepository;
-import com.minsx.core.common.repository.base.MenuRepository;
-import com.minsx.core.common.repository.base.RoleRepository;
-import com.minsx.core.common.repository.developer.DevUserRepository;
-import com.minsx.core.common.repository.user.*;
+import com.minsx.core.common.repository.auth.AuthRepository;
+import com.minsx.core.common.repository.auth.GroupRepository;
+import com.minsx.core.common.repository.auth.MenuRepository;
+import com.minsx.core.common.repository.auth.RoleRepository;
+import com.minsx.core.common.repository.system.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +52,12 @@ public class AddTest {
 
     @Autowired
     DevUserRepository devUserRepository;
+
+    @Autowired
+    SystemSettingRepository systemSettingRepository;
+
+    @Autowired
+    CustomSettingRepository customSettingRepository;
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -127,22 +133,34 @@ public class AddTest {
     public void addUserInfo() {
         /*用户详细信息*/
         UserInfo userInfo = new UserInfo();
-        userInfo.setCompany("开弦科技");
-        userInfo.setHomePage("https://github.com/MinsxFramework");
+        userInfo.setCompany("米斯云科技有限公司");
+        userInfo.setHomePage("https://github.com/MinsxCloud");
         userInfo.setUser(userRepository.findByUserName("goodsave"));
+        userInfo.setBirthAddress("中国杭州");
+        userInfo.setCurrentAddress("中国杭州");
+        userInfo.setBirthday(LocalDateTime.now());
+        userInfo.setEducation("大学");
+        userInfo.setMarried(false);
+        userInfo.setOccupation("中间件开发");
+        userInfo.setMicroBlog("https://weibo.com/onlineJoker");
+        userInfo.setQq(869304555L);
+        userInfo.setSex("男");
+        userInfo.setSchool("法琳斯顿");
+        userInfo.setTelephone("15588699966");
+        userInfo.setWeChat("goodsave");
         userInfoRepository.save(userInfo);
     }
 
     @Test
     public void addMainMenu() {
-        List<String> names = Arrays.asList("systemManage", "menuManage", "authManage", "roleManage", "groupManage", "userManage", "accountManage", "integralManage", "contentManage", "classifyManage", "articleManage", "commentManage", "passManage", "emailManage");
-        List<String> alias = Arrays.asList("系统管理", "菜单管理", "权限管理", "角色管理", "分组管理", "用户管理", "帐号管理", "积分管理", "内容管理", "分类管理", "文章管理", "评论管理", "密码管理", "邮箱管理");
+        List<String> names = Arrays.asList("index","systemManage", "menuManage", "authManage", "roleManage", "groupManage", "userManage", "accountManage", "integralManage", "contentManage", "classifyManage", "articleManage", "commentManage", "passManage", "emailManage");
+        List<String> alias = Arrays.asList("系统首页","系统管理", "菜单管理", "权限管理", "角色管理", "分组管理", "用户管理", "帐号管理", "积分管理", "内容管理", "分类管理", "文章管理", "评论管理", "密码管理", "邮箱管理");
         List<String> descriptions = alias.stream().map(alia -> "用于" + alia).collect(Collectors.toList());
-        List<Integer> parentMenuIds = Arrays.asList(0, 1, 1, 1, 1, 0, 6, 6, 0, 9, 9, 9, 7, 7);
-        List<Integer> sorts = Arrays.asList(0, 2, 0, 1, 3, 1, 0, 1, 2, 0, 1, 2, 1, 0);
-        List<MenuType> types = Arrays.asList(MenuType.NONE, MenuType.LINK, MenuType.LINK, MenuType.LINK, MenuType.LINK, MenuType.NONE, MenuType.NONE, MenuType.LINK, MenuType.NONE, MenuType.LINK, MenuType.LINK, MenuType.LINK, MenuType.LINK, MenuType.LINK);
-        List<String> values = Arrays.asList(null, "/system/menu", "/system/auth", "/system/role", "/system/group", null, null, "/user/integral", null, "/content/classify", "/content/article", "/content/comment", "/content/pass", "/content/email");
-        List<String> icons = Arrays.asList("el-icon-message", "el-icon-edit", "el-icon-loading", "el-icon-bell", "el-icon-mobile-phone", "el-icon-news", "el-icon-phone-outline", "el-icon-picture", "el-icon-rank", "el-icon-printer", "el-icon-star-on", "el-icon-share", "el-icon-service", "el-icon-sold-out");
+        List<Integer> parentMenuIds = Arrays.asList(0, 0, 2, 2, 2, 2, 0, 7, 8, 0, 10, 10, 10, 8, 7);
+        List<Integer> sorts = Arrays.asList(0, 1, 2, 0, 1, 3, 2, 0, 1, 3, 0, 1, 2, 1, 0);
+        List<MenuType> types = Arrays.asList(MenuType.LINK,MenuType.NONE, MenuType.LINK, MenuType.LINK, MenuType.LINK, MenuType.LINK, MenuType.NONE, MenuType.NONE, MenuType.LINK, MenuType.NONE, MenuType.LINK, MenuType.LINK, MenuType.LINK, MenuType.LINK, MenuType.LINK);
+        List<String> values = Arrays.asList("/",null, "/system/menu", "/system/auth", "/system/role", "/system/group", null, null, "/system/integral", null, "/content/classify", "/content/article", "/content/comment", "/content/pass", "/content/email");
+        List<String> icons = Arrays.asList("el-icon-success", "el-icon-message", "el-icon-edit", "el-icon-loading", "el-icon-bell", "el-icon-mobile-phone", "el-icon-news", "el-icon-phone-outline", "el-icon-picture", "el-icon-rank", "el-icon-printer", "el-icon-star-on", "el-icon-share", "el-icon-service", "el-icon-sold-out");
 
         List<Menu> menus = new ArrayList<>();
 
@@ -175,6 +193,20 @@ public class AddTest {
         devUser.setUser(userRepository.findByUserName("goodsave"));
         devUserRepository.save(devUser);
     }
+
+    //--------------------------------system config----------------------------------
+    @Test
+    public void addSystemConfig() {
+        SystemSetting systemSetting = new SystemSetting();
+        systemSetting.setConfigKey("siteName");
+        systemSetting.setConfigValue("米斯云平台");
+        systemSetting.setCreateUser(userRepository.findByUserName("goodsave"));
+        systemSetting.setDescription("站点名称，将显示在浏览器窗口标题等位置");
+        systemSetting.setState(SystemSettingState.ENABLE);
+        systemSetting.setType(SystemSettingType.SITE_INFO);
+        systemSettingRepository.save(systemSetting);
+    }
+
 
 
 }

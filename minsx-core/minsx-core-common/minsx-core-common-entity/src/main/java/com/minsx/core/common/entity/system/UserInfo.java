@@ -4,9 +4,10 @@ import com.minsx.core.common.entity.base.simple.SimpleMinsxEntity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "minsx_sys_userinfo")
+@Table(name = "minsx_userinfo")
 public class UserInfo extends SimpleMinsxEntity implements Serializable {
 
     @Id
@@ -22,7 +23,7 @@ public class UserInfo extends SimpleMinsxEntity implements Serializable {
     private String sex;
 
     @Column(name = "qq", unique = true)
-    private String qq;
+    private Long qq;
 
     @Column(name = "we_chat", unique = true)
     private String weChat;
@@ -46,10 +47,10 @@ public class UserInfo extends SimpleMinsxEntity implements Serializable {
     private String education;
 
     @Column(name = "birthday")
-    private String birthday;
+    private LocalDateTime birthday;
 
     @Column(name = "married")
-    private String married;
+    private Boolean married;
 
     @Column(name = "occupation")
     private String occupation;
@@ -85,11 +86,11 @@ public class UserInfo extends SimpleMinsxEntity implements Serializable {
         this.sex = sex;
     }
 
-    public String getQq() {
+    public Long getQq() {
         return qq;
     }
 
-    public void setQq(String qq) {
+    public void setQq(Long qq) {
         this.qq = qq;
     }
 
@@ -149,19 +150,19 @@ public class UserInfo extends SimpleMinsxEntity implements Serializable {
         this.education = education;
     }
 
-    public String getBirthday() {
+    public LocalDateTime getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(LocalDateTime birthday) {
         this.birthday = birthday;
     }
 
-    public String getMarried() {
+    public Boolean getMarried() {
         return married;
     }
 
-    public void setMarried(String married) {
+    public void setMarried(Boolean married) {
         this.married = married;
     }
 

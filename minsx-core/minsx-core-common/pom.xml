@@ -15,9 +15,7 @@
 
     <modules>
         <module>minsx-core-common-entity</module>
-        <module>minsx-core-common-controller</module>
         <module>minsx-core-common-repository</module>
-        <module>minsx-core-common-service</module>
     </modules>
 
 

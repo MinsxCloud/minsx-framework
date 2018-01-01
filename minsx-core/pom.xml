@@ -33,7 +33,6 @@
 	</dependencies>
 
 	<modules>
-        <module>minsx-core-developer</module>
         <module>minsx-core-system</module>
 		<module>minsx-core-common</module>
 	</modules>
