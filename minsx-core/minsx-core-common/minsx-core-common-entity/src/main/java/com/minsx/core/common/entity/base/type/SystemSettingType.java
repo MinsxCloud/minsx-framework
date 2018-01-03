@@ -1,7 +1,7 @@
 package com.minsx.core.common.entity.base.type;
 
 /**
- * 权限类型
+ * 系统设置类型
  * Created by Joker on 2017/8/31.
  */
 public enum SystemSettingType {

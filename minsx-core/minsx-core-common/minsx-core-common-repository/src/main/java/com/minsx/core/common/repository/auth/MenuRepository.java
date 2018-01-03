@@ -4,6 +4,8 @@ import com.minsx.core.common.entity.auth.Menu;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 /**
  * AuthRepository
@@ -13,5 +15,7 @@ import org.springframework.stereotype.Repository;
 public interface MenuRepository extends JpaRepository<Menu,Integer>{
 
     Menu findByName(String name);
+
+    List<Menu> findAllByClassifier(String classifier);
 
 }

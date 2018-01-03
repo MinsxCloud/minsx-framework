@@ -3,6 +3,7 @@ package com.minsx.core.common.entity.auth;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minsx.core.common.entity.base.simple.SimpleMinsxEntity;
+import com.minsx.core.common.entity.base.type.MenuClassifier;
 import com.minsx.core.common.entity.base.type.MenuState;
 import com.minsx.core.common.entity.base.type.MenuType;
 import com.minsx.core.common.entity.system.User;
@@ -48,7 +49,10 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
 
     @Column(nullable = false, name = "type")
     private String type;
-    
+
+    @Column(nullable = false, name = "classifier")
+    private String classifier;
+
     @Column(name = "description")
     private String description;
 
@@ -158,4 +162,19 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
     public void setCreateUser(User createUser) {
         this.createUser = createUser;
     }
+
+    public String getClassifier() {
+        return classifier;
+    }
+
+    public void setClassifier(String classifier) {
+        this.classifier = classifier;
+    }
+
+    public void setClassifier(MenuClassifier menuClassifier) {
+        this.classifier = menuClassifier.getValue();
+    }
+
+
+
 }

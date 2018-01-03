@@ -1,16 +1,16 @@
 package com.minsx.core.common.entity.base.type;
 
 /**
- * 用户自定义设置类型
+ * 菜单分类
  * Created by Joker on 2017/8/31.
  */
-public enum CustomSettingType {
+public enum MenuClassifier {
 
-    BASIC("BASIC"), UNKNOWN("UNKNOWN");
+    TOP("TOP"), LEFT("LEFT"), UNKNOWN("UNKNOWN");
 
     String value;
 
-    CustomSettingType(String value) {
+    MenuClassifier(String value) {
         this.value = value;
     }
 
@@ -22,7 +22,7 @@ public enum CustomSettingType {
         this.value = value;
     }
 
-    public static CustomSettingType getCustomSettingType(String value) {
+    public static MenuClassifier getMenuClassifier(String value) {
         try {
             return valueOf(value);
         } catch (Exception e) {

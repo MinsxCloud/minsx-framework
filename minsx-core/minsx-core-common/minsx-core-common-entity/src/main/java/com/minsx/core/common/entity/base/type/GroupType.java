@@ -1,8 +1,7 @@
 package com.minsx.core.common.entity.base.type;
 
 /**
- * 权限类型
- * Created by Joker on 2017/8/31.
+ * 分组类型
  */
 public enum GroupType {
 
@@ -22,7 +21,7 @@ public enum GroupType {
         this.value = value;
     }
 
-    public static GroupType getMenuType(String value) {
+    public static GroupType getGroupType(String value) {
         try {
             return valueOf(value);
         } catch (Exception e) {

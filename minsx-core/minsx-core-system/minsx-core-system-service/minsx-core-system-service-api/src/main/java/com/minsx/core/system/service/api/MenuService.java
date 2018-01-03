@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface MenuService {
 
-    ResponseEntity<?> getMenus();
+    ResponseEntity<?> getLeftMenus(Integer parentMenuId);
 
+    ResponseEntity<?> getTopMenus();
 }

@@ -68,7 +68,7 @@ public class AddTest {
         addGroup();
         addUser();
         addUserInfo();
-        addMainMenu();
+        //addMenus();
         addDeveloper();
     }
 
@@ -152,7 +152,7 @@ public class AddTest {
     }
 
     @Test
-    public void addMainMenu() {
+    public void addMenus() {
         List<String> names = Arrays.asList("index","systemManage", "menuManage", "authManage", "roleManage", "groupManage", "userManage", "accountManage", "integralManage", "contentManage", "classifyManage", "articleManage", "commentManage", "passManage", "emailManage");
         List<String> alias = Arrays.asList("系统首页","系统管理", "菜单管理", "权限管理", "角色管理", "分组管理", "用户管理", "帐号管理", "积分管理", "内容管理", "分类管理", "文章管理", "评论管理", "密码管理", "邮箱管理");
         List<String> descriptions = alias.stream().map(alia -> "用于" + alia).collect(Collectors.toList());
@@ -163,7 +163,6 @@ public class AddTest {
         List<String> icons = Arrays.asList("el-icon-success", "el-icon-message", "el-icon-edit", "el-icon-loading", "el-icon-bell", "el-icon-mobile-phone", "el-icon-news", "el-icon-phone-outline", "el-icon-picture", "el-icon-rank", "el-icon-printer", "el-icon-star-on", "el-icon-share", "el-icon-service", "el-icon-sold-out");
 
         List<Menu> menus = new ArrayList<>();
-
         for (int i = 0; i < names.size(); i++) {
             Menu menu = new Menu();
             menu.setName(names.get(i));
@@ -180,6 +179,27 @@ public class AddTest {
         }
         menuRepository.save(menus);
     }
+
+
+    @Test
+    public void addSingleMenu() {
+        Menu menu = new Menu();
+        menu.setClassifier(MenuClassifier.LEFT);
+        menu.setState(MenuState.ENABLE);
+        menu.setName("mailSetting");
+        menu.setAlias("邮件设置");
+        menu.setDescription("邮件设置菜单");
+        menu.setCreateUser(userRepository.findByUserName("goodsave"));
+        menu.setParentMenuId(7);
+        menu.setIcon("el-icon-phone-outline");
+        menu.setSort(1);
+        menu.setType(MenuType.LINK);
+        menu.setValue("/systemSetting/siteSetting/mailSetting");
+        menuRepository.save(menu);
+    }
+
+
+
     //--------------------------------developer----------------------------------
 
     @Test
