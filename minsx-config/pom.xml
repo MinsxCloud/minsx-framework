@@ -20,24 +20,6 @@
 	</properties>
 
 	<dependencies>
-		<!-- core-entity -->
-		<dependency>
-			<groupId>com.minsx</groupId>
-			<artifactId>minsx-core-entity</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<!-- core-repository -->
-		<dependency>
-			<groupId>com.minsx</groupId>
-			<artifactId>minsx-core-respository</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<!-- service-api -->
-		<dependency>
-			<groupId>com.minsx</groupId>
-			<artifactId>minsx-core-service-api</artifactId>
-			<version>1.0.0</version>
-		</dependency>
 	</dependencies>
 
 	<build>
