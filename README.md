@@ -53,4 +53,5 @@
 ![请求监控](https://raw.githubusercontent.com/MinsxCloud/minsx-framework/master/docs/image/request.png "请求监控")
 
 ### 项目截图 (V2.0.0版本)
+![后台管理](https://raw.githubusercontent.com/MinsxCloud/minsx-framework/master/docs/image2.0/admin.png "后台管理")
 正在加紧Coding...(预计在2月底开放,敬请期待)
