@@ -1,12 +1,12 @@
 package com.minsx.core.system.controller;
 
+import com.minsx.core.common.entity.auth.Menu;
 import com.minsx.core.system.service.api.MenuService;
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/menu")
@@ -19,6 +19,16 @@ public class MenuController {
 		this.menuService = menuService;
 	}
 
+	@GetMapping(value = "/menus")
+	public ResponseEntity<?> getMenus(@RequestParam(required = false) String name) {
+		return menuService.getMenus(name);
+	}
+
+	@GetMapping(value = "/menus/{menuId}")
+	public ResponseEntity<?> getMenu(@PathVariable(required = true) Integer menuId) {
+		return menuService.getMenu(menuId);
+	}
+
 	@GetMapping(value = "/topMenus")
 	public ResponseEntity<?> getTopMenus() {
 		return menuService.getTopMenus();
@@ -29,7 +39,15 @@ public class MenuController {
 		return menuService.getLeftMenus(parentMenuId);
 	}
 
+	@PutMapping(value = "/menus")
+	public ResponseEntity<?> updateMenu(@RequestBody Menu menu) {
+		return menuService.updateMenu(menu);
+	}
 
+	@DeleteMapping(value = "/menus/{id}")
+	public ResponseEntity<?> deleteMenu(@PathVariable(required = true) Integer id) {
+		return menuService.deleteMenu(id);
+	}
 
 
 

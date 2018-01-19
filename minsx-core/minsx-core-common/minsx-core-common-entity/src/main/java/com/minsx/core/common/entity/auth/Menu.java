@@ -123,9 +123,9 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
 		this.state = menuState.getValue();
 	}
 
-	public void setState(Integer state) {
+	/*public void setState(Integer state) {
 		this.state = state;
-	}
+	}*/
 
     public Integer getSort() {
         return sort;
