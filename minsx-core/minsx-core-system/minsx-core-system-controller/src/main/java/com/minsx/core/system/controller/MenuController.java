@@ -2,7 +2,6 @@ package com.minsx.core.system.controller;
 
 import com.minsx.core.common.entity.auth.Menu;
 import com.minsx.core.system.service.api.MenuService;
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

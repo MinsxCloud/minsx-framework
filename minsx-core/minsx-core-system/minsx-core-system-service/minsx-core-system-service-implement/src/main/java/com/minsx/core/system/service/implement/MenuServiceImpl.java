@@ -58,7 +58,7 @@ public class MenuServiceImpl implements MenuService {
         if (menu.getId() == null) {
             oldMenu = new Menu();
         } else {
-            oldMenu = menuRepository.findByName(menu.getName());
+            oldMenu = menuRepository.findOne(menu.getId());
             if (oldMenu == null) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
