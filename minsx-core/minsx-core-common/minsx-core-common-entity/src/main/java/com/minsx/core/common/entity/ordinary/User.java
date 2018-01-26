@@ -1,10 +1,9 @@
-package com.minsx.core.common.entity.system;
+package com.minsx.core.common.entity.ordinary;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.minsx.core.common.entity.auth.Group;
 import com.minsx.core.common.entity.base.simple.SimpleMinsxEntity;
 import com.minsx.core.common.entity.base.type.UserState;
 import org.hibernate.validator.constraints.Length;

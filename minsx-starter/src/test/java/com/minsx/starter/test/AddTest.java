@@ -1,14 +1,14 @@
 package com.minsx.starter.test;
 
-import com.minsx.core.common.entity.auth.Auth;
-import com.minsx.core.common.entity.auth.Group;
-import com.minsx.core.common.entity.auth.Menu;
-import com.minsx.core.common.entity.auth.Role;
+import com.minsx.core.common.entity.ordinary.Auth;
+import com.minsx.core.common.entity.ordinary.Group;
+import com.minsx.core.common.entity.system.Menu;
+import com.minsx.core.common.entity.ordinary.Role;
 import com.minsx.core.common.entity.base.type.*;
-import com.minsx.core.common.entity.system.DevUser;
-import com.minsx.core.common.entity.system.SystemSetting;
-import com.minsx.core.common.entity.system.User;
-import com.minsx.core.common.entity.system.UserInfo;
+import com.minsx.core.common.entity.developer.DevUser;
+import com.minsx.core.common.entity.system.SystemConfig;
+import com.minsx.core.common.entity.ordinary.User;
+import com.minsx.core.common.entity.ordinary.UserInfo;
 import com.minsx.core.common.repository.auth.AuthRepository;
 import com.minsx.core.common.repository.auth.GroupRepository;
 import com.minsx.core.common.repository.auth.MenuRepository;
@@ -79,7 +79,7 @@ public class AddTest {
         auth.setValue("/system");
         auth.setCategory("用户页面权限");
         auth.setDescription("允许用户访问用户页面");
-        auth.setCreateUser(userRepository.findByUserName("goodsave"));
+        auth.setCreateUserId(userRepository.findByUserName("goodsave").getId());
         auth.setState(AuthState.ENABLE);
         authRepository.saveAndFlush(auth);
     }
@@ -88,7 +88,7 @@ public class AddTest {
     public void addRole() {
         Role role = new Role();
         role.setAuths(authRepository.findAll());
-        role.setCreateUser(userRepository.findByUserName("goodsave"));
+        role.setCreateUserId(userRepository.findByUserName("goodsave").getId());
         role.setName("admin");
         role.setAlias("管理员");
         role.setDescription("拥有管理员相关权限的角色");
@@ -99,7 +99,7 @@ public class AddTest {
     @Test
     public void addGroup() {
         Group userGroup = new Group();
-        userGroup.setCreateUser(userRepository.findByUserName("goodsave"));
+        userGroup.setCreateUserId(userRepository.findByUserName("goodsave").getId());
         userGroup.setName("manage");
         userGroup.setAlias("管理部门");
         userGroup.setDescription("用于管理某某项目的部门");
@@ -167,7 +167,7 @@ public class AddTest {
             Menu menu = new Menu();
             menu.setName(names.get(i));
             menu.setAlias(alias.get(i));
-            menu.setCreateUser(userRepository.findByUserName("goodsave"));
+            menu.setCreateUserId(userRepository.findByUserName("goodsave").getId());
             menu.setDescription(descriptions.get(i));
             menu.setParentMenuId(parentMenuIds.get(i));
             menu.setSort(sorts.get(i));
@@ -189,7 +189,7 @@ public class AddTest {
         menu.setName("mailSetting");
         menu.setAlias("邮件设置");
         menu.setDescription("邮件设置菜单");
-        menu.setCreateUser(userRepository.findByUserName("goodsave"));
+        menu.setCreateUserId(userRepository.findByUserName("goodsave").getId());
         menu.setParentMenuId(7);
         menu.setIcon("el-icon-phone-outline");
         menu.setSort(1);
@@ -217,10 +217,10 @@ public class AddTest {
     //--------------------------------system config----------------------------------
     @Test
     public void addSystemConfig() {
-        SystemSetting systemSetting = new SystemSetting();
+        SystemConfig systemSetting = new SystemConfig();
         systemSetting.setConfigKey("siteName");
         systemSetting.setConfigValue("米斯云平台");
-        systemSetting.setCreateUser(userRepository.findByUserName("goodsave"));
+        systemSetting.setCreateUserId(userRepository.findByUserName("goodsave").getId());
         systemSetting.setDescription("站点名称，将显示在浏览器窗口标题等位置");
         systemSetting.setState(SystemSettingState.ENABLE);
         systemSetting.setType(SystemSettingType.SITE_INFO);

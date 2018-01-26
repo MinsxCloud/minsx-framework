@@ -1,6 +1,6 @@
 package com.minsx.core.system.service.api;
 
-import com.minsx.core.common.entity.auth.Menu;
+import com.minsx.core.common.entity.system.Menu;
 import org.springframework.http.ResponseEntity;
 
 public interface MenuService {
@@ -13,7 +13,7 @@ public interface MenuService {
 
     ResponseEntity<?> getMenu(Integer menuId);
 
-    ResponseEntity<?> updateMenu(Menu menu);
+    ResponseEntity<?> saveMenu(Menu menu);
 
     ResponseEntity<?> deleteMenu(Integer id);
 }

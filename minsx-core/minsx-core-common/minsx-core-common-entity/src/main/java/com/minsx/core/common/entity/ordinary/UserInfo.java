@@ -1,4 +1,4 @@
-package com.minsx.core.common.entity.system;
+package com.minsx.core.common.entity.ordinary;
 
 import com.minsx.core.common.entity.base.simple.SimpleMinsxEntity;
 

@@ -1,11 +1,9 @@
-package com.minsx.core.common.entity.auth;
+package com.minsx.core.common.entity.ordinary;
 
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minsx.core.common.entity.base.simple.SimpleMinsxEntity;
 import com.minsx.core.common.entity.base.type.AuthState;
 import com.minsx.core.common.entity.base.type.AuthType;
-import com.minsx.core.common.entity.system.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,11 +24,11 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
     private Integer id;
 
     //权限类型(URL权限还是DATA权限)
-    @Column(nullable = false, unique = true, name = "type")
+    @Column(nullable = false, name = "type")
     private String type;
 
     //该权限能访问的URL
-    @Column(nullable = false, unique = true, name = "value")
+    @Column(nullable = false, name = "value")
     private String value;
 
     //状态
@@ -38,7 +36,7 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
     private Integer state;
 
     //权限类目(属于哪个类目eg:用户/文章....)
-    @Column(nullable = false, unique = true, name = "category")
+    @Column(nullable = false, name = "category")
     private String category;
 
     //描述
@@ -46,10 +44,8 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
     private String description;
 
     //创建者ID
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private User createUser;
+    @Column(name = "create_user_id")
+    private Integer createUserId;
 
     @Override
     public String toString() {
@@ -96,10 +92,6 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
         this.state = authState.getValue();
     }
 
-    public void setState(Integer state) {
-        this.state = state;
-    }
-
     public String getCategory() {
         return category;
     }
@@ -116,11 +108,11 @@ public class Auth extends SimpleMinsxEntity implements Serializable {
         this.description = description;
     }
 
-    public User getCreateUser() {
-        return createUser;
+    public Integer getCreateUserId() {
+        return createUserId;
     }
 
-    public void setCreateUser(User createUser) {
-        this.createUser = createUser;
+    public void setCreateUserId(Integer createUserId) {
+        this.createUserId = createUserId;
     }
 }

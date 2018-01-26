@@ -1,4 +1,4 @@
-package com.minsx.core.common.entity.auth;
+package com.minsx.core.common.entity.system;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -6,7 +6,7 @@ import com.minsx.core.common.entity.base.simple.SimpleMinsxEntity;
 import com.minsx.core.common.entity.base.type.MenuClassifier;
 import com.minsx.core.common.entity.base.type.MenuState;
 import com.minsx.core.common.entity.base.type.MenuType;
-import com.minsx.core.common.entity.system.User;
+import com.minsx.core.common.entity.ordinary.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -57,10 +57,8 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
     private String description;
 
     //创建者ID
-	@JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private User createUser;
+	@Column(name = "create_user_id")
+    private Integer createUserId;
 
     @Override
     public String toString() {
@@ -123,10 +121,6 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
 		this.state = menuState.getValue();
 	}
 
-	/*public void setState(Integer state) {
-		this.state = state;
-	}*/
-
     public Integer getSort() {
         return sort;
     }
@@ -155,14 +149,6 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
         this.type = type;
     }
 
-    public User getCreateUser() {
-        return createUser;
-    }
-
-    public void setCreateUser(User createUser) {
-        this.createUser = createUser;
-    }
-
     public String getClassifier() {
         return classifier;
     }
@@ -175,6 +161,11 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
         this.classifier = menuClassifier.getValue();
     }
 
+    public Integer getCreateUserId() {
+        return createUserId;
+    }
 
-
+    public void setCreateUserId(Integer createUserId) {
+        this.createUserId = createUserId;
+    }
 }

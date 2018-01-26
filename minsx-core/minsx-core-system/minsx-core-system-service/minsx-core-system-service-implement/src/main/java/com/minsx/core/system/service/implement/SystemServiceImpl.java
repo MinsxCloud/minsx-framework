@@ -4,18 +4,26 @@ import com.alibaba.fastjson.JSON;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.minsx.common.constant.Constant;
+import com.minsx.common.util.DateUtil;
+import com.minsx.common.util.SystemUtil;
 import com.minsx.core.common.entity.system.User;
 import com.minsx.core.system.service.api.SystemService;
+import org.hyperic.sigar.CpuInfo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
 public class SystemServiceImpl implements SystemService {
 
+    private final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private final DecimalFormat DF = new DecimalFormat("######0.0");
 
     /**
      * 该方法用于后台取Token
@@ -64,11 +72,15 @@ public class SystemServiceImpl implements SystemService {
     public ResponseEntity<?> getSystemInfo() {
         List<Map<String, String>> systemInfos = new ArrayList<>();
         Map<String, String> systemInfo = new LinkedHashMap<>();
-        systemInfo.put("Minsx Cloud 系统版本", "v1.0.0");
-        systemInfo.put("服务器系统", "Windows 10 Enterprise");
-        systemInfo.put("服务器软件", "Apache");
-        systemInfo.put("服务器数据库版本", "Mysql 5.6");
-        systemInfo.put("当前数据库尺寸", "7.82 MB");
+        systemInfo.put("Minsx Cloud 系统版本", Constant.SYSTEM_VERSION);
+        systemInfo.put("服务器系统", System.getProperty("os.name") + " " + System.getProperty("os.version"));
+        CpuInfo cpuInfo = SystemUtil.getCpuInfo();
+        systemInfo.put("处理器核心数", String.valueOf(cpuInfo.getTotalCores()) + " Core");
+        systemInfo.put("处理器频率", String.valueOf(cpuInfo.getMhz()) + " Mhz");
+        systemInfo.put("服务器用户", System.getProperty("user.name"));
+        systemInfo.put("服务器时间", SDF.format(new Date()));
+        systemInfo.put("系统运行目录", Constant.SYSTEM_PATH);
+        systemInfo.put("系统运行时间", DateUtil.formatMilliSecond(new Date().getTime() - Constant.SYSTEM_START_TIME.getTime()));
         systemInfo.forEach((key, value) -> {
             Map<String, String> item = new LinkedHashMap<>();
             item.put("key", key);

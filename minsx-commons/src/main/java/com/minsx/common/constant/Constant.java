@@ -1,14 +1,34 @@
 package com.minsx.common.constant;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 public class Constant {
 
 	/**
-	 * 软件运行目录
+	 * system path
 	 */
-	public static final String SOFT_WARE_PATH = System.getProperty("system.dir").replace("\\", "/");
+	public static final String SYSTEM_PATH = System.getProperty("user.dir").replace("\\", "/");
 	/**
-	 * 软件配置目录
+	 * system config path
 	 */
-	public static final String SOFT_CONFIG_PATH = SOFT_WARE_PATH + "/config/";
+	public static final String SYSTEM_CONFIG_PATH = SYSTEM_PATH + "/config/";
+
+	/**
+	 * system name
+	 */
+	public static final String SYSTEM_NAME = "米斯云平台";
+
+	/**
+	 * system version
+	 */
+	public static final String SYSTEM_VERSION = "2.0.0";
+
+	/**
+	 * system version
+	 */
+	public static final Date SYSTEM_START_TIME = new Date();
+
+
 
 }

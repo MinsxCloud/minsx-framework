@@ -1,8 +1,10 @@
 package com.minsx.core.system.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.minsx.core.system.service.api.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

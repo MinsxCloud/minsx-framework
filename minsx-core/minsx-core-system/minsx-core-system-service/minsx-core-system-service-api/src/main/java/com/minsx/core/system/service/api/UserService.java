@@ -1,5 +1,6 @@
 package com.minsx.core.system.service.api;
 
+import com.minsx.core.common.entity.ordinary.User;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -11,5 +12,7 @@ public interface UserService extends MinsxEntityService {
     ResponseEntity<?> getCurrentUserInfo();
 
     ResponseEntity<?> getUserInfo(Integer id);
+
+    User getCurrentUser();
 
 }

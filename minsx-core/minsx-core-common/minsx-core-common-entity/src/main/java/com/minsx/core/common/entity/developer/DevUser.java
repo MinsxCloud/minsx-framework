@@ -1,10 +1,10 @@
-package com.minsx.core.common.entity.system;
+package com.minsx.core.common.entity.developer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.minsx.core.common.entity.auth.Group;
 import com.minsx.core.common.entity.base.simple.SimpleMinsxEntity;
 import com.minsx.core.common.entity.base.type.DevUserState;
+import com.minsx.core.common.entity.ordinary.User;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -47,12 +46,6 @@ public class DevUser extends SimpleMinsxEntity implements Serializable, UserDeta
 
     @Column(name = "description")
     private String description;
-
-    @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    @JoinTable(name = "minsx_dev_user_group",
-            joinColumns = @JoinColumn(name = "dev_user_id", referencedColumnName = "dev_user_id"),
-            inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "group_id"))
-    private List<Group> groups;
 
     @Transient
     @JsonIgnore
@@ -156,11 +149,4 @@ public class DevUser extends SimpleMinsxEntity implements Serializable, UserDeta
         this.description = description;
     }
 
-    public List<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
-    }
 }

@@ -2,7 +2,7 @@ package com.minsx.starter.test;
 
 import com.alibaba.fastjson.JSON;
 import com.minsx.common.util.Node;
-import com.minsx.core.common.entity.auth.Menu;
+import com.minsx.core.common.entity.system.Menu;
 import com.minsx.core.common.repository.auth.MenuRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;

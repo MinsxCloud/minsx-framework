@@ -1,3 +1,4 @@
+/*
 package com.minsx.common.util;
 
 import java.io.File;
@@ -12,21 +13,25 @@ import java.util.Set;
 import com.minsx.common.constant.Constant;
 
 
+*/
 /**
  * Properties 读写工具
  * 注：默读写为自动加解密，保证文件中是加密后的键值对
- */
+ *//*
+
 public class PropertiesUtil {
 	
 	private Properties property = new Properties();
 	private File file = null;
 	public Map<String, String> toSaveMap = new HashMap<String, String>();
 	
-	/**
+	*/
+/**
 	 * 构造
-	 */
+	 *//*
+
 	public PropertiesUtil(String propertiesName) {
-		final String filePath =  Constant.SOFT_CONFIG_PATH + propertiesName;
+		final String filePath =  Constant.SYSTEM_CONFIG_PATH + propertiesName;
 		file = new File(filePath);
 		try {
 			if (!file.exists()) {
@@ -40,9 +45,11 @@ public class PropertiesUtil {
 		}
 	}
 
-	/**
+	*/
+/**
 	 * 取所有键值对
-	 */
+	 *//*
+
 	public Map<String, String> getAllValues() throws Exception {
 		FileInputStream fis = new FileInputStream(file);
 		property.load(fis);
@@ -56,9 +63,11 @@ public class PropertiesUtil {
 		return toSaveMap;
 	}
 
-	/**
+	*/
+/**
 	 * 判断是否存在指定文件
-	 */
+	 *//*
+
 	public void isExists(File properties) throws Exception {
 		if (!properties.exists()) {
 			properties.createNewFile();
@@ -69,9 +78,11 @@ public class PropertiesUtil {
 		fis.close();
 	}
 
-	/**
+	*/
+/**
 	 *  读取值
-	 */
+	 *//*
+
 	public String get(String key) {
 		String values = null;
 		try {
@@ -85,9 +96,11 @@ public class PropertiesUtil {
 		return values;
 	}
 
-	/**
+	*/
+/**
 	 *  写入值
-	 */
+	 *//*
+
 	public synchronized void set(String key, String value) {
 		try {
 			getAllValues();
@@ -101,3 +114,4 @@ public class PropertiesUtil {
 		}
 	}
 }
+*/

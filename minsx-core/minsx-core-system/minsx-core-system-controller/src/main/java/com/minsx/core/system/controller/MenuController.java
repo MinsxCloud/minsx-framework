@@ -1,6 +1,6 @@
 package com.minsx.core.system.controller;
 
-import com.minsx.core.common.entity.auth.Menu;
+import com.minsx.core.common.entity.system.Menu;
 import com.minsx.core.system.service.api.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -39,8 +39,8 @@ public class MenuController {
 	}
 
 	@PutMapping(value = "/menus")
-	public ResponseEntity<?> updateMenu(@RequestBody Menu menu) {
-		return menuService.updateMenu(menu);
+	public ResponseEntity<?> saveMenu(@RequestBody Menu menu) {
+		return menuService.saveMenu(menu);
 	}
 
 	@DeleteMapping(value = "/menus/{id}")

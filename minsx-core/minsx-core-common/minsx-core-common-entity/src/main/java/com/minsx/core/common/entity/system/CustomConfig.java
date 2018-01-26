@@ -1,6 +1,5 @@
 package com.minsx.core.common.entity.system;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minsx.core.common.entity.base.simple.SimpleMinsxEntity;
 import com.minsx.core.common.entity.base.type.CustomSettingState;
 import com.minsx.core.common.entity.base.type.CustomSettingType;
@@ -9,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "minsx_custom_config")
-public class CustomSetting extends SimpleMinsxEntity {
+public class CustomConfig extends SimpleMinsxEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,10 +31,8 @@ public class CustomSetting extends SimpleMinsxEntity {
     private String description;
 
     //创建者ID
-	@JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private User createUser;
+	@Column(name = "create_user_id")
+    private Integer createUserId;
 
 
     public Integer getId() {
@@ -94,11 +91,11 @@ public class CustomSetting extends SimpleMinsxEntity {
         this.description = description;
     }
 
-    public User getCreateUser() {
-        return createUser;
+    public Integer getCreateUserId() {
+        return createUserId;
     }
 
-    public void setCreateUser(User createUser) {
-        this.createUser = createUser;
+    public void setCreateUserId(Integer createUserId) {
+        this.createUserId = createUserId;
     }
 }

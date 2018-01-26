@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.minsx.core.common.entity.system.User;
+import com.minsx.core.common.entity.ordinary.User;
 import com.minsx.core.common.repository.auth.AuthRepository;
 import com.minsx.core.common.repository.auth.GroupRepository;
 import com.minsx.core.common.repository.auth.RoleRepository;

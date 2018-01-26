@@ -1,7 +1,7 @@
 package com.minsx.core.system.service.implement;
 
 import com.minsx.common.util.Node;
-import com.minsx.core.common.entity.auth.Menu;
+import com.minsx.core.common.entity.system.Menu;
 import com.minsx.core.common.entity.base.type.MenuClassifier;
 import com.minsx.core.common.repository.auth.MenuRepository;
 import com.minsx.core.system.service.api.MenuService;
@@ -53,7 +53,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public ResponseEntity<?> updateMenu(Menu menu) {
+    public ResponseEntity<?> saveMenu(Menu menu) {
         Menu oldMenu = null;
         if (menu.getId() == null) {
             oldMenu = new Menu();
