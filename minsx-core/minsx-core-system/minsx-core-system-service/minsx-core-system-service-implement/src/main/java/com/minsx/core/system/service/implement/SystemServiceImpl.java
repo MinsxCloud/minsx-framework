@@ -7,7 +7,7 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import com.minsx.common.constant.Constant;
 import com.minsx.common.util.DateUtil;
 import com.minsx.common.util.SystemUtil;
-import com.minsx.core.common.entity.system.User;
+import com.minsx.core.common.entity.ordinary.User;
 import com.minsx.core.system.service.api.SystemService;
 import org.hyperic.sigar.CpuInfo;
 import org.springframework.http.HttpStatus;

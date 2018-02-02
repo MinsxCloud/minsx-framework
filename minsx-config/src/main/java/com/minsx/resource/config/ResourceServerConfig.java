@@ -23,7 +23,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
-            .antMatchers("/index", "/getToken").permitAll()
+            .antMatchers("/index", "/getToken","/test/query").permitAll()
             .antMatchers(HttpMethod.GET, "/api/**").access("#oauth2.hasScope('read')")
             .antMatchers(HttpMethod.POST, "/api/**").access("#oauth2.hasScope('write')")
             .anyRequest().authenticated();
