@@ -10,11 +10,11 @@ import java.util.List;
 
 
 /**
- * AuthRepository
+ * MenuRepository
  * Created by Joker on 2017/8/30.
  */
 @Repository
-public interface MenuRepository extends JpaRepository<Menu,Integer>,PagingAndSortingRepository<Menu, Integer>,JpaSpecificationExecutor<Menu> {
+public interface MenuRepository extends JpaRepository<Menu, Integer>, PagingAndSortingRepository<Menu, Integer>, JpaSpecificationExecutor<Menu> {
 
     Menu findByName(String name);
 

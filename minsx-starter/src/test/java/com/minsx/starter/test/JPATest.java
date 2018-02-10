@@ -42,6 +42,7 @@ public class JPATest {
                 predicates.add(predicateA);
                 predicates.add(predicateB);
 
+
                 Predicate allPredicates = builder.and(predicates.toArray(new Predicate[predicates.size()]));
                 query.where(allPredicates);
 
