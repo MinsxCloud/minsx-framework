@@ -46,6 +46,9 @@
 + 采用Restful-URL进行开发
 + 代码规范方面遵循最新阿里巴巴JAVA代码规范
 
+### 项目演示
++ [点此查看项目演示](https://admin.minsx.com)
+
 ### 项目截图 (V1.0.0版本)
 ![登录](https://raw.githubusercontent.com/MinsxCloud/minsx-framework/master/docs/image/login.png "登录")
 ![权限管理](https://raw.githubusercontent.com/MinsxCloud/minsx-framework/master/docs/image/auth.png "权限管理")
