@@ -39,3 +39,9 @@ minsx-commons/.settings/
 minsx-core/minsx-core-respository/.settings/
 minsx-starter/.settings/
 .idea/
+minsx-core/minsx-core-common/minsx-core-common-entity/target/
+minsx-core/minsx-core-system/minsx-core-system-controller/target/
+minsx-core/minsx-core-system/minsx-core-system-service/minsx-core-system-service-api/target/
+minsx-core/minsx-core-system/minsx-core-system-service/minsx-core-system-service-implement/target/
+minsx-core/minsx-core-common/minsx-core-common-repository/target/
+minsx-datasource/target/

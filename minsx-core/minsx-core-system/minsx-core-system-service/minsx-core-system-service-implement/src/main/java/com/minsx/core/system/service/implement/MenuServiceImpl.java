@@ -63,6 +63,10 @@ public class MenuServiceImpl implements MenuService {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }
+        Menu tempMenu = menuRepository.findByName(menu.getName());
+        if (tempMenu!=null&&tempMenu.getId()!=menu.getId()) {
+            return new ResponseEntity<>("菜单系统名称已存在",HttpStatus.BAD_REQUEST);
+        }
         oldMenu.setValue(menu.getValue());
         oldMenu.setSort(menu.getSort());
         oldMenu.setIcon(menu.getIcon());
