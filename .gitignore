@@ -1,47 +1,5 @@
-# Compiled class file
-*.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
 *.iml
-minsx-starter/target/
-*.prefs
-*.project
-*.classpath
-minsx-resource/.settings/
-minsx-datasource/.settings/
-minsx-i18n/.settings/
-minsx-log/.settings/
-minsx-message/.settings/
-minsx-plugins/.settings/
-minsx-core/minsx-core-service/minsx-core-service-api/.settings/
-minsx-core/minsx-core-service/minsx-core-service-implement/.settings/
-minsx-core/minsx-core-entity/.settings/
-minsx-core/minsx-core-controller/.settings/
-minsx-commons/.settings/
-minsx-core/minsx-core-respository/.settings/
-minsx-starter/.settings/
 .idea/
-minsx-core/minsx-core-common/minsx-core-common-entity/target/
-minsx-core/minsx-core-system/minsx-core-system-controller/target/
-minsx-core/minsx-core-system/minsx-core-system-service/minsx-core-system-service-api/target/
-minsx-core/minsx-core-system/minsx-core-system-service/minsx-core-system-service-implement/target/
-minsx-core/minsx-core-common/minsx-core-common-repository/target/
-minsx-datasource/target/
+minsx-framework-common/target/
+*.jar
+minsx-framework-security/target/
