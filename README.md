@@ -1,3 +1,6 @@
+# Minsx-framework
+#### 是Minsx家族的核心模块,其他所有项目均依赖于该模块
+
 #### Minsx (米斯艾克斯)
 + Min : 轻量 
 + S : Spring框架 
