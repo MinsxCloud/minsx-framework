@@ -3,3 +3,4 @@
 minsx-framework-common/target/
 *.jar
 minsx-framework-security/target/
+*.class
