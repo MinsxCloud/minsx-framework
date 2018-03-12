@@ -194,7 +194,6 @@ public class ExcelTest {
 
 
 #### Minsx-framework-common-mail
-
 ##### 主要功能
 +  整合阿里/腾讯/网易/谷歌等各大企业邮箱及个人邮箱服务器配置
 +  仅需给定用户名与密码即可完成邮箱服务器配置
@@ -293,7 +292,7 @@ public class MailUtil {
 
 ```
 ##### 系统模板效果
-![0](https://raw.githubusercontent.com/MinsxCloud/minsx-util/master/doc/image/systemTemplateExample.png "系统模板示例")
+![0](https://raw.githubusercontent.com/MinsxCloud/minsx-framework/master/docs/image/common/MailSystemTemplateExample.png "系统模板示例")
 ##### Maven依赖使用请参考
 + POM引入：
 ```
