@@ -30,6 +30,7 @@
 import com.alibaba.fastjson.JSON;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.io.FileNotFoundException;
 import java.util.List;
 
@@ -44,20 +45,20 @@ public class ExcelTest {
 
     @Test
     public void getAllSheetData() {
-        List<Sheet> sheets = excelReader.getAllSheet();
-        System.out.println(JSON.toJSONString(sheets));
+        List<Sheet> dataList = excelReader.getAllSheet();
+        System.out.println(JSON.toJSONString(dataList));
     }
 
     @Test
     public void getAllSheetDataWithDataMapper() {
-        List<Sheet> sheets = excelReader.getAllSheet(oldCell -> {
+        List<Sheet> newDataList = excelReader.getAllSheet(oldCell -> {
             Cell newCell = new Cell(oldCell);
             if ("姓名".equals(oldCell.getColumnName())) {
-                newCell.setValue("新姓名是:" + oldCell.getValueOrMRValue());
+                newCell.setValue("新姓名是:" + oldCell.getValue());
             }
             return newCell;
         });
-        System.out.println(JSON.toJSONString(sheets));
+        System.out.println(JSON.toJSONString(newDataList));
     }
 
     @Test
@@ -83,7 +84,7 @@ public class ExcelTest {
         Sheet newSheet = excelReader.getSheet(0, oldCell -> {
             Cell newCell = new Cell(oldCell);
             if ("姓名".equals(oldCell.getColumnName())) {
-                newCell.setValue("新姓名是:" + oldCell.getValueOrMRValue());
+                newCell.setValue("新姓名是:" + oldCell.getValue());
             }
             return newCell;
         });
@@ -92,15 +93,15 @@ public class ExcelTest {
 
     @Test
     public void getBeansOfSheet() {
-        List<Student> students = excelReader.getBeansOfSheet(0, oldRowData -> {
+        List<Student> students = excelReader.getBeansOfSheet(1, oldRowData -> {
             Student student = new Student();
             oldRowData.getCells().forEach(oldCellData -> {
                 if ("姓名".equals(oldCellData.getColumnName())) {
-                    student.setName(oldCellData.getValueOrMRValue());
+                    student.setName(oldCellData.getValue());
                 } else if ("年龄".equals(oldCellData.getColumnName())) {
-                    student.setAge(oldCellData.getValueOrMRValue());
+                    student.setAge(oldCellData.getValue());
                 } else if ("性别".equals(oldCellData.getColumnName())) {
-                    student.setSex(oldCellData.getValueOrMRValue());
+                    student.setSex(oldCellData.getValue());
                 }
             });
             return student;
@@ -209,8 +210,8 @@ public class ExcelTest {
 
 ```java
 
-import com.minsx.util.mail.MailSender;
-import com.minsx.util.mail.MailSenderFactory;
+import com.minsx.framework.common.mail.MailSender;
+import com.minsx.framework.common.mail.MailSenderFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -229,7 +230,7 @@ public class EmailConfig {
 
 ```java
 
-import com.minsx.util.mail.MailSender;
+import com.minsx.framework.common.mail.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -250,7 +251,7 @@ public class MailUtil {
 
 ```java
 	
-import com.minsx.util.mail.MailSender;
+import com.minsx.framework.common.mail.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
