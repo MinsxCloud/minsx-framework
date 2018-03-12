@@ -1,4 +1,4 @@
-package com.minsx.framework.common.mailtest;
+package com.minsx.framework.common.mail;
 
 import org.apache.commons.mail.EmailAttachment;
 

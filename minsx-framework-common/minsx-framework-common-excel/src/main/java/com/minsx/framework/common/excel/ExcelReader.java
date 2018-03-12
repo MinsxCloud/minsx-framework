@@ -1,4 +1,4 @@
-package com.minsx.framework.common.exceltest;
+package com.minsx.framework.common.excel;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

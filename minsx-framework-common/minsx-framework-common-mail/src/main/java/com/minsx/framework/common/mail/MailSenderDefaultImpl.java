@@ -1,4 +1,4 @@
-package com.minsx.framework.common.mailtest;
+package com.minsx.framework.common.mail;
 
 
 import com.minsx.util.base.FileUtil;

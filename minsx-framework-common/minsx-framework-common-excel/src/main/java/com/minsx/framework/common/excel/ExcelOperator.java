@@ -1,11 +1,11 @@
-package com.minsx.framework.common.exceltest;
+package com.minsx.framework.common.excel;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFDataFormatter;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ import java.util.Map;
 
 class ExcelOperator {
 
-    static <T> List<T> getBeansOfSheet(com.minsx.framework.common.exceltest.Sheet sheet, BeanMapper<T> beanMapper) {
+    static <T> List<T> getBeansOfSheet(com.minsx.framework.common.excel.Sheet sheet, BeanMapper<T> beanMapper) {
         List<T> beanList = new ArrayList<>();
         sheet.getRows().forEach(row -> {
             beanList.add(beanMapper.mapper(row));
@@ -25,30 +25,30 @@ class ExcelOperator {
         return beanList;
     }
 
-    static com.minsx.framework.common.exceltest.Sheet getSheetData(com.minsx.framework.common.exceltest.Sheet sheet, DataMapper dataMapper) {
-        List<com.minsx.framework.common.exceltest.Row> newRows = new ArrayList<>();
+    static com.minsx.framework.common.excel.Sheet getSheetData(com.minsx.framework.common.excel.Sheet sheet, DataMapper dataMapper) {
+        List<com.minsx.framework.common.excel.Row> newRows = new ArrayList<>();
         sheet.getRows().forEach(row -> {
-            List<com.minsx.framework.common.exceltest.Cell> cells = new ArrayList<>();
+            List<com.minsx.framework.common.excel.Cell> cells = new ArrayList<>();
             row.getCells().forEach(cell -> {
                 cells.add(dataMapper.mapper(cell));
             });
-            newRows.add(new com.minsx.framework.common.exceltest.Row(cells));
+            newRows.add(new com.minsx.framework.common.excel.Row(cells));
         });
-        return new com.minsx.framework.common.exceltest.Sheet(newRows);
+        return new com.minsx.framework.common.excel.Sheet(newRows);
     }
 
-    static List<com.minsx.framework.common.exceltest.Sheet> getAllSheetData(List<com.minsx.framework.common.exceltest.Sheet> sheets, DataMapper dataMapper) {
-        List<com.minsx.framework.common.exceltest.Sheet> newSheets = new ArrayList<>();
+    static List<com.minsx.framework.common.excel.Sheet> getAllSheetData(List<com.minsx.framework.common.excel.Sheet> sheets, DataMapper dataMapper) {
+        List<com.minsx.framework.common.excel.Sheet> newSheets = new ArrayList<>();
         sheets.forEach(sheet -> {
-            List<com.minsx.framework.common.exceltest.Row> newRows = new ArrayList<>();
+            List<com.minsx.framework.common.excel.Row> newRows = new ArrayList<>();
             sheet.getRows().forEach(row -> {
-                List<com.minsx.framework.common.exceltest.Cell> newCells = new ArrayList<>();
+                List<com.minsx.framework.common.excel.Cell> newCells = new ArrayList<>();
                 row.getCells().forEach(cell -> {
                     newCells.add(dataMapper.mapper(cell));
                 });
-                newRows.add(new com.minsx.framework.common.exceltest.Row(newCells));
+                newRows.add(new com.minsx.framework.common.excel.Row(newCells));
             });
-            newSheets.add(new com.minsx.framework.common.exceltest.Sheet(newRows));
+            newSheets.add(new com.minsx.framework.common.excel.Sheet(newRows));
         });
         return newSheets;
     }
@@ -63,12 +63,12 @@ class ExcelOperator {
         return workbook;
     }
 
-    private static List<com.minsx.framework.common.exceltest.Sheet> handleExcelData(List<com.minsx.framework.common.exceltest.Sheet> sheets) {
+    private static List<com.minsx.framework.common.excel.Sheet> handleExcelData(List<com.minsx.framework.common.excel.Sheet> sheets) {
         sheets.forEach(sheet -> {
             for (int i = sheet.getRows().size() - 1; i >= 0; i--) {
-                List<com.minsx.framework.common.exceltest.Cell> cells = sheet.getRows().get(i).getCells();
+                List<com.minsx.framework.common.excel.Cell> cells = sheet.getRows().get(i).getCells();
                 boolean isAllNull = true;
-                for (com.minsx.framework.common.exceltest.Cell cell : cells) {
+                for (com.minsx.framework.common.excel.Cell cell : cells) {
                     if (cell.getValue() != null) {
                         isAllNull = false;
                         break;
@@ -82,14 +82,14 @@ class ExcelOperator {
             }
         });
 
-        List<com.minsx.framework.common.exceltest.Sheet> newSheets = new ArrayList<com.minsx.framework.common.exceltest.Sheet>();
+        List<com.minsx.framework.common.excel.Sheet> newSheets = new ArrayList<com.minsx.framework.common.excel.Sheet>();
         sheets.forEach(sheet -> {
             if (sheet.getRows().size() > 0) {
                 int columnNum = sheet.getRows().get(0).getCells().size();
                 for (int i = columnNum - 1; i >= 0; i--) {
                     boolean isNullColumn = true;
-                    for (com.minsx.framework.common.exceltest.Row row : sheet.getRows()) {
-                        com.minsx.framework.common.exceltest.Cell cell = row.getCells().get(i);
+                    for (com.minsx.framework.common.excel.Row row : sheet.getRows()) {
+                        com.minsx.framework.common.excel.Cell cell = row.getCells().get(i);
                         String key = cell.getColumnName();
                         String value = cell.getValue();
                         if (key != null || value != null) {
@@ -112,14 +112,14 @@ class ExcelOperator {
         return newSheets;
     }
 
-    static List<com.minsx.framework.common.exceltest.Sheet> readExcel(InputStream inputStream) {
-        List<com.minsx.framework.common.exceltest.Sheet> dataList = initialExcelData(inputStream);
+    static List<com.minsx.framework.common.excel.Sheet> readExcel(InputStream inputStream) {
+        List<com.minsx.framework.common.excel.Sheet> dataList = initialExcelData(inputStream);
         return handleExcelData(dataList);
     }
 
-    private static List<com.minsx.framework.common.exceltest.Sheet> initialExcelData(InputStream inputStream) {
+    private static List<com.minsx.framework.common.excel.Sheet> initialExcelData(InputStream inputStream) {
         Workbook workbook = getWorkbook(inputStream);
-        List<com.minsx.framework.common.exceltest.Sheet> sheets = new ArrayList<>();
+        List<com.minsx.framework.common.excel.Sheet> sheets = new ArrayList<>();
         if (workbook != null) {
             for (int sheetNum = 0; sheetNum < workbook.getNumberOfSheets(); sheetNum++) {
                 Sheet sheet = workbook.getSheetAt(sheetNum);
@@ -128,22 +128,22 @@ class ExcelOperator {
                 }
                 List<String> header = getHeader(sheet);
 
-                List<com.minsx.framework.common.exceltest.Row> rows = new ArrayList<>();
+                List<com.minsx.framework.common.excel.Row> rows = new ArrayList<>();
                 for (int rowNum = sheet.getFirstRowNum() + 1; rowNum <= sheet.getLastRowNum(); rowNum++) {
-                    List<com.minsx.framework.common.exceltest.Cell> cells = new ArrayList<>();
+                    List<com.minsx.framework.common.excel.Cell> cells = new ArrayList<>();
                     Row row = sheet.getRow(rowNum);
                     for (int i = 0; i < header.size(); i++) {
                         Map<String, String> result = getCellData(sheet, row, i);
-                        com.minsx.framework.common.exceltest.Cell cell = new com.minsx.framework.common.exceltest.Cell();
+                        com.minsx.framework.common.excel.Cell cell = new com.minsx.framework.common.excel.Cell();
                         cell.setColumnName(header.get(i));
                         cell.setValue(result.get("value"));
                         cell.setMRValue(result.get("MRValue"));
                         cell.setType(result.get("type"));
                         cells.add(cell);
                     }
-                    rows.add(new com.minsx.framework.common.exceltest.Row(cells));
+                    rows.add(new com.minsx.framework.common.excel.Row(cells));
                 }
-                sheets.add(new com.minsx.framework.common.exceltest.Sheet(rows));
+                sheets.add(new com.minsx.framework.common.excel.Sheet(rows));
             }
             try {
                 workbook.close();
@@ -172,10 +172,12 @@ class ExcelOperator {
         }
         if (row.getFirstCellNum() <= cellIndex && cellIndex <= row.getLastCellNum()) {
             result.put("value", getCellData(row.getCell(cellIndex)));
-            result.put("type", row.getCell(cellIndex).getCellTypeEnum().toString());
+            result.put("type", row.getCell(cellIndex) == null ? "NULL" : row.getCell(cellIndex).getCellTypeEnum().toString());
         }
         if (isMergedRegion(sheet, row.getRowNum(), cellIndex)) {
             result.put("value", null);
+            Cell cell = getMergedRegionCell(sheet, row.getRowNum(), cellIndex);
+            result.put("type", cell == null ? "NULL" : cell.getCellTypeEnum().toString());
             result.put("MRValue", getMergedRegionValue(sheet, row.getRowNum(), cellIndex));
         }
         return result;
@@ -208,7 +210,12 @@ class ExcelOperator {
         return value;
     }
 
-    private static String getMergedRegionValue(Sheet sheet, int row, int column) {
+    private static String getMergedRegionValue(Sheet sheet, int rowNum, int columnNum) {
+        Cell cell = getMergedRegionCell(sheet, rowNum, columnNum);
+        return cell == null ? null : getCellData(cell);
+    }
+
+    private static Cell getMergedRegionCell(Sheet sheet, int rowNum, int columnNum) {
         int sheetMergeCount = sheet.getNumMergedRegions();
         for (int i = 0; i < sheetMergeCount; i++) {
             CellRangeAddress ca = sheet.getMergedRegion(i);
@@ -216,18 +223,17 @@ class ExcelOperator {
             int lastColumn = ca.getLastColumn();
             int firstRow = ca.getFirstRow();
             int lastRow = ca.getLastRow();
-            if (row >= firstRow && row <= lastRow) {
-                if (column >= firstColumn && column <= lastColumn) {
+            if (rowNum >= firstRow && rowNum <= lastRow) {
+                if (columnNum >= firstColumn && columnNum <= lastColumn) {
                     Row fRow = sheet.getRow(firstRow);
-                    Cell fCell = fRow.getCell(firstColumn);
-                    return getCellData(fCell);
+                    return fRow.getCell(firstColumn);
                 }
             }
         }
         return null;
     }
 
-    private static boolean isMergedRegion(Sheet sheet, int row, int column) {
+    private static boolean isMergedRegion(Sheet sheet, int rowNum, int columnNum) {
         int sheetMergeCount = sheet.getNumMergedRegions();
         for (int i = 0; i < sheetMergeCount; i++) {
             CellRangeAddress range = sheet.getMergedRegion(i);
@@ -235,8 +241,8 @@ class ExcelOperator {
             int lastColumn = range.getLastColumn();
             int firstRow = range.getFirstRow();
             int lastRow = range.getLastRow();
-            if (row >= firstRow && row <= lastRow) {
-                if (column >= firstColumn && column <= lastColumn) {
+            if (rowNum >= firstRow && rowNum <= lastRow) {
+                if (columnNum >= firstColumn && columnNum <= lastColumn) {
                     return true;
                 }
             }

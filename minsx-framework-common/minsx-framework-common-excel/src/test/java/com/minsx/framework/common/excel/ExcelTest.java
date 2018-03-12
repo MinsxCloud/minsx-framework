@@ -1,4 +1,4 @@
-package com.minsx.framework.common.exceltest;
+package com.minsx.framework.common.excel;
 
 import com.alibaba.fastjson.JSON;
 import org.junit.Before;

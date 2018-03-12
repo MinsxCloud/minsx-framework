@@ -1,4 +1,6 @@
-package com.minsx.framework.common.exceltest;
+package com.minsx.framework.common.excel;
+
+import com.alibaba.fastjson.annotation.JSONField;
 
 public class Cell {
 
@@ -58,4 +60,10 @@ public class Cell {
     public void setType(String type) {
         this.type = type;
     }
+
+    @JSONField(serialize=false)
+    public String getValueOrMRValue() {
+        return this.value == null ? this.MRValue : this.value;
+    }
+
 }
