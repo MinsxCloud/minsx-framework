@@ -19,6 +19,8 @@
         <spring.boot.version>2.0.0.RELEASE</spring.boot.version>
         <fastjson.version>1.2.32</fastjson.version>
         <minsx-security-version>1.0.0</minsx-security-version>
+        <minsx-common-version>1.0.0</minsx-common-version>
+        <minsx-common-basic-version>1.0.0</minsx-common-basic-version>
     </properties>
 
     <dependencies>
@@ -48,6 +50,11 @@
                 <artifactId>junit</artifactId>
                 <version>4.12</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.minsx</groupId>
+                <artifactId>minsx-framework-common-basic</artifactId>
+                <version>${minsx-common-basic-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

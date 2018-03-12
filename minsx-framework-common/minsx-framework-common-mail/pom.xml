@@ -19,9 +19,8 @@
         </dependency>
         <dependency>
             <groupId>com.minsx</groupId>
-            <artifactId>minsx-util-base</artifactId>
+            <artifactId>minsx-framework-common-basic</artifactId>
         </dependency>
     </dependencies>
-
 
 </project>

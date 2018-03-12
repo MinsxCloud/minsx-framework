@@ -5,3 +5,6 @@ minsx-framework-common/target/
 minsx-framework-security/target/
 *.class
 out/
+minsx-framework-common/minsx-framework-common-basic/target/
+minsx-framework-common/minsx-framework-common-excel/target/
+minsx-framework-common/minsx-framework-common-mail/target/

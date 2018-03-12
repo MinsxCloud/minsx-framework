@@ -1,4 +1,4 @@
-package com.minsx.framework.common.base;
+package com.minsx.framework.common.basic;
 
 import java.io.*;
 

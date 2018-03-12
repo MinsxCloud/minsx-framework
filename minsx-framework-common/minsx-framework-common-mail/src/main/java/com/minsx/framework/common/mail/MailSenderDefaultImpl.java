@@ -1,7 +1,7 @@
 package com.minsx.framework.common.mail;
 
 
-import com.minsx.util.base.FileUtil;
+import com.minsx.framework.common.basic.FileUtil;
 import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
