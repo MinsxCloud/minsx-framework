@@ -15,15 +15,12 @@
  *  * limitations under the License.
  *
  */
-package com.minsx.framework.security.annotation;
+package com.minsx.framework.security.core;
 
-public @interface EnableSecurity {
+public interface CustomAuthorize extends Authorize {
 
-    /**
-     * 是否开启URL权限认证
-     */
-    boolean enableURLAuthorize() default false;
+    String getType();
 
-
+    String getValue();
 
 }

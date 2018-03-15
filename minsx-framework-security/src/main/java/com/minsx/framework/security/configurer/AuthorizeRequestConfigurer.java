@@ -4,7 +4,7 @@ public class AuthorizeRequestConfigurer {
 
     private String[] needAuthorize = new String[]{"/**"};
 
-    private String[] unNeedAuthorize= new String[]{"/login","/logout","/static/**"};
+    private String[] unNeedAuthorize = new String[]{"/login", "/logout", "/static/**"};
 
     private WebSecurity webSecurity;
 

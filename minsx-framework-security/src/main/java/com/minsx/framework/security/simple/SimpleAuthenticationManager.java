@@ -15,15 +15,15 @@
  *  * limitations under the License.
  *
  */
-package com.minsx.framework.security.annotation;
+package com.minsx.framework.security.simple;
 
-public @interface EnableSecurity {
+import com.minsx.framework.security.core.Authentication;
+import com.minsx.framework.security.core.AuthenticationManager;
 
-    /**
-     * 是否开启URL权限认证
-     */
-    boolean enableURLAuthorize() default false;
+public class SimpleAuthenticationManager implements AuthenticationManager{
 
-
+    public Authentication sync(Authentication authentication) {
+        return AuthenticationHolder.put(authentication);
+    }
 
 }

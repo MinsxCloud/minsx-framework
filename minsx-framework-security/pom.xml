@@ -46,6 +46,10 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.6.12</version>
         </dependency>
+        <dependency>
+            <groupId>com.minsx</groupId>
+            <artifactId>minsx-framework-common-basic</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

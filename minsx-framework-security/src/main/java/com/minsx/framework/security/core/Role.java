@@ -15,15 +15,12 @@
  *  * limitations under the License.
  *
  */
-package com.minsx.framework.security.annotation;
+package com.minsx.framework.security.core;
 
-public @interface EnableSecurity {
+import java.io.Serializable;
 
-    /**
-     * 是否开启URL权限认证
-     */
-    boolean enableURLAuthorize() default false;
+public interface Role extends Serializable {
 
-
+    String getName();
 
 }

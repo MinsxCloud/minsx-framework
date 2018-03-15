@@ -15,15 +15,19 @@
  *  * limitations under the License.
  *
  */
-package com.minsx.framework.security.annotation;
+package com.minsx.framework.security.simple;
 
-public @interface EnableSecurity {
+import com.minsx.framework.security.core.Role;
 
-    /**
-     * 是否开启URL权限认证
-     */
-    boolean enableURLAuthorize() default false;
+public class SimpleRole implements Role {
 
+    private String name;
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }

@@ -1,10 +1,10 @@
-package com.minsx.framework.security.base;
+package com.minsx.framework.security.core;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * 用户身份
+ * 用户
  */
 public interface SecurityUser extends Serializable {
 
@@ -16,6 +16,11 @@ public interface SecurityUser extends Serializable {
 
     Boolean isEnabled();
 
-    List<? extends Authorised> getAuthorities();
+    List<Role> getRoles();
+
+    List<CustomAuthorize> getCustomAuthorizes();
+
+    List<RequestAuthorize> getRequestAuthorizes();
+
 
 }

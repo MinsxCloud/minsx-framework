@@ -1,9 +1,14 @@
 package com.minsx.framework.security.aop;
 
-import com.minsx.framework.security.base.SecurityUser;
+import com.alibaba.fastjson.JSON;
+import com.minsx.framework.security.core.Authentication;
+import com.minsx.framework.security.core.SecurityUser;
 import com.minsx.framework.security.configurer.WebSecurity;
 import com.minsx.framework.security.core.LoadSecurityUserService;
 import com.minsx.framework.security.exception.AuthorizationException;
+import com.minsx.framework.security.exception.LoginUrlConfigException;
+import com.minsx.framework.security.simple.AuthenticationHolder;
+import com.minsx.framework.security.simple.SimpleAuthentication;
 import com.minsx.framework.security.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Component
 public class LoginHandler implements HandlerInterceptor {
@@ -26,16 +32,13 @@ public class LoginHandler implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        Boolean loadSuccess = true;
         String APIUrl = webSecurity.loginConfigurer().getLoginAPIUrl();
         String pageUrl = webSecurity.loginConfigurer().getLoginPageUrl();
-        Boolean A = (!APIUrl.equalsIgnoreCase(pageUrl)) && httpServletRequest.getRequestURI().equalsIgnoreCase(APIUrl);
-        Boolean B = APIUrl.equalsIgnoreCase(pageUrl) && httpServletRequest.getRequestURI().equalsIgnoreCase(pageUrl) && httpServletRequest.getMethod().equalsIgnoreCase("POST");
-        if (A||B) {
-            login(httpServletRequest, httpServletResponse);
-            loadSuccess = false;
+        if (APIUrl.equalsIgnoreCase(pageUrl)) {
+            throw new LoginUrlConfigException(500, "login ApiURL can't be same sa PageURL");
         }
-        return loadSuccess;
+        login(httpServletRequest, httpServletResponse);
+        return false;
     }
 
     public void login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
@@ -44,6 +47,14 @@ public class LoginHandler implements HandlerInterceptor {
             System.out.println(securityUser.getUsername());
             System.out.println(securityUser.getPassword());
             System.out.println("已登录");
+
+            Authentication authentication = new SimpleAuthentication();
+            authentication.setAuthenticated(true);
+            authentication.setSecurityUser(securityUser);
+            AuthenticationHolder.put(authentication);
+            HttpSession session = httpServletRequest.getSession();
+            session.setAttribute(Authentication.class.getName(),authentication);
+
             ResponseUtil.responseJson(httpServletResponse, new ResponseEntity<String>("login success", HttpStatus.OK));
         } catch (AuthorizationException e) {
             System.out.println("帐号密码错误");

@@ -1,5 +1,6 @@
 package com.minsx.framework.security.initial;
 
+import com.alibaba.fastjson.JSON;
 import com.minsx.framework.security.aop.AuthorizeHandler;
 import com.minsx.framework.security.aop.LoginHandler;
 import com.minsx.framework.security.aop.LogoutHandler;
@@ -28,10 +29,10 @@ public class SecurityInterceptorConfiguration extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        String[] systemExcludePath = {webSecurity.loginConfigurer().getLoginAPIUrl(),webSecurity.loginConfigurer().getLoginPageUrl()};
         registry.addInterceptor(loginHandler).addPathPatterns(webSecurity.loginConfigurer().getLoginAPIUrl());
         registry.addInterceptor(logoutHandler).addPathPatterns(webSecurity.logoutConfigurer().getLogoutUrl());
-        registry.addInterceptor(authorizeHandler).addPathPatterns(webSecurity.authorizeConfigurer().getNeedAuthorize());
-        registry.addInterceptor(authorizeHandler).excludePathPatterns(webSecurity.authorizeConfigurer().getUnNeedAuthorize());
+        registry.addInterceptor(authorizeHandler).addPathPatterns(webSecurity.authorizeConfigurer().getNeedAuthorize()).excludePathPatterns(systemExcludePath).excludePathPatterns(webSecurity.authorizeConfigurer().getUnNeedAuthorize());
         super.addInterceptors(registry);
     }
 

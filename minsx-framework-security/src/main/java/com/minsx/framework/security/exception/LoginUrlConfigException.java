@@ -15,15 +15,33 @@
  *  * limitations under the License.
  *
  */
-package com.minsx.framework.security.annotation;
+package com.minsx.framework.security.exception;
 
-public @interface EnableSecurity {
+public class LoginUrlConfigException extends RuntimeException {
 
-    /**
-     * 是否开启URL权限认证
-     */
-    boolean enableURLAuthorize() default false;
+    private Integer status;
+    private String message;
 
+    public LoginUrlConfigException(Integer status, String message) {
+        super(message);
+        this.message = message;
+        this.status = status;
+    }
 
+    public Integer getStatus() {
+        return status;
+    }
 
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

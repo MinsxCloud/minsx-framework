@@ -15,15 +15,10 @@
  *  * limitations under the License.
  *
  */
-package com.minsx.framework.security.annotation;
+package com.minsx.framework.security.core;
 
-public @interface EnableSecurity {
+public interface AuthenticationManager {
 
-    /**
-     * 是否开启URL权限认证
-     */
-    boolean enableURLAuthorize() default false;
-
-
+    Authentication sync(Authentication authentication);
 
 }
