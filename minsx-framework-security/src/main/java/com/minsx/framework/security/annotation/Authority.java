@@ -27,10 +27,11 @@ public @interface Authority {
 
     String[] value() default {};
 
+    Logic logic() default Logic.DEFAULT;
+
     int status() default 403;
 
     String message() default "unauthorized";
 
     boolean enabled() default true;
-
 }

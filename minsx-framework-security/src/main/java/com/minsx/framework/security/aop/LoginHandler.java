@@ -2,6 +2,7 @@ package com.minsx.framework.security.aop;
 
 import com.alibaba.fastjson.JSON;
 import com.minsx.framework.security.core.Authentication;
+import com.minsx.framework.security.core.AuthenticationManager;
 import com.minsx.framework.security.core.SecurityUser;
 import com.minsx.framework.security.configurer.WebSecurity;
 import com.minsx.framework.security.core.LoadSecurityUserService;
@@ -9,6 +10,7 @@ import com.minsx.framework.security.exception.AuthorizationException;
 import com.minsx.framework.security.exception.LoginUrlConfigException;
 import com.minsx.framework.security.simple.AuthenticationHolder;
 import com.minsx.framework.security.simple.SimpleAuthentication;
+import com.minsx.framework.security.simple.SimpleAuthenticationManager;
 import com.minsx.framework.security.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,9 +53,10 @@ public class LoginHandler implements HandlerInterceptor {
             Authentication authentication = new SimpleAuthentication();
             authentication.setAuthenticated(true);
             authentication.setSecurityUser(securityUser);
-            AuthenticationHolder.put(authentication);
+            AuthenticationManager authenticationManager = new SimpleAuthenticationManager();
+            authenticationManager.initial(securityUser.getUsername(),authentication);
             HttpSession session = httpServletRequest.getSession();
-            session.setAttribute(Authentication.class.getName(),authentication);
+            session.setAttribute(Authentication.class.getName(),securityUser.getUsername());
 
             ResponseUtil.responseJson(httpServletResponse, new ResponseEntity<String>("login success", HttpStatus.OK));
         } catch (AuthorizationException e) {

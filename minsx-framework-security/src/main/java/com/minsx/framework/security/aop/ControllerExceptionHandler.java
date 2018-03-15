@@ -18,6 +18,7 @@
 package com.minsx.framework.security.aop;
 
 import com.minsx.framework.security.exception.AuthorizationException;
+import com.minsx.framework.security.response.ResponseMsg;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,10 +30,10 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(AuthorizationException.class)
     @ResponseBody
-    public ResponseEntity<?> handle(AuthorizationException e){
-        return new ResponseEntity<Object>(e.getMessage(), HttpStatus.valueOf(e.getStatus()));
+    public ResponseEntity<?> handle(AuthorizationException e) {
+        ResponseMsg responseMsg = new ResponseMsg(e.getStatus(), e.getMessage());
+        return new ResponseEntity<Object>(responseMsg, HttpStatus.valueOf(e.getStatus()));
     }
-
 
 
 }

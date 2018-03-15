@@ -1,6 +1,5 @@
 package com.minsx.framework.security.initial;
 
-import com.alibaba.fastjson.JSON;
 import com.minsx.framework.security.aop.AuthorizeHandler;
 import com.minsx.framework.security.aop.LoginHandler;
 import com.minsx.framework.security.aop.LogoutHandler;

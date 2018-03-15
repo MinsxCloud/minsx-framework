@@ -17,9 +17,15 @@
  */
 package com.minsx.framework.security.core;
 
+import com.minsx.framework.security.simple.AuthenticationHolder;
+
 import java.io.Serializable;
 
 public interface Authentication extends Serializable {
+
+    static Authentication current() {
+        return AuthenticationHolder.get();
+    }
 
     boolean isAuthenticated();
 
@@ -44,7 +50,6 @@ public interface Authentication extends Serializable {
                 .anyMatch(auth -> auth.getURI().equalsIgnoreCase(url)
                         && auth.getMethod().equalsIgnoreCase(method) && auth.getParams().equalsIgnoreCase(params));
     }
-
 
 
 }

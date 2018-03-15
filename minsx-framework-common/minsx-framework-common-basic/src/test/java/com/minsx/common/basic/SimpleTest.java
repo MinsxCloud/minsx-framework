@@ -15,23 +15,19 @@
  *  * limitations under the License.
  *
  */
-package com.minsx.framework.security.simple;
+package com.minsx.common.basic;
 
-import com.minsx.framework.common.basic.ThreadLocalUtil;
-import com.minsx.framework.security.core.Authentication;
+import com.minsx.framework.common.basic.StringUtil;
+import org.junit.Test;
 
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
+public class SimpleTest {
 
-public class AuthenticationHolder {
-
-    private static final String AUTHENTICATION_KEY = Authentication.class.getName();
-
-    private static final ReadWriteLock LOCK = new ReentrantReadWriteLock();
-
-    public static Authentication get() {
-        String userToken = ThreadLocalUtil.get(AUTHENTICATION_KEY);
-        return new SimpleAuthenticationManager().get(userToken);
+    @Test
+    public void testSimple() {
+        String value = StringUtil.getParamFromUrl("https://blog.csdn.net/article?name=goodsave&age=25&sex=man","age");
+        System.out.println(value);
+        StringUtil.parseUrlParams("https://blog.csdn.net/article?name=goodsave&age=25&sex=man").forEach((k,v)->System.out.println(k+":"+v));
     }
+
 
 }

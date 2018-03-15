@@ -1,17 +1,21 @@
 package com.minsx.framework.security.response;
 
-public class ResponseEntity {
+import java.util.Date;
+
+public class ResponseMsg {
 
     private Integer status;
     private String message;
-    private String timestamp;
+    private Date timestamp;
 
-    public ResponseEntity(){}
+    public ResponseMsg() {
+        this.timestamp = new Date();
+    }
 
-    public ResponseEntity(Integer status, String message, String timestamp) {
+    public ResponseMsg(Integer status, String message) {
         this.status = status;
         this.message = message;
-        this.timestamp = timestamp;
+        this.timestamp = new Date();
     }
 
     public Integer getStatus() {
@@ -30,11 +34,11 @@ public class ResponseEntity {
         this.message = message;
     }
 
-    public String getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 }

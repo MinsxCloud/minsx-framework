@@ -20,10 +20,27 @@ package com.minsx.framework.security.simple;
 import com.minsx.framework.security.core.Authentication;
 import com.minsx.framework.security.core.AuthenticationManager;
 
-public class SimpleAuthenticationManager implements AuthenticationManager{
+import java.util.HashMap;
+import java.util.Map;
 
-    public Authentication sync(Authentication authentication) {
-        return AuthenticationHolder.put(authentication);
+public class SimpleAuthenticationManager implements AuthenticationManager {
+
+    private final static Map<String, Authentication> AUTHENTICATION_MAP = new HashMap<>();
+
+    public Authentication initial(String userToken, Authentication authentication) {
+        return AUTHENTICATION_MAP.put(userToken, authentication);
+    }
+
+    public Authentication sync(String userToken, Authentication authentication) {
+        return AUTHENTICATION_MAP.put(userToken, authentication);
+    }
+
+    public Authentication clear(String userToken) {
+        return AUTHENTICATION_MAP.remove(userToken);
+    }
+
+    public Authentication get(String userToken) {
+        return AUTHENTICATION_MAP.get(userToken);
     }
 
 }

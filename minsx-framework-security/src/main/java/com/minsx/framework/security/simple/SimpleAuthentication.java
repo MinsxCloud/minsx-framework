@@ -26,10 +26,6 @@ public class SimpleAuthentication implements Authentication {
 
     private SecurityUser securityUser;
 
-    public static Authentication current() {
-        return AuthenticationHolder.get();
-    }
-
     @Override
     public boolean isAuthenticated() {
         return this.authenticated;

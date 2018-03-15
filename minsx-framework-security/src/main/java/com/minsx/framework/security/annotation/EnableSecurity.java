@@ -22,7 +22,7 @@ public @interface EnableSecurity {
     /**
      * 是否开启URL权限认证
      */
-    boolean enableURLAuthorize() default false;
+    boolean enableRequestAuthorize() default false;
 
 
 

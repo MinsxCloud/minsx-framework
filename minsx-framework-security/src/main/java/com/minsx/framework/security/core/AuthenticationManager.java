@@ -19,6 +19,12 @@ package com.minsx.framework.security.core;
 
 public interface AuthenticationManager {
 
-    Authentication sync(Authentication authentication);
+    Authentication initial(String userToken, Authentication authentication);
+
+    Authentication sync(String userToken, Authentication authentication);
+
+    Authentication clear(String userToken);
+
+    Authentication get(String userToken);
 
 }
