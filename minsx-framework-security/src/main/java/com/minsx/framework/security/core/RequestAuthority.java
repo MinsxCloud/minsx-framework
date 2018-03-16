@@ -17,10 +17,12 @@
  */
 package com.minsx.framework.security.core;
 
-public interface CustomAuthorize extends Authorize {
+public interface RequestAuthority extends Authority {
 
-    String getType();
+    String getURI();
 
-    String getValue();
+    String getMethod();
+
+    String getParams();
 
 }

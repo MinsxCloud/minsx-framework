@@ -17,9 +17,9 @@
  */
 package com.minsx.framework.security.simple;
 
-import com.minsx.framework.security.core.RequestAuthorize;
+import com.minsx.framework.security.core.RequestAuthority;
 
-public class SimpleRequestAuthorize implements RequestAuthorize {
+public class SimpleRequestAuthority implements RequestAuthority {
 
     private String URI;
 
@@ -27,7 +27,7 @@ public class SimpleRequestAuthorize implements RequestAuthorize {
 
     private String params;
 
-    public SimpleRequestAuthorize(String URI, String method, String params) {
+    public SimpleRequestAuthority(String URI, String method, String params) {
         this.URI = URI;
         this.method = method;
         this.params = params;

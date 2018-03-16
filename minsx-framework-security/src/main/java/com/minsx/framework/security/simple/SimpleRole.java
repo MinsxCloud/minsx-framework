@@ -23,6 +23,10 @@ public class SimpleRole implements Role {
 
     private String name;
 
+    public SimpleRole(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

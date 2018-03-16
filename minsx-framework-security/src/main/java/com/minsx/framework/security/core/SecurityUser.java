@@ -18,9 +18,9 @@ public interface SecurityUser extends Serializable {
 
     List<Role> getRoles();
 
-    List<CustomAuthorize> getCustomAuthorizes();
+    List<CustomAuthority> getCustomAuthorities();
 
-    List<RequestAuthorize> getRequestAuthorizes();
+    List<RequestAuthority> getRequestAuthorities();
 
 
 }

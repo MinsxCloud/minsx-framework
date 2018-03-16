@@ -1,15 +1,13 @@
 package com.minsx.framework.security.aop;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.minsx.framework.common.basic.StringUtil;
 import com.minsx.framework.common.basic.ThreadLocalUtil;
 import com.minsx.framework.security.core.Authentication;
 import com.minsx.framework.security.core.AuthenticationManager;
 import com.minsx.framework.security.core.SecurityUser;
-import com.minsx.framework.security.core.RequestAuthorize;
+import com.minsx.framework.security.core.RequestAuthority;
 import com.minsx.framework.security.exception.AuthorizationException;
-import com.minsx.framework.security.simple.AuthenticationHolder;
 import com.minsx.framework.security.simple.SimpleAuthenticationManager;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -38,7 +36,7 @@ public class AuthorizeHandler implements HandlerInterceptor {
         Authentication authentication = manager.get(object.toString());
         if (authentication != null && authentication.isAuthenticated() && authentication.getSecurityUser() != null) {
             SecurityUser securityUser = authentication.getSecurityUser();
-            List<RequestAuthorize> requestAuthorizes = securityUser.getRequestAuthorizes();
+            List<RequestAuthority> requestAuthorizes = securityUser.getRequestAuthorities();
             boolean matched = requestAuthorizes.stream().anyMatch(u ->
                     matchedURI(httpServletRequest.getRequestURI(), u.getURI()) &&
                             matchedMethod(httpServletRequest.getMethod(), u.getMethod()) &&

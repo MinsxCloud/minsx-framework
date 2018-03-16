@@ -15,14 +15,13 @@
  *  * limitations under the License.
  *
  */
-package com.minsx.framework.security.core;
+package com.minsx.framework.security.annotation;
 
-public interface RequestAuthorize extends Authorize {
+public enum Scope {
 
-    String getURI();
-
-    String getMethod();
-
-    String getParams();
+    /**
+     * DEFAULT默认为INCLUDE
+     */
+    INCLUDE, EXCLUDE, DEFAULT;
 
 }

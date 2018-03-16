@@ -1,17 +1,17 @@
 package com.minsx.framework.security.simple;
 
-import com.minsx.framework.security.core.CustomAuthorize;
+import com.minsx.framework.security.core.CustomAuthority;
 
 /**
  * 普通权限
  */
-public class SimpleCustomAuthorize implements CustomAuthorize {
+public class SimpleCustomAuthority implements CustomAuthority {
 
     private String type;
 
     private String value;
 
-    public SimpleCustomAuthorize(String type, String value) {
+    public SimpleCustomAuthority(String type, String value) {
         this.type = type;
         this.value = value;
     }

@@ -41,12 +41,12 @@ public interface Authentication extends Serializable {
     }
 
     default boolean hasCustomAuthorize(String type, String value) {
-        return getSecurityUser().getCustomAuthorizes().stream()
+        return getSecurityUser().getCustomAuthorities().stream()
                 .anyMatch(auth -> auth.getType().equalsIgnoreCase(type) && auth.getValue().equalsIgnoreCase(value));
     }
 
     default boolean hasRequestAuthorize(String url, String method, String params) {
-        return getSecurityUser().getRequestAuthorizes().stream()
+        return getSecurityUser().getRequestAuthorities().stream()
                 .anyMatch(auth -> auth.getURI().equalsIgnoreCase(url)
                         && auth.getMethod().equalsIgnoreCase(method) && auth.getParams().equalsIgnoreCase(params));
     }

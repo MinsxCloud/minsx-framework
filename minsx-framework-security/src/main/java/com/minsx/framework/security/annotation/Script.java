@@ -17,11 +17,8 @@
  */
 package com.minsx.framework.security.annotation;
 
-public enum Logic {
+public enum Script {
 
-    /**
-     * DEFAULT默认为AND
-     */
-    AND, OR, DEFAULT;
+    JAVASCRIPT, SPEL, GROOVY, OGNL;
 
 }

@@ -17,11 +17,11 @@
  */
 package com.minsx.framework.security.annotation;
 
-public enum Logic {
+public enum Order {
 
     /**
-     * DEFAULT默认为AND
+     * DEFAULT默认为INCLUDE
      */
-    AND, OR, DEFAULT;
+    BEFORE, AFTER, DEFAULT;
 
 }

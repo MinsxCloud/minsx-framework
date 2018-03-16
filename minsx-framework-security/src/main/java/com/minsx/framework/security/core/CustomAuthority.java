@@ -15,23 +15,12 @@
  *  * limitations under the License.
  *
  */
-package com.minsx.framework.security.annotation;
+package com.minsx.framework.security.core;
 
-import java.lang.annotation.*;
+public interface CustomAuthority extends Authority {
 
-@Target({ElementType.TYPE, ElementType.METHOD})
-@Retention(RetentionPolicy.RUNTIME)
-@Inherited
-@Documented
-public @interface Authority {
+    String getType();
 
-    String[] value() default {};
+    String getValue();
 
-    Logic logic() default Logic.DEFAULT;
-
-    int status() default 403;
-
-    String message() default "unauthorized";
-
-    boolean enabled() default true;
 }

@@ -1,7 +1,7 @@
 package com.minsx.framework.security.initial;
 
 import com.minsx.framework.security.aop.SecurityAopAdvise;
-import com.minsx.framework.security.aop.SecurityAopMatcher;
+import com.minsx.framework.security.aop.SecurityAopStaticMatcher;
 import com.minsx.framework.security.configurer.WebSecurity;
 import com.minsx.framework.security.configurer.WebSecurityConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,11 @@ public class SecurityAutoConfiguration {
     WebSecurityConfigurer webSecurityConfigurer;
 
     @Bean
-    public SecurityAopMatcher securityAopMatcher(){
-        return new SecurityAopMatcher(new SecurityAopAdvise());
+    public SecurityAopStaticMatcher securityAopMatcher(){
+        return new SecurityAopStaticMatcher(new SecurityAopAdvise());
     }
+
+
 
     @PostConstruct
     public void initializeConfiguration() {
