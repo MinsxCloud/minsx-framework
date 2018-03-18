@@ -19,8 +19,10 @@
         <spring.boot.version>2.0.0.RELEASE</spring.boot.version>
         <fastjson.version>1.2.32</fastjson.version>
         <minsx-security-version>1.0.0</minsx-security-version>
+        <commons-logging>1.2</commons-logging>
         <minsx-common-version>1.0.0</minsx-common-version>
         <minsx-common-basic-version>1.0.0</minsx-common-basic-version>
+        <minsx-common-http-version>1.0.0</minsx-common-http-version>
     </properties>
 
     <dependencies>
@@ -55,6 +57,16 @@
                 <groupId>com.minsx</groupId>
                 <artifactId>minsx-framework-common-basic</artifactId>
                 <version>${minsx-common-basic-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.minsx</groupId>
+                <artifactId>minsx-framework-common-http</artifactId>
+                <version>${minsx-common-http-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${commons-logging}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

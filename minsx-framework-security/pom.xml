@@ -50,6 +50,10 @@
             <groupId>com.minsx</groupId>
             <artifactId>minsx-framework-common-basic</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.minsx</groupId>
+            <artifactId>minsx-framework-common-http</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

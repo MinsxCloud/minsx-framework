@@ -1,7 +1,6 @@
-package com.minsx.framework.security.util;
+package com.minsx.framework.common.http;
 
 import com.alibaba.fastjson.JSON;
-import org.springframework.http.ResponseEntity;
 
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
@@ -9,11 +8,11 @@ import java.io.IOException;
 
 public class ResponseUtil {
 
-    public static <T> void responseJson(HttpServletResponse httpServletResponse, ResponseEntity<T> responseEntity) throws IOException {
+    public static <T> void responseJson(HttpServletResponse httpServletResponse, Integer status, Object body) throws IOException {
         httpServletResponse.setContentType("application/json;charset=UTF-8");
         httpServletResponse.setHeader("Cache-Control", "no-cache");
-        httpServletResponse.setStatus(responseEntity.getStatusCodeValue());
-        httpServletResponse.getWriter().write(JSON.toJSONString(responseEntity.getBody()));
+        httpServletResponse.setStatus(status);
+        httpServletResponse.getWriter().write(JSON.toJSONString(body));
         httpServletResponse.getWriter().flush();
         httpServletResponse.getWriter().close();
     }

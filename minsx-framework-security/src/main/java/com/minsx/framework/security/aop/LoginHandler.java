@@ -1,6 +1,7 @@
 package com.minsx.framework.security.aop;
 
 import com.alibaba.fastjson.JSON;
+import com.minsx.framework.common.http.ResponseUtil;
 import com.minsx.framework.security.core.Authentication;
 import com.minsx.framework.security.core.AuthenticationManager;
 import com.minsx.framework.security.core.SecurityUser;
@@ -11,7 +12,6 @@ import com.minsx.framework.security.exception.LoginUrlConfigException;
 import com.minsx.framework.security.simple.AuthenticationHolder;
 import com.minsx.framework.security.simple.SimpleAuthentication;
 import com.minsx.framework.security.simple.SimpleAuthenticationManager;
-import com.minsx.framework.security.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,14 +54,14 @@ public class LoginHandler implements HandlerInterceptor {
             authentication.setAuthenticated(true);
             authentication.setSecurityUser(securityUser);
             AuthenticationManager authenticationManager = new SimpleAuthenticationManager();
-            authenticationManager.initial(securityUser.getUsername(),authentication);
+            authenticationManager.initial(securityUser.getUsername(), authentication);
             HttpSession session = httpServletRequest.getSession();
-            session.setAttribute(Authentication.class.getName(),securityUser.getUsername());
+            session.setAttribute(Authentication.class.getName(), securityUser.getUsername());
 
-            ResponseUtil.responseJson(httpServletResponse, new ResponseEntity<String>("login success", HttpStatus.OK));
+            ResponseUtil.responseJson(httpServletResponse, 200, "login success");
         } catch (AuthorizationException e) {
             System.out.println("帐号密码错误");
-            ResponseUtil.responseJson(httpServletResponse, new ResponseEntity<String>(e.getMessage(), HttpStatus.valueOf(e.getStatus())));
+            ResponseUtil.responseJson(httpServletResponse, e.getStatus(), e.getMessage());
         }
 
     }

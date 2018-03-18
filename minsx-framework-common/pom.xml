@@ -17,10 +17,12 @@
         <module>minsx-framework-common-basic</module>
         <module>minsx-framework-common-excel</module>
         <module>minsx-framework-common-mail</module>
+        <module>minsx-framework-common-http</module>
     </modules>
 
     <name>minsx-framework-common</name>
-    <description>minsx-framework-common is mainly used to integrate all kinds of JAVA tools, including EXCEL, PDF, WEBService, File,
+    <description>minsx-framework-common is mainly used to integrate all kinds of JAVA tools, including EXCEL, PDF,
+        WEBService, File,
         HTTP... tools.
     </description>
     <url>https://www.minsx.com/</url>
@@ -111,6 +113,10 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
         </dependency>
     </dependencies>
 

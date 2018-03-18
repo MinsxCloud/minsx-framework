@@ -1,10 +1,8 @@
 package com.minsx.framework.security.aop;
 
+import com.minsx.framework.common.http.ResponseUtil;
 import com.minsx.framework.security.configurer.WebSecurity;
-import com.minsx.framework.security.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +22,7 @@ public class LogoutHandler implements HandlerInterceptor {
         if (httpServletRequest.getRequestURI().equalsIgnoreCase(logoutUrl)) {
             System.out.println("已退出登录");
         }
-        ResponseUtil.responseJson(httpServletResponse, new ResponseEntity<Object>("logout success", HttpStatus.OK));
+        ResponseUtil.responseJson(httpServletResponse, 200, "logout success");
         return false;
     }
 
