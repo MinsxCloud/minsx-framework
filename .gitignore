@@ -8,3 +8,6 @@ out/
 minsx-framework-common/minsx-framework-common-basic/target/
 minsx-framework-common/minsx-framework-common-excel/target/
 minsx-framework-common/minsx-framework-common-mail/target/
+minsx-framework-common/minsx-framework-common-http/target/
+minsx-framework-security/minsx-framework-security-core/target/
+minsx-framework-security/minsx-framework-security-api/target/

@@ -17,15 +17,61 @@
  */
 package com.minsx.framework.common.http;
 
-import com.mashape.unirest.http.exceptions.UnirestException;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class HttpClientUtilTest {
 
+    private class Student {
+        String name;
+        Integer age;
+
+        public Student(String name, Integer age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Integer getAge() {
+            return age;
+        }
+
+        public void setAge(Integer age) {
+            this.age = age;
+        }
+
+        @Override
+        public String toString() {
+            return "Student{" +
+                    "name='" + name + '\'' +
+                    ", age=" + age +
+                    '}';
+        }
+    }
+
     @Test
-    public void test() throws UnirestException {
-        String content = HttpClientUtil.unirestGet("https://www.baidu.com/").asString().getBody();
-        System.out.println(content);
+    public void test() {
+        Map<String, Student> students = new HashMap<>();
+        students.put("xiaoming",new Student("xiaoming",15));
+        students.put("xiaoHong",new Student("xiaoHong",12));
+
+        students.values().stream().peek(s->{
+            s.setAge(20);
+        }).collect(Collectors.toList());
+
+        students.values().forEach(System.out::println);
+
+
     }
 
 }
