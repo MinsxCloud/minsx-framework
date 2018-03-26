@@ -92,20 +92,21 @@
 
     <repositories>
         <repository>
-            <id>hsweb-nexus</id>
-            <name>Nexus Release Repository</name>
-            <url>http://nexus.hsweb.me/content/groups/public/</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>
-                    always
-                </updatePolicy>
-            </snapshots>
-        </repository>
-        <repository>
             <id>aliyun-nexus</id>
             <name>aliyun</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>mvnrepository</id>
+            <url>http://mvnrepository.com/</url>
+        </repository>
+        <repository>
+            <id>searchmaven</id>
+            <url>http://search.maven.org/</url>
+        </repository>
+        <repository>
+            <id>sonatype</id>
+            <url>http://repository.sonatype.org/content/groups/public/</url>
         </repository>
     </repositories>
 
