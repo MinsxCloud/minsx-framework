@@ -15,6 +15,66 @@
 
 ### Minsx-framework-common 主要模块：
 
+#### Minsx-framework-common-basic
+##### 主要功能
++  文件工具
++  流工具
++  线程进程工具
++  脚本工具
++  .......
+
+##### Basic Executor使用示例
+```java
+
+import com.minsx.framework.common.basic.executor.Executor;
+import org.junit.Test;
+
+public class ExecutorTest {
+
+    @Test
+    public void testExecutor() throws InterruptedException {
+        Executor executor = new Executor();
+        executor.script("java -jar minsx-authorization-starter-1.0.0.jar -Duser.timezone=GMT+08")
+                .inPath("E:/Temp/ServerRunner/MsAuthServer")
+                .charset("UTF-8")
+                .bufferSize(20480)
+                .sync(false)
+                .output(false)
+                .errorLineHandler(line -> {
+                    System.out.println("ERROR: " + line);
+                }).normalLineHandler(line -> {
+                    System.out.println("NORMAL: " + line);
+                }).execute();
+
+        Thread.sleep(25000);
+        executor.stop();
+    }
+}
+
+```
+
+##### 输出结果
+```
+NORMAL:       __  __ _                 _ _ _
+NORMAL:  /\\ |  \/  (_)               \ \ \ \
+NORMAL: ( ( )| \  / |_ _ __  _____  __ \ \ \ \
+NORMAL:  \\/ | |\/| | | '_ \/ __\ \/ /  ) ) ) )
+NORMAL:      | |  | | | | | \__ \>  <  / / / /
+NORMAL:      |_|  |_|_|_| |_|___/_/\_\/_/_/_/
+NORMAL: =======================================
+NORMAL:  :: Minsx Authorization :: (v1.0.0)
+NORMAL: 2018-03-26 20:22:50.052  INFO 9664 --- [           main] c.m.a.starter.ApplicationStarter         : Starting ApplicationStarter on JokerPc with PID 9664 (E:\Temp\ServerRunner\MsAuthServer\minsx-authorization-starter-1.0.0.jar started by Joker in E:\Temp\ServerRunner\MsAuthServer)
+NORMAL: 2018-03-26 20:22:50.058  INFO 9664 --- [           main] c.m.a.starter.ApplicationStarter         : No active profile set, falling back to default profiles: default
+NORMAL: 2018-03-26 20:22:50.781  INFO 9664 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1ff54e6: startup date [Mon Mar 26 20:22:50 CST 2018]; root of context hierarchy
+NORMAL: 2018-03-26 20:22:52.993  INFO 9664 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+NORMAL: 2018-03-26 20:22:53.703  INFO 9664 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+NORMAL: 2018-03-26 20:22:56.664  INFO 9664 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8693 (http)
+NORMAL: 2018-03-26 20:22:56.702  INFO 9664 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+NORMAL: 2018-03-26 20:22:56.705  INFO 9664 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.23
+NORMAL: 2018-03-26 20:22:56.998  INFO 9664 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+
+```
+
 #### Minsx-framework-common-excel
 ##### 主要功能
 +  支持同名列
