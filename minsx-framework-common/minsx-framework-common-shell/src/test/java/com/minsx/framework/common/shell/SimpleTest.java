@@ -45,7 +45,7 @@ public class SimpleTest {
         text.append("\n").append("set /p name=");
         text.append("\n").append("echo Your name is %name%");
 
-        Shell shell = Shell.buildText(text.toString())
+        Shell.buildText(text.toString())
                 .charset("UTF-8")
                 .logged(true)
                 .sync(true)
@@ -65,11 +65,7 @@ public class SimpleTest {
                     return code == 0;
                 }).onException(e->{
                     System.out.println(e.getMessage());
-                });
-
-        shell.run();
-        System.out.println(shell.isSuccess());
-
+                }).run();
     }
 
 

@@ -105,7 +105,10 @@ public class DefaultShell implements Shell {
             process = Runtime.getRuntime().exec(command, environments, inPath == null ? null : new File(inPath));
             preHandler.forEach(consumer -> consumer.accept(operator));
             execute(process);
-            if (sync) process.waitFor();
+            if (sync) {
+                process.waitFor();
+                handleAfterFinish(process);
+            }
         } catch (Exception e) {
             handleException(e);
         }
@@ -147,8 +150,9 @@ public class DefaultShell implements Shell {
                     if (logged) System.out.println(str);
                 }
                 in.close();
-                postHandler.forEach(consumer -> consumer.accept(process.exitValue()));
-                this.result = whetherSuccess==null?(process.exitValue()==0):whetherSuccess.accept(process.exitValue());
+                if (!sync) {
+                    handleAfterFinish(process);
+                }
             } catch (Exception e) {
                 handleException(e);
             }
@@ -168,6 +172,11 @@ public class DefaultShell implements Shell {
                 handleException(e);
             }
         });
+    }
+
+    private void handleAfterFinish(Process process) {
+        postHandler.forEach(consumer -> consumer.accept(process.exitValue()));
+        this.result = whetherSuccess == null ? (process.exitValue() == 0) : whetherSuccess.accept(process.exitValue());
     }
 
     private void handleException(Exception e) {
