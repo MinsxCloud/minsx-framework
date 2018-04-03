@@ -18,6 +18,7 @@
         <module>minsx-framework-common-excel</module>
         <module>minsx-framework-common-mail</module>
         <module>minsx-framework-common-http</module>
+        <module>minsx-framework-common-shell</module>
     </modules>
 
     <name>minsx-framework-common</name>

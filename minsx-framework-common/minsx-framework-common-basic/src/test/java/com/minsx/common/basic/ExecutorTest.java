@@ -17,38 +17,28 @@
  */
 package com.minsx.common.basic;
 
-import com.minsx.framework.common.basic.StringUtil;
 import com.minsx.framework.common.basic.executor.Executor;
 import org.junit.Test;
 
-import java.util.Arrays;
+import java.io.IOException;
 
-public class SimpleTest {
-
-    @Test
-    public void testSimple() {
-        String value = StringUtil.getParamFromUrl("https://blog.csdn.net/article?name=goodsave&age=25&sex=man", "age");
-        System.out.println(value);
-        StringUtil.parseUrlParams("https://blog.csdn.net/article?name=goodsave&age=25&sex=man").forEach((k, v) -> System.out.println(k + ":" + v));
-    }
+public class ExecutorTest {
 
     @Test
-    public void testExecutor() throws InterruptedException {
+    public void testExecutor() throws InterruptedException, IOException {
         Executor executor = new Executor();
-        executor.script("java -jar minsx-authorization-starter-1.0.0.jar -Duser.timezone=GMT+08")
+        executor.script("E:/Temp/ServerRunner/MsAuthServer/echo.bat")
                 .inPath("E:/Temp/ServerRunner/MsAuthServer")
                 .charset("UTF-8")
                 .bufferSize(20480)
-                .sync(false)
+                .sync(true)
                 .output(false)
-                .errorLineHandler(line -> {
+                .errorLineListener(line -> {
                     System.out.println("ERROR: " + line);
-                }).normalLineHandler(line -> {
+                }).normalLineListener(line -> {
                     System.out.println("NORMAL: " + line);
-                }).execute();
+        }).execute();
 
-        Thread.sleep(25000);
-        executor.stop();
     }
 
 }

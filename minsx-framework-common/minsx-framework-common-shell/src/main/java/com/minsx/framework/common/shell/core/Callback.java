@@ -15,10 +15,18 @@
  *  * limitations under the License.
  *
  */
-package com.minsx.framework.common.basic.executor;
+package com.minsx.framework.common.shell.core;
 
-public interface ReadLineHandler {
+public interface Callback {
 
-    void handle(String line);
+    Callback out = ((line, operator) -> {
+        System.out.println(line);
+    });
+
+    Callback err = ((line, operator) -> {
+        System.err.println(line);
+    });
+
+    void accept(String line, Operator operator);
 
 }
