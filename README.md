@@ -10,7 +10,7 @@
 - 版本号：1.0.0
 - 开发者：www.minsx.com
 - 语言：Java
-- 功能：提供基于SpringBoot的一系列功能框架，如安全框架、数据源框架、表单框架等以实现快速企业云平台应用的开发
+- 功能：提供基于SpringBoot的一系列基础框架，如安全框架、数据源框架、表单框架等以实现企业云平台应用的快速开发
 - 开源协议：Apache License Version 2.0 http://www.apache.org/licenses/
 
 ### 项目文档
