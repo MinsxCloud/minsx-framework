@@ -13,7 +13,7 @@
 - 功能：提供基于SpringBoot的一系列基础框架，如安全框架、数据源框架、表单框架等以实现企业云平台应用的快速开发
 - 开源协议：Apache License Version 2.0 http://www.apache.org/licenses/
 
-### 项目文档
+### 项目文档 [(Wiki)](https://github.com/MinsxCloud/minsx-framework/wiki)
 
 * Minsx-framework-common
     *  Minsx-framework-common-basic
