@@ -23,6 +23,6 @@
 * [Minsx-framework-security](https://github.com/MinsxCloud/minsx-framework/wiki/minsx-framework-security)
 
 ### 联系方式
-+ Email：E-mail：support@minsx.com
++ Email：support@minsx.com
 + Git：https://github.com/MinsxCloud
 + Web：https://www.minsx.com/
