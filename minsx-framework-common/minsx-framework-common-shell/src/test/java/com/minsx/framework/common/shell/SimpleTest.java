@@ -23,29 +23,15 @@ import org.junit.Test;
 public class SimpleTest {
 
     @Test
-    public void RunShell() {
-        Shell shell = Shell.build("E:/Temp/ServerRunner/MsAuthServer/echo.bat")
-                .inPath("E:/Temp/ServerRunner/MsAuthServer")
-                .charset("UTF-8")
-                .logged(true)
-                .sync(true)
-                .onOut((line, operator) -> {
-                    if (line.contains("hi")) {
-                        operator.send("Joker");
-                    }
-                });
-        shell.run();
-        System.out.println(shell.exitCode());
-    }
-
-    @Test
     public void RunTextShell() throws InterruptedException {
         StringBuffer text = new StringBuffer("@echo off");
         text.append("\n").append("echo please input your name:");
         text.append("\n").append("set /p name=");
         text.append("\n").append("echo Your name is %name%");
 
-        Shell.buildText(text.toString())
+        StringBuffer sb = new StringBuffer("");
+
+        Shell shell = Shell.buildText(text.toString())
                 .charset("UTF-8")
                 .logged(true)
                 .sync(true)
@@ -53,20 +39,32 @@ public class SimpleTest {
                     System.out.println("begin");
                 })
                 .onOut((line, operator) -> {
+                    sb.append(line);
                     if (line.contains("please input your name")) {
                         //operator.stop();
                         operator.send("Joker");
                     }
-                }).onErr((line, operator) ->{
+                }).onErr((line, operator) -> {
                     System.err.println(line);
                 }).postHandler(code -> {
                     System.out.println("end");
                 }).whetherSuccess(code -> {
-                    return code == 0;
-                }).onException(e->{
+                    boolean result = sb.toString().contains("Your name is Joker");
+                    return code == 0 && result;
+                }).onException(e -> {
                     System.out.println(e.getMessage());
-                }).run();
+                });
+
+        shell.run();
+        System.out.println(shell.isSuccess());
     }
+
+
+    @Test
+    public void RunSimpleTest(){
+        Shell.build("java -jar E:\\Temp\\ServerRunner\\MsAuthServer\\minsx-authorization-starter-1.0.0.jar").sync(false).run();
+    }
+
 
 
 }
