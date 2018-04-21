@@ -1,14 +1,14 @@
 package com.minsx.framework.security.core.configuration;
 
-import com.minsx.framework.security.api.authentication.AuthenticationManager;
 import com.minsx.framework.security.api.configure.WebSecurity;
+import com.minsx.framework.security.api.handler.AuthorizeHandler;
 import com.minsx.framework.security.api.handler.LoginHandler;
-import com.minsx.framework.security.api.simple.SimpleAuthenticationManager;
-import com.minsx.framework.security.api.simple.SimpleUserTokenManager;
+import com.minsx.framework.security.api.handler.LogoutHandler;
 import com.minsx.framework.security.api.simple.WebSecurityBuilder;
-import com.minsx.framework.security.api.token.UserTokenManager;
 import com.minsx.framework.security.core.aop.*;
+import com.minsx.framework.security.core.handler.DefaultAuthorizeHandler;
 import com.minsx.framework.security.core.handler.DefaultLoginHandler;
+import com.minsx.framework.security.core.handler.DefaultLogoutHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -20,11 +20,6 @@ public class SecurityAutoConfiguration {
     @Bean
     public WebSecurity webSecurity(){
         return new WebSecurityBuilder();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(){
-        return new SimpleAuthenticationManager();
     }
 
     @Bean
@@ -53,14 +48,18 @@ public class SecurityAutoConfiguration {
     }
 
     @Bean
-    public UserTokenManager userTokenManager(){
-        return new SimpleUserTokenManager();
-    }
-
-    @Bean
     public LoginHandler loginHandler(){
         return new DefaultLoginHandler();
     }
 
+    @Bean
+    public LogoutHandler logoutHandler(){
+        return new DefaultLogoutHandler();
+    }
+
+    @Bean
+    public AuthorizeHandler authorizeHandler(){
+        return new DefaultAuthorizeHandler();
+    }
 
 }

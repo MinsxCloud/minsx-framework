@@ -20,21 +20,35 @@ package com.minsx.framework.security.api.listener;
 import org.springframework.context.ApplicationEvent;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public abstract class AbstractAuthenticationEvent extends ApplicationEvent implements AuthenticationEvent {
 
     private HttpServletRequest request;
 
-    public AbstractAuthenticationEvent(HttpServletRequest request) {
-        super(request);
+    private HttpServletResponse response;
+
+    public AbstractAuthenticationEvent(HttpServletRequest request, HttpServletResponse response) {
+        super(request.getRequestURI());
         this.request = request;
+        this.response = response;
     }
 
+    @Override
     public HttpServletRequest getRequest() {
         return request;
     }
 
     public void setRequest(HttpServletRequest request) {
         this.request = request;
+    }
+
+    @Override
+    public HttpServletResponse getResponse() {
+        return response;
+    }
+
+    public void setResponse(HttpServletResponse response) {
+        this.response = response;
     }
 }

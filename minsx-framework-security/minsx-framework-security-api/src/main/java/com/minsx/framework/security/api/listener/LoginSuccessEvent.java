@@ -20,13 +20,14 @@ package com.minsx.framework.security.api.listener;
 import com.minsx.framework.security.api.authentication.Authentication;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class LoginSuccessEvent extends AbstractAuthenticationEvent {
 
     private Authentication authentication;
 
-    public LoginSuccessEvent(Authentication authentication, HttpServletRequest request) {
-        super(request);
+    public LoginSuccessEvent(Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
+        super(request, response);
         this.authentication = authentication;
     }
 

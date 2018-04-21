@@ -17,6 +17,13 @@
  */
 package com.minsx.framework.security.api.listener;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 public interface AuthenticationEvent {
+
+    HttpServletRequest getRequest();
+
+    HttpServletResponse getResponse();
 
 }

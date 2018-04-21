@@ -15,20 +15,15 @@
  *  * limitations under the License.
  *
  */
-package com.minsx.framework.security.api.handler;
+package com.minsx.framework.security.api.listener;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
-public interface LogoutHandler {
+public class LoginPostEvent extends AbstractAuthenticationEvent {
 
-    Boolean logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException;
-
-    void publishPreLogoutEvent(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
-
-    void publishPostLogoutEvent(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
-
-    void publishAfterLogoutEvent(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
+    public LoginPostEvent(HttpServletRequest request, HttpServletResponse response) {
+        super(request, response);
+    }
 
 }

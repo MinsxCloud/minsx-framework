@@ -19,16 +19,15 @@ package com.minsx.framework.security.api.handler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
-public interface LogoutHandler {
+public interface AuthorizeHandler {
 
-    Boolean logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException;
+    Boolean authorize(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception;
 
-    void publishPreLogoutEvent(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
+    void publishPreAuthorizeEvent(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
 
-    void publishPostLogoutEvent(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
+    void publishPostAuthorizeEvent(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
 
-    void publishAfterLogoutEvent(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
+    void publishAfterAuthorizeEvent(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
 
 }

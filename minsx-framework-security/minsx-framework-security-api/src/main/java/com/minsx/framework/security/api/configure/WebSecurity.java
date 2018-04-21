@@ -6,10 +6,15 @@ public interface WebSecurity {
 
     Boolean getEnabled();
 
+    WebSecurity ExpiredTime(Long millSeconds);
+
+    Long getExpiredTime();
+
     LoginConfigurer loginConfigurer();
 
     LogoutConfigurer logoutConfigurer();
 
     AuthorizeConfigurer authorizeConfigurer();
+
 
 }

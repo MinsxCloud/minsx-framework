@@ -1,7 +1,7 @@
 package com.minsx.framework.security.core.aop;
 
-import com.minsx.framework.common.http.ResponseUtil;
 import com.minsx.framework.security.api.configure.WebSecurity;
+import com.minsx.framework.security.api.handler.LogoutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -16,23 +16,21 @@ public class LogoutInterceptor implements HandlerInterceptor {
     @Autowired
     WebSecurity webSecurity;
 
+    @Autowired
+    LogoutHandler logoutHandler;
+
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        String logoutUrl = webSecurity.logoutConfigurer().getLogoutAPIUrl();
-        if (httpServletRequest.getRequestURI().equalsIgnoreCase(logoutUrl)) {
-            System.out.println("已退出登录");
-        }
-        ResponseUtil.responseJson(httpServletResponse, 200, "logout success");
-        return false;
+        return logoutHandler.logout(httpServletRequest, httpServletResponse);
     }
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
-
+        logoutHandler.publishPostLogoutEvent(httpServletRequest, httpServletResponse);
     }
 
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
-
+        logoutHandler.publishAfterLogoutEvent(httpServletRequest, httpServletResponse);
     }
 }

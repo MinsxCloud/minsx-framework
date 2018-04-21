@@ -18,13 +18,14 @@
 package com.minsx.framework.security.api.listener;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class LoginFailedEvent extends AbstractAuthenticationEvent {
 
     private String reason;
 
-    public LoginFailedEvent(String reason, HttpServletRequest request) {
-        super(request);
+    public LoginFailedEvent(String reason, HttpServletRequest request,HttpServletResponse response) {
+        super(request,response);
         this.reason=reason;
     }
 

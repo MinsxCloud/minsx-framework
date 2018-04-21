@@ -17,6 +17,7 @@
  */
 package com.minsx.framework.security.api.simple;
 
+import com.minsx.framework.security.api.authentication.AuthenticationManager;
 import com.minsx.framework.security.api.token.TokenState;
 import com.minsx.framework.security.api.token.UserToken;
 import com.minsx.framework.security.api.token.UserTokenManager;
@@ -34,10 +35,14 @@ public class SimpleUserTokenManager implements UserTokenManager {
 
     private final ConcurrentMap<String, List<String>> USER_POOL;
 
-    private final static Long MAX_INACTIVE_INTERVAL = 24 * 60 * 60 * 1000L;
+    private Long MAX_INACTIVE_INTERVAL = 24 * 60 * 60 * 1000L;
 
-    public SimpleUserTokenManager() {
+    private AuthenticationManager authenticationManager;
+
+    public SimpleUserTokenManager(AuthenticationManager authenticationManager, Long MAX_INACTIVE_INTERVAL) {
         this(new ConcurrentHashMap<>(128), new ConcurrentHashMap<>(128));
+        this.authenticationManager = authenticationManager;
+        this.MAX_INACTIVE_INTERVAL = MAX_INACTIVE_INTERVAL;
     }
 
     public SimpleUserTokenManager(ConcurrentMap<String, SimpleUserToken> TOKEN_POOL, ConcurrentMap<String, List<String>> USER_POOL) {

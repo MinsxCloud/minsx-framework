@@ -17,7 +17,6 @@
  */
 package com.minsx.framework.security.core.handler;
 
-import com.mashape.unirest.http.HttpResponse;
 import com.minsx.framework.common.http.ResponseUtil;
 import com.minsx.framework.security.api.authentication.Authentication;
 import com.minsx.framework.security.api.authentication.AuthenticationManager;
@@ -25,21 +24,18 @@ import com.minsx.framework.security.api.basic.SecurityUser;
 import com.minsx.framework.security.api.configure.WebSecurity;
 import com.minsx.framework.security.api.exception.AuthorizationException;
 import com.minsx.framework.security.api.handler.LoginHandler;
-import com.minsx.framework.security.api.listener.LoginFailedEvent;
-import com.minsx.framework.security.api.listener.LoginSuccessEvent;
+import com.minsx.framework.security.api.listener.*;
 import com.minsx.framework.security.api.service.LoadSecurityUserService;
 import com.minsx.framework.security.api.simple.SimpleAuthentication;
-import com.minsx.framework.security.api.simple.SimpleAuthenticationManager;
 import com.minsx.framework.security.api.token.UserTokenManager;
 import com.minsx.framework.security.core.aop.LoginInterceptor;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class DefaultLoginHandler implements LoginHandler {
@@ -50,17 +46,19 @@ public class DefaultLoginHandler implements LoginHandler {
     private WebSecurity webSecurity;
 
     @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
     private LoadSecurityUserService loadSecurityUserService;
 
     @Autowired
-    ConfigurableApplicationContext configurableApplicationContext;
+    private ConfigurableApplicationContext configurableApplicationContext;
 
     @Autowired
-    UserTokenManager userTokenManager;
+    private UserTokenManager userTokenManager;
 
     @Override
-    public ResponseEntity<?> handle(HttpServletRequest httpServletRequest) {
-        ResponseEntity<?> response = new ResponseEntity<Object>("login success", HttpStatus.OK);
+    public Boolean login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         try {
             SecurityUser securityUser = loadSecurityUserService.loadUser(httpServletRequest);
             LOG.info("the user:" + securityUser.getUsername() + " login success");
@@ -68,20 +66,34 @@ public class DefaultLoginHandler implements LoginHandler {
             authentication.setAuthenticated(true);
             authentication.setSecurityUser(securityUser);
 
-            AuthenticationManager authenticationManager = new SimpleAuthenticationManager();
             authenticationManager.initial(securityUser.getUsername(), authentication);
 
             HttpSession session = httpServletRequest.getSession();
             session.setAttribute(Authentication.class.getName(), securityUser.getUsername());
 
-            configurableApplicationContext.publishEvent(new LoginSuccessEvent(authentication, httpServletRequest));
+            configurableApplicationContext.publishEvent(new LoginSuccessEvent(authentication, httpServletRequest, httpServletResponse));
             userTokenManager.login(session.getId(), securityUser.getUsername());
 
+            ResponseUtil.responseJson(httpServletResponse, 200, "login success");
         } catch (AuthorizationException e) {
-            configurableApplicationContext.publishEvent(new LoginFailedEvent(e.getMessage(), httpServletRequest));
-            response = new ResponseEntity<Object>(e.getMessage(), HttpStatus.valueOf(e.getStatus()));
+            configurableApplicationContext.publishEvent(new LoginFailedEvent(e.getMessage(), httpServletRequest, httpServletResponse));
+            throw e;
         }
-        return response;
+        return false;
     }
 
+    @Override
+    public void publishPreLoginEvent(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+        configurableApplicationContext.publishEvent(new LoginPrepareEvent(httpServletRequest, httpServletResponse));
+    }
+
+    @Override
+    public void publishPostLoginEvent(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+        configurableApplicationContext.publishEvent(new LoginPostEvent(httpServletRequest, httpServletResponse));
+    }
+
+    @Override
+    public void publishAfterLoginEvent(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+        configurableApplicationContext.publishEvent(new LoginAfterEvent(httpServletRequest, httpServletResponse));
+    }
 }

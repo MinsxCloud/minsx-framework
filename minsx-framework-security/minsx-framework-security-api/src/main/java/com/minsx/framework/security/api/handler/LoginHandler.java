@@ -17,13 +17,18 @@
  */
 package com.minsx.framework.security.api.handler;
 
-import org.springframework.http.ResponseEntity;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public interface LoginHandler {
 
-    ResponseEntity<?> handle(HttpServletRequest httpServletRequest);
+    Boolean login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception;
 
+    void publishPreLoginEvent(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
+
+    void publishPostLoginEvent(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
+
+    void publishAfterLoginEvent(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
 
 }
