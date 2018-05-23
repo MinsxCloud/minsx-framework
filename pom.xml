@@ -12,6 +12,7 @@
     <modules>
         <module>minsx-framework-security</module>
         <module>minsx-framework-common</module>
+        <module>minsx-framework-orm</module>
     </modules>
 
     <properties>
