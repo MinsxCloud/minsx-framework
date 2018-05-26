@@ -1,6 +1,6 @@
 /*
  *
- *  * Copyright 2017 https://www.minsx.com
+ *  * Copyright 2018 https://www.minsx.com
  *  *
  *  * Licensed under the Apache License, Version 2.0 (the "License");
  *  * you may not use this file except in compliance with the License.
@@ -17,13 +17,14 @@
  */
 package com.minsx.framework.common.shell;
 
+import com.alibaba.fastjson.JSON;
 import com.minsx.framework.common.shell.core.Shell;
 import org.junit.Test;
 
 public class SimpleTest {
 
     @Test
-    public void RunTextShell() throws InterruptedException {
+    public void runTextShell() throws InterruptedException {
         StringBuffer text = new StringBuffer("@echo off");
         text.append("\n").append("echo please input your name:");
         text.append("\n").append("set /p name=");
@@ -61,10 +62,13 @@ public class SimpleTest {
 
 
     @Test
-    public void RunSimpleTest(){
-        Shell.build("java -jar E:\\Temp\\ServerRunner\\MsAuthServer\\minsx-authorization-starter-1.0.0.jar").sync(false).run();
+    public void getProcessInfoTreeAndStop() throws InterruptedException {
+        Shell shell = Shell.build("cmd /c Run.bat").inPath("E:\\Temp\\RunTest\\MsAuthServer").sync(false).logged(true);
+        shell.run();
+        Thread.sleep(25000);
+        System.out.println(JSON.toJSONString(shell.getProcessInfoTree()));
+        shell.stop();
     }
-
 
 
 }

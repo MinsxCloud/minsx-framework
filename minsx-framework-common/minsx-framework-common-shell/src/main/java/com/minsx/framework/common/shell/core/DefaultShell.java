@@ -18,6 +18,9 @@
 package com.minsx.framework.common.shell.core;
 
 import com.minsx.framework.common.shell.builder.*;
+import com.minsx.framework.common.shell.process.ProcessInfo;
+import com.minsx.framework.common.shell.process.ProcessInfoManager;
+import com.minsx.framework.common.shell.process.ProcessManager;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -116,26 +119,39 @@ public class DefaultShell implements Shell {
 
     @Override
     public boolean isRunning() {
-        return process.isAlive();
+        return process != null && process.isAlive();
     }
 
     @Override
     public int exitCode() {
+        check("complete");
         return process.exitValue();
     }
 
     @Override
     public boolean isSuccess() {
-        if (isRunning()) {
-            handleException(new ExecuteException("the process has not been completed yet"));
-        }
+        check("complete");
         return result;
     }
 
     @Override
     public void stop() {
+        check("run");
+        ProcessManager.stopProcessTree(process);
         process.destroyForcibly();
         executorService.shutdownNow();
+    }
+
+    @Override
+    public Integer getProcessId() {
+        check("run");
+        return ProcessInfoManager.getProcessId(process);
+    }
+
+    @Override
+    public ProcessInfo getProcessInfoTree() {
+        check("run");
+        return ProcessInfoManager.getProcessInfoTree(process);
     }
 
     private void execute(Process process) {
@@ -184,6 +200,14 @@ public class DefaultShell implements Shell {
             exceptionCallback.forEach(consumer -> consumer.accept(e));
         } else {
             throw new ExecuteException(e);
+        }
+    }
+
+    public void check(String runOrComplete) {
+        if (runOrComplete.equals("run")) {
+            if (process == null) handleException(new ExecuteException("the process has not been run yet"));
+        } else if (runOrComplete.equals("complete")) {
+            if (isRunning()) handleException(new ExecuteException("the process has not been completed yet"));
         }
     }
 

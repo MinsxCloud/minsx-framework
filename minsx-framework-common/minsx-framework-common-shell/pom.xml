@@ -10,6 +10,25 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>minsx-framework-common-shell</artifactId>
+    <version>1.0.0</version>
+
+    <properties>
+        <jna-version>4.5.1</jna-version>
+        <jna-platform-version>4.5.1</jna-platform-version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>${jna-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna-platform</artifactId>
+            <version>${jna-platform-version}</version>
+        </dependency>
+    </dependencies>
 
 
 </project>
