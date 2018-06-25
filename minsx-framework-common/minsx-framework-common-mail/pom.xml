@@ -23,4 +23,16 @@
         </dependency>
     </dependencies>
 
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/minsx.html</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
 </project>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<style>
+    .main {
+        border: #DADADA 1px solid;
+        width: 800px;
+        height: auto;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .main .header {
+        height: 50px;
+        width: 800px;
+        background-color: #3C3F41;
+    }
+
+    .main .header .logo {
+        float: left;
+        width: 200px;
+        height: 50px;
+        background: url(${headerLogo}) no-repeat left center;
+        background-size: 70%;
+        background-position-x: 20px;
+    }
+
+    .main .header .right {
+        width: 500px;
+        height: 50px;
+        float: right;
+        padding-right: 20px;
+        padding-left: 20px;
+        text-align: right;
+    }
+    .main .header .right a{
+        font-size: 14px;
+        color: white;
+        font-weight: bold;
+        line-height: 50px;
+    }
+
+    .main .middle {
+        width: 800px;
+        height: auto;
+    }
+
+    .main .middle .welcome {
+        height: 50px;
+        color: black;
+        text-align: left;
+        padding-left: 50px;
+        line-height: 50px;
+        font-size: 14px;
+    }
+
+    .main .middle .content {
+        height: auto;
+        color: black;
+        text-align: left;
+        padding-left: 80px;
+        padding-right: 50px;
+        padding-bottom: 50px;
+        line-height: 25px;
+        font-size: 14px;
+    }
+
+    .main .middle .company {
+        padding-right: 50px;
+        height: 30px;
+        text-align: right;
+        line-height: 30px;
+        font-size: 14px;
+        color: #7F7C7C;
+    }
+
+    .main .middle .date {
+        padding-right: 50px;
+        padding-bottom: 20px;
+        height: 30px;
+        text-align: right;
+        line-height: 30px;
+        font-size: 14px;
+        color: #7F7C7C;
+    }
+
+    .main .notReply {
+        width: 780px;
+        height: 50px;
+        text-align: left;
+        line-height: 50px;
+        font-size: 14px;
+        color: #7F7C7C;
+        padding-left: 20px;
+        border-top: 1px dashed #999999;
+        border-bottom: 1px solid #DADADA;
+    }
+
+    .main .footer {
+        width: 800px;
+        height: 98px;
+        background-color: #EDEDED;
+    }
+
+    .main .footer .left {
+        float: left;
+        padding: 20px;
+        text-align: left;
+        width: 400px;
+        height: 58px;
+        color: #7F7C7C;
+        line-height: 18px;
+        font-size: 12px;
+        text-decoration: none;
+    }
+
+    .main .footer .right {
+        float: right;
+        padding: 20px;
+        text-align: right;
+        width: 300px;
+        height: 58px;
+        color: #7F7C7C;
+        line-height: 20px;
+        font-size: 12px;
+    }
+
+    .main .footer .right .logo {
+        float: right;
+        width: 300px;
+        height: 60px;
+        background: url(${footerLogo}) no-repeat left center;
+        background-size: 80%;
+        background-position-x: 50px;
+    }
+
+
+</style>
+<body>
+<div class="main">
+    <div class="header">
+        <a href="${webSite}" target="_blank"><div class="logo"></div></a>
+        <div class="right"><a href="${webSite}" target="_blank" style="text-decoration: none;">${webName}</a> </div>
+    </div>
+    <div class="middle">
+        <div class="welcome">
+            ${welcome}
+        </div>
+        <div class="content">
+            ${content}
+        </div>
+        <div class="company">
+            ${company}
+        </div>
+        <div class="date">
+            ${date}
+        </div>
+    </div>
+    <div class="notReply">
+        ${remind}
+    </div>
+    <div class="footer">
+        <div class="left">
+            ${copyRight}
+        </div>
+        <div class="right">
+            <div class="logo"></div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
