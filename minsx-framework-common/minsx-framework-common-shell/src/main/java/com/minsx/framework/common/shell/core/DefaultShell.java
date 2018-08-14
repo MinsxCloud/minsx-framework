@@ -124,13 +124,13 @@ public class DefaultShell implements Shell {
 
     @Override
     public int exitCode() {
-        check("complete");
+        check("run", "complete");
         return process.exitValue();
     }
 
     @Override
     public boolean isSuccess() {
-        check("complete");
+        check("run", "complete");
         return result;
     }
 
@@ -203,11 +203,13 @@ public class DefaultShell implements Shell {
         }
     }
 
-    public void check(String runOrComplete) {
-        if (runOrComplete.equals("run")) {
-            if (process == null) handleException(new ExecuteException("the process has not been run yet"));
-        } else if (runOrComplete.equals("complete")) {
-            if (isRunning()) handleException(new ExecuteException("the process has not been completed yet"));
+    public void check(String... items) {
+        for (String item : items) {
+            if (item.equals("run")) {
+                if (process == null) handleException(new ExecuteException("the process has not been run yet"));
+            } else if (item.equals("complete")) {
+                if (isRunning()) handleException(new ExecuteException("the process has not been completed yet"));
+            }
         }
     }
 
